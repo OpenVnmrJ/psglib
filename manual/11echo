@@ -1,0 +1,5 @@
+/*  1-1 echo:   Sklenar and Bax, J. Magn. Reson., 74, 469(1987)  
+ p1,p2 used to make small correction for radiation-damping recovery  */
+
+Note: the pulse sequence is called 11echo, but the macro to set it up
+ is called "echo11" because macros cannot start with a number!

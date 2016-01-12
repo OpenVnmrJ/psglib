@@ -1,0 +1,2 @@
+"echo11-convert from presat to 11echo parameter set"
+psgset('11echo','p1','p2','tau','dg','ap','hs','hst')
