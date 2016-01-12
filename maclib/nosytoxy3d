@@ -1,0 +1,30 @@
+"       Varian Associates   VNMR   @(#)noesy	1.5    2/29/88  "
+"*********************************************************"
+" nosytoxy3d - sets up parameters for nosytoxy3d           "
+"*********************************************************"
+
+set2d('noesy')
+par2d
+par3d
+exists('satfrq','parameter'):$exist
+  if ($exist = 0) then create('satfrq','frequency') satfrq=0 endif
+exists('satdly','parameter'):$exist
+  if ($exist = 0) then create('satdly','delay') satdly=0 endif
+exists('satpwr','parameter'):$exist
+  if ($exist = 0) then create('satpwr','real') satpwr=0 endif
+exists('satflg','parameter'):$exist
+  if ($exist = 0) then create('satflg','flag') satflg='nn' endif
+if (satflg = 'y') then satflg='yy' else satflg='nn' endif
+if (satdly<>0) then d1=.05 endif
+psgset('nosytoxy3d','sw2','ni2','phase2','phase','dg','ap')
+psgset('nosytoxy3d','dn','dm','p1lvl','slmix','trim','trim2','wdwfctr')
+psgset('nosytoxy3d','mix','nosyflg','toxyflg')
+psgset('nosytoxy3d','ss','hs','hst','sspul','array')
+sw2=sw ni2=ni
+p1lvl=tpwr-6
+p1=pw90*2
+ph ss=8
+pw=pw90
+homo='n'
+sspul='y'
+dg
