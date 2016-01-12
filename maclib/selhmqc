@@ -1,0 +1,24 @@
+
+"selhmqc-convert presat into selhmqc "
+"parameter set"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d
+psgset('selhmqc','satdly','satfrq','satpwr','satmode','array')
+psgset('selhmqc','dmf','dn','jeff','j','pwxlvl','pwx','dpwr','dof','sw1','ni')
+psgset('selhmqc','phase','tpwr','pw','ss','dm','dmm','d1','at','dgs','hs')
+psgset('selhmqc','p1','dg','ap','null','dres','dseq','mix')
+psgset('selhmqc','selpwr','selpw','selshape','satshape','sspul')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='selhmqc'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='pd'  fn=2048 ni=1
+sb=at sbs=-at
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''

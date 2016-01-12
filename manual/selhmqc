@@ -1,0 +1,49 @@
+/* selhmqc- selective HMQC with hypercomplex and
+         TPPI implementations, steady-state transients for either all or
+         just the first t1 increment, pulse+receiver phasecycling during
+         steady-state transients, and presaturation using the transmitter
+         using the waveform generator
+
+
+   ref: Summers et al., j. amer. chem. soc. 108:4285-4294 (1986)
+
+
+   Parameters:
+      sspul = 'y' does trim(x)-trim(y) where trim is 200*pw (at tpwr) to
+              destroy all 1H magnetization (forces steady-state)
+
+     satflg = 'yn':  presaturation during relaxation period (satdly) with xmtr
+              'yy':  presaturation during both relaxation period (satdly)
+                     and null period (null) with xmtr
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+     selpwr = selective decoupler pulse power
+     seltime= selective decoupler pulse length (in sec) at dof
+   selshape = selective decoupler (wfg) shape
+        dof = frequency for decoupling during acquisition
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+              'yy':  homospoil pulse during both d1 and nulling period (null)
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwxlvl = power level for decoupler pulses
+        pwx = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+       jeff = effective j (longer than j to account for precession during seltime)
+         dm = 'nnn':  no broadband decoupling of heteronucleus during
+                      acquisition; 
+              'nny':  broadband heteronuclear decoupling during acquisition
+
+               Note:  The 1/(2j) refocusing period prior to acquisition is
+                      always present
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+                3:  TPPI experiment with F1 quadrature (complex F1-FT)
+              1,4:  TPPI experiment with F1 quadrature (real F1-FT)
+       null = nulling time for protons not attached to observed heteronucleus
+
+
+   Note:  The single-bond correlation experiment can be presented
+          in a phase-sensitive manner simply due to the fact that
+          the total time for proton-proton scalar coupling evolution
+          (2*bird + d2) is quite short. 
+
