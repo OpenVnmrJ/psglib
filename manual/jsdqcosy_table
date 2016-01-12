@@ -1,0 +1,28 @@
+
+/* jsdqcosy -j-scaled partially-decoupled dqcosy experiment
+               using obs xmtr for saturation (uses phasetable)
+              TRANSMITTER MUST BY AT SOLVENT FREQUENCY
+
+  Parameters:
+
+      sspul = 'y': selects for Trim(x)-Trim(y)
+               sequence at start of pulse sequence
+             (highly recommended to eliminate "long T1" artifacts)
+         pw = 90 excitation pulse (at power level tpwr)
+      selpw = pulse width of selective inversion pulse
+     selpwr = power level for selective inversion pulse
+   selshape = shapelib file for selective inversion pulse 
+               (must be in shapelib as .RF file. Should be created
+                via "convolute" macro to make an "SLP" pulse, allowing
+                off-resonance excitation without moving frequency)
+   satshape = shapelib file for saturation (can use less power than with
+              just attenuators)
+    satmode = 'yn' for saturation during relaxation period
+              'ny' for saturation during d2
+              'yy' for both
+     satdly = presaturation period -uses obs xmtr at tof with satpwr; 
+      phase =   0: P-type non-phase-sensitive experiment
+              1,2: hypercomplex phase-sensitive experiment
+                3: TPPI phase-sensitive experiment
+ 
+

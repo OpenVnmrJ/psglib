@@ -1,0 +1,7 @@
+"jsdqcosy_table-to convert standard parameter table to jsdqcosy_table"
+set2d('jsdqcosy_table')
+psgset('jsdqcosy_table','sspul','phase','array','satmode','satdly','dg','ap')
+psgset('jsdqcosy_table','satpwr','selpwr','selshape','selpw','satshape')
+ss=8 rp=rp+90 ni=1 phase=1 f full
+dg
+
