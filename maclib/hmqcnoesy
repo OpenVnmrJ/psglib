@@ -1,0 +1,23 @@
+
+"hmqcnoesy-convert presat into hmqcnoesy "
+"parameter set"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d
+psgset('hmqcnoesy','satdly','satfrq','satpwr','satmode','array')
+psgset('hmqcnoesy','dmf','dn','j','pwxlvl','pwx','dpwr','dof','sw1','ni')
+psgset('hmqcnoesy','phase','tpwr','pw','ss','dm','dmm','d1','at','dgs','hs')
+psgset('hmqcnoesy','p1','dg','ap','null','dres','dseq','mix')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='hmqcnoesy'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='pd' sw1=40d dof=700 fn=2048 ni=1
+sb=at sbs=-at
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''

@@ -1,0 +1,38 @@
+/* hmqcnoesy.c - 
+        supports both hypercomplex (Bax mode with shifted axial peaks) 
+	and TPPI implementations, steady-state
+        transients for either all or just the first t1 increment,
+        pulse+receiver phasecycling during steady-state transients, and
+        presaturation using the transmitter.
+
+   Parameters:
+
+     satflg = 'ynn':  presaturation during relaxation period (satdly) with xmtr
+              'yyn':  presaturation during both relaxation period (satdly)
+                     and null period (null) with xmtr
+              'yyy':  presaturation during relaxation,null and mix time
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+        dof = frequency for decoupling during acquisition 
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+              'yy':  homospoil pulse during both d1 and nulling period (null)
+         pw = 90 degree transmitter pulse length for protons (power = TPWR)
+     pwxlvl = dpwr level for decoupler pulses
+        pwx = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+         dm = 'nny':  activates 1/(2j) refocusing period before acquisition
+              and includes heteronuclear broadband decoupling
+                       (recommended)
+      phase = 1,2: hypercomplex phase-sensitive experiment with F1 quadrature
+			(using axial shifting phase cycling of Bax);
+                3: TPPI phase-sensitive experiment with F1 quadrature
+       null = nulling time for protons not attached to observed heteronucleus
+         nt = multiple of 8
+	mix = mixing time 
+
+Program aborts if:
+	at >= 250 msec
+	Duty cycle > 20%
+	dm = 'yyy','yny','nyy','yyn',. . .*/
+
