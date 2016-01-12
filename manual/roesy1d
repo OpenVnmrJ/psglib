@@ -1,0 +1,34 @@
+
+/* roesy1d - one dimensional rotating frame NOE experiment;
+             a continuous-wave spin lock is employed;
+             compensation for off-resonance effects may be performed.
+
+   ref:      H. Kessler, U. Anders, G. Gemmecker and S. Steuernagel
+             J. Magn. Reson. 85, 1-14 (1989). 
+
+  Parameters:
+        p1 = 90 degree pulse on protons (power level at "p1lvl")
+     p1lvl = power level for the p1 pulse 
+      tpwr = power level for the spin lock pulse
+       mix = mixing time
+        ss = number of steady state pulses
+     sspul = 'y': selects for trim(x)-trim(y) sequence at start
+    rocomp = 'n': no resonance offset compensation
+             'y': resonance offset compensation
+    satdly = length of saturation (at power satpwr); if
+    selpwr = transmitter power for the shaped pulse
+     selpw = 90 degree shape pulse in microseconds
+  selshape = shape of the shaped pulse
+    selfrq = transmitter frequency for selective excitation
+    satpwr = power for presaturation
+    satfrq = frequency for presaturation
+    satmode = 'y': selects  presaturation
+             'n': no presaturation
+     purge = 'y': selects compensating purging pulse
+             'n': purging pulse is bypassed
+        nt = min:  multiple of 8 
+             max:  multiple of 16   (recommended)
+
+  P. Sandor (Darmstadt, modified gg. sept 92 */
+
+

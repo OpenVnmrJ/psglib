@@ -1,0 +1,10 @@
+"*********************************************************"
+"roesy1d - sets up parameters for the roesy1d pulse seq.  "
+"*********************************************************"
+
+psgset('roesy1d','mix','p1lvl','satdly','array','rocomp')
+psgset('roesy1d','hs','hst','sspul','dg','ap','dgs','ss','dm','dmm')
+psgset('roesy1d','satmode','satpwr','satfrq','p1')
+psgset('roesy1d','selfrq','selpwr','selpw','selshape','purge')
+
+dg
