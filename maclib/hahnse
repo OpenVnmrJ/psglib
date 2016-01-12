@@ -1,0 +1,15 @@
+  "VNMR @(#)hahnse 1.1 16/06/89"
+
+"Fernando Commodari, 16/06/89"
+
+"************************************
+
+"hahnse set-up parameters for hahnse sequence"
+
+
+psgset('hahnse','pw','d1','d2','ap','dg')
+
+
+dg
+
+man('hahnse')
