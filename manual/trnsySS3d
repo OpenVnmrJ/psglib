@@ -1,0 +1,61 @@
+/* trnsySS3d - A sequence to do either  TOCSY-NOESY-3D
+                                        ROESY-NOESY-3D
+                                        TOCSY-ROESY-3D
+                with SS read pulse.
+                (For tocsy-roesy: Z-filter before SS read pulse)
+
+                Gradient only during the NOESY mixing time/z-filter delay
+
+  Parameters:
+        General:
+                nosyflg, toxyflg and rosyflg - flags to turn on/off
+                SSpwr - power for SS pulse
+                pwSS - SS pulse width
+                SSshape - SS shape
+                pw0 - "stearing" pulse (same phase as pwSS) - can be negative
+                pw1 - "stearing" pulse (orthogonal to pwSS) - can be negative
+                d2corr, d3corr - enterable evolution delay corrections
+                                    Can be negative.
+                gt - gradient time
+                gstab - time for system recovery after gradient
+                gzlvl - gradient level
+                zfilt - z-filter time (zfilt must be > gstab+gt)
+
+        TOCSY:
+                slpwrT - spinlock power
+                slpwT  - pulse width for mlev17
+                wdwfctr - window factor in mlev17 (window = wfwfctr*slpwT)
+                mixT - tocsy mixing time
+                trim - trim pulse
+
+        ROESY:
+                slpwrR - spinlock power (typically same as tpwr)
+                slpwR - pulse width for time-shared spinlock (typically
+                                        30 degree pulse as in roesy)
+                ratio - (similar to that in roesy)
+                xtradly - NOT ENTERABLE (correction for lp=0
+                                        in roesy evolution axis)
+                mixR - roesy mixing time
+ 
+        NOESY:
+                mixN - noesy mixing time
+ 
+   Processing:
+ 
+        3D processing with N-type selection!!
+ 
+ 
+ 
+   NOTE:   For ROESY-NOESY, roesy acquisition time (i.e., noesy evolution
+                time) must be corrected to make lp2=0.  Use a macro similar
+                to calfa to back calculate the correction (d3corr in this
+                case) and enter it in the parameter.   Typically 5-10 us
+                correction may be needed.  Roesy evolution doesn't seem
+                to require correction!! [See xtradly in the sequence]
+           For TOCSY-ROESY, Roesy evolution doesn't seem to require
+                correction!! [See xtradly in the sequence].
+                alfa must be corrected as usual using calfa.
+           For TOCSY-NOESY,  there seems no need for corrections.
+
+Krish Krishnamurthy (Sept 27, 1993)
+

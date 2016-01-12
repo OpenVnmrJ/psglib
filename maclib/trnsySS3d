@@ -1,0 +1,31 @@
+"**********************************************************"
+" trnsySS3d "
+"***********************************************************"
+
+set2d('noesy')
+psgset('trnsySS3d','dg','ap','mixT','phase','slpwrT','slpwT','array')
+psgset('trnsySS3d','mixR','mixN','toxyflg','nosyflg','rosyflg','phase2')
+psgset('trnsySS3d','ratio','ss','sspul','slpwrR','slpwR','wdwfctr')
+psgset('trnsySS3d','trim','pw0','pw1','ni2','dg2','d2corr','d3corr')
+psgset('trnsySS3d','SSpwr','pwSS','SSshape','gt','gzlvl','gstab','zfilt')
+pw=pw90  slpwrR=tpwr  slpwR=pw90/3
+if ($# > 0) then
+   ratio=$1
+   $sl_strength=(1/(slpwR*12e-6))/(ratio+1)
+   write('line3','Spin Lock Field Strength = %7.1f Hz.',$sl_strength)
+endif
+if ($# = 0) then
+   $sl_bandwidth=1.732*sw/2
+   $sl_strength=(1/(slpwR*12e-6))
+   ratio=($sl_strength/$sl_bandwidth) - 1 
+   if (ratio < 0) then
+      ratio=0
+      write('line3','Spin Lock Field Strength should be greater!')
+   endif 
+endif
+par2d par3d
+ph ss=8
+axis='pp'
+nt=8
+dps
+dg
