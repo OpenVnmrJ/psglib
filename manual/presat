@@ -1,0 +1,13 @@
+  presat-
+
+              {trim(x)trim(y)} ......d1...satdly...p1...d2...pw....at......
+
+	standard two-pulse sequence with optional composite observe pulse 
+
+        satmode = 'y' : obs xmtr saturation at satfrq with power satpwr
+                     (use like dm, i.e. satmode='yyn' or 'ynn')
+        sspul   = 'y' does trim(x)trim(y) to destroy all magnetization
+        composit='y': uses composite 90 for pw (discriminates relative to B1)
+
+               G.Gray, Palo Alto  Sept. 1991   version 4.1 vnmr
+
