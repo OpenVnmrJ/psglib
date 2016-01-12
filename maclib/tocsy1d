@@ -1,0 +1,5 @@
+psgset('tocsy1d','p1lvl','shape','satfrq','satdly','satpwr')
+psgset('tocsy1d','selpwr','seltime','selfrqon','selfrqof')
+psgset('tocsy1d','intsub','mix','trim','ap','dg')
+dg
+
