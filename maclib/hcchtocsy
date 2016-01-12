@@ -1,0 +1,15 @@
+par2d par3d par3rf parlp parlp(1) parlp(2)
+psgset('hcchtocsy','pwca','pwco','pwcalvl','pwcolvl','coshape','jch','ncyc')
+psgset('hcchtocsy','cycltime','trim','p1','dipsipwr','fhfdwt1','fhfdwt2')
+psgset('hcchtocsy','sw1','ni','phase','sw2','ni2','phase2','satmode')
+psgset('hcchtocsy','satfrq','satpwr','dg','ap','dg2','dglp')
+
+exists('dgp','parameter'):$e
+if ($e <> 0) then
+   destroy('dgp')
+endif
+ 
+create('dgp','string')
+setgroup('dgp','display')
+setvalue('dgp','1:CONDITIONAL:werr,wexp,wbs,wnt;1:PHASE:rp:1,lp:1,rp1(ni):1,lp1(ni):1,rp2(ni2):1,lp2(ni2):1;2:WEIGHT:lb:3,sb:3,sbs(sb):3,gf:3,gfs(gf):3,awc:3,wtfile;2:PROCESS:cf(nf):0,phfid:1,lsfrq:1,proc,fn:0;3(ni):WEIGHT 1:lb1:3,sb1:3,sbs1(sb1):3,gf1:3,gfs1(gf1):3,awc1:3,wtfile1;3(ni):PROCESS 1:phfid1:1,lsfrq1:1,proc1,fn1:0;4(ni2):WEIGHT 2:lb2:3,sb2:3,sbs2(sb2):3,gf2:3,gfs2(gf2):3,awc2:3,wtfile2;4(ni2):PROCESS 2:phfid2:1,lsfrq2:1,proc2,fn2:0;')
+dg

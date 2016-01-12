@@ -1,0 +1,39 @@
+
+ hcchtocsy.c
+
+    Use convoluted SLP 180 to decouple carbonyls during t2.  Use
+    herm180 for co refocusing
+
+    Set dm = 'nny', dmm = 'ccp' [13C decoupling during acquisition]
+    One dipsi-3 cycle is 217.33*p1
+      e.g. if p1= 36us a single dipsi cycle is 7.8ms
+
+    Must set phase = 1,2 and phase2 = 1,2 for hypercomplex in t1 and t2.
+
+    Typical acquisition times are 28 ms [t1], 10 ms [t2], and 47 ms [t3]
+       with 128 complex [t1], 32 complex [t2], and 512 real [t3]. 
+
+    Written by Mike Wittekind and modified by L. Mueller
+    converted into SLP format June 15, 1992 GG(varian)
+
+             coshape,   /* dec pattern for CO decoupling  */
+             fhfdwt1,   /* Flag to indicate half dwell start in t1 */
+             fhfdwt2;   /* Flag to indicate half dwell start in t2 */
+
+             tauhc,            /* 1 / 4*J[13C-H]     [~1.5ms]          */
+	     tau1,		/* t1-evolution variable */
+	     tau2,		/* t2-evolutionvariable */
+	     satfrq,		/* presaturation frequency */
+             pwca,             /* PW90 for 13C nucleus                 */
+             pwco,             /* PW90 for 13C carbonyl decoupling      */
+             satpwr,          /* low level 1H trans.power for presat    */
+             pwcalvl,           /* power level for 13C pulses on dec1   */
+             pwcolvl,          /* power level for C=O decoupling pulse   */
+             jch,              /* coupling for C-C  (set to 40 Hz   )  */
+             ncyc,             /* # cycles through dipsi loop          */
+             trim,             /* trim pulse length(sec)               */
+             dipsipwr,         /* power level for 13C spin lock        */
+             delta1,delta2,sw1,sw2;
+
+
+
