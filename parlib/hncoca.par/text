@@ -1,0 +1,3 @@
+hncoca
+use dg('dgseq') for sequence params
+use dg('dgp') for processing params
