@@ -1,0 +1,26 @@
+# This is a demo 
+
+{
+   label: Fourier Number in F2 & F1:
+   choice:  "default" "2k x 2k" "1k x 1k" "4k x 2k" "2k x 1k"
+   choice_value:  "'fn=np fn1=2k'" "'fn=2k fn1=fn'" "'fn=1k fn1=fn'" "'fn=4k fn1=2k'" "'fn=2k fn1=1k'"
+   rtoutput: "Autowrmac('BIRDHMBC','prc',$choice_value)"
+   remark:  2D Transform size (F2 x F1)
+}
+
+{
+   label: Linear Prediction in t1:
+   choice: "default" "2*ni" "4*ni" "none"
+   choice_value: "'setLP1(2*ni)'" "'setLP1(2*ni)'" "'setLP1(4*ni)'" "'setLP1(0)'"
+   rtoutput: "Autowrmac('BIRDHMBC','prc',$choice_value) Autowrmac('BIRDHMBC','prc','sinebell')"
+   remark: t1 dimension linear predicted to?
+}
+
+{
+   label: Window functions:
+   choice: "squared sinebell" "sinebell" 
+   choice_value: "'sqsinebell'" "'sinebell'"
+   rtoutput: "Autowrmac('BIRDHMBC','prc',$choice_value)"
+   remark: Window function in F1 and F2 dimension
+}
+

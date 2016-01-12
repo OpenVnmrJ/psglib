@@ -1,0 +1,42 @@
+# BIRDHMBC
+
+{
+   label: BIRDHMBC Scans per inc:
+   choice:   "8" "4" "16" "32" 
+   choice_value:  "nt=8" "nt=4" "nt=16" "nt=32" 
+   output: $choice_value
+   remark: Set number of scans 
+}
+
+{
+   label: BIRDHMBC number of inc:
+   choice: "400" "200" 256" "512" 
+   choice_value:  "ni=400" "ni=200" "ni=256" "ni=512" 
+   output: $choice_value  sinebell
+   remark: Set number of inc 
+}
+ 
+{
+   label: Carbon Spectral Width (ppm):
+   choice: "-15 -> 225" "-10 -> 190" "-10 -> 160" "-20 -> 240"
+   choice_value: "setsw1(dn,225,-15):dof" "setsw1(dn,190,-10):dof" "setsw1(dn,160,-10):dof" "setsw1(dn,240,-20):dof"
+   output: $choice_value sinebell
+   remark: Set carbon spectral window 
+   show: dn = 'C13'
+}
+
+{
+   label: BIRDHMBC coupling constant:
+   choice: "8Hz" "5Hz" "3Hz" "10Hz"
+   choice_value: "jnxh=8" "jnxh=5" "jnxh=3" "jnxh=10"
+   output: $choice_value
+   remark: Set coupling constant for BIRDHMBC
+}
+
+{
+   button(1): OK
+   exec(1):   SAVE CLOSE
+   button(2): Reset
+   exec(2):   RESET
+}
+

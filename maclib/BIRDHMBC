@@ -1,0 +1,69 @@
+"@(#)BIRDHMBC 14.2 11/04/99 Copyright (c) 1991-1995 Varian Assoc.,Inc. All Rights Reserved."
+"***************************************************************"
+" BIRDHMBC - seup macro for BIRDHMBC pulse sequence                   "
+"               If the argument GLIDE is supplied, PROTON       "
+"               parameter set is retrived                       "
+"       if tn=dn then dn defaults to 13C                        "
+"***************************************************************"
+
+"*********************************************************"
+" wexp and wnt params are preserved ONLY if the macro     "
+"               is driven by GLIDE                        "
+"*********************************************************"
+$wexp=wexp $wnt=wnt wexp='' wnt=''
+if ($# > 0) then 
+ if ($1 = 'GLIDE') then
+  AutoStrtpar('PROTON') wexp=$wexp wnt=$wnt
+ endif
+endif
+"*********************************************************"
+if (tn = dn) then dn='C13' endif
+
+par2D
+exists('PFGflg','parameter'):$pfgex
+if ($pfgex = 0) then create('PFGflg','flag') endif
+PFGflg='y'
+
+Autopsgset('BIRDHMBC','dg','ap','axis','array','sspul','hs','hst')
+Autopsgset('BIRDHMBC','jnxh','j1xh','pwxlvl','pwx','dpwr','dmf')
+Autopsgset('BIRDHMBC','gzlvl1','gt1','gzlvl3','gt3','gstab','hsglvl','hsgt')
+set2D
+
+dm='nnn' dmm='ccc'
+setdecpars
+refsource1='dfrq'
+
+if (dn = 'C13') then
+  setsw1(dn,225,-15):dof
+   j1xh=140 
+elseif (dn = 'N15') then
+   setsw1(dn,140,90):dof 
+   j1xh=90
+else
+   setsw1(dn,100,-100):dof 
+   j1xh=150 
+endif
+jnxh=8
+
+d1=1 proc='ft' fpmult='n'
+ni=400
+nt=8
+pw=pw90
+phase=0
+av  sinebell
+fn1=2k  
+
+$ratio=sfrq/dfrq
+getparam('gHratio',dn):$ratio
+fixgrd(10):gzlvl1
+gzlvl3=trunc(2*gzlvl1/$ratio)
+fixgrd(10):hsglvl
+
+if (Console='g2000') then ss=1 else ss=8 endif
+spin=0 alock='n' wshim='n'
+ai axis='pd' dm='nnn'
+seqfil='BIRDHMBC' f1coef='1 0 0 1'
+exists('satmode','parameter'):$satmodeex
+if ($satmodeex) then satmode='n' endif
+sspul='n' hs='n' gain='y' gain=gain+20 dps full
+dg

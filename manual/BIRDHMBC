@@ -1,0 +1,25 @@
+BIRDHMBC - Gradient Selected aboslute value BIRDHMBC
+
+	Features included:
+		F1 Axial Displacement
+		Randomization of Magnetization prior to relaxation delay
+			with G-90-G 
+			[selected by sspul flag]
+		J-filter to suppress one-bond correlations
+				
+	Paramters:
+		sspul :		y - selects magnetization randomization option
+		hsglvl:		Homospoil gradient level (DAC units)
+		hsgt	:	Homospoil gradient time
+		gzlvl1	:	encoding Gradient level
+		gt1	:	encoding gradient time
+		gzlvl3	:	decoding Gradient level
+		gt3	:	decoding gradient time
+		gstab	:	recovery delay
+		j1xh	:	One-bond XH coupling constant
+		jnxh	:	multiple bond XH coupling constant
+		pwxlvl  :	X-nucleus pulse power
+		pwx	:	X-nucleus 90 deg pulse width
+		d1	:	relaxation delay
+		d2	:	Evolution delay
+
