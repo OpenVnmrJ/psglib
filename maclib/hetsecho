@@ -1,0 +1,3 @@
+psgset('hetsecho','j','satpwr','satfrq','satdly','pwx','ss','pwxlvl','dg','ap')
+homo='n' dn='C13' dof=0     
+
