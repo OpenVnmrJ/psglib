@@ -1,0 +1,18 @@
+   selexcit   -- selective excitation with presat option
+
+	selective excitation is based on double PFG spin-echo
+		(aka excitation sculpting)
+			Shaka, et.al  JACS, 117, 4199 (1995)
+
+	hsgpwr : homospoil gradient
+	gzlvl1,gt1,gzlvl2,gt2 : echo gradients during DPFGSE
+		Typical : 8000, 0.00025, 5000, .0005
+
+	selpwr, selpw, pwshape : selective proton 180 power, pulse width, and shape - Typical : to be created by Pbox
+
+	presaturation option is included (using satflg,satdly,satfrq and satpwr)
+
+
+Krish Krishnamurthy  (July 1995)  
+
+
