@@ -1,0 +1,21 @@
+ xdec2pul  
+
+Two-pulse sequence in "reverse" configuration 
+               Uses H1 decoupler as observse and BB transmitter as decoupler
+ 
+
+	Parameters:
+   	dn,dof 	used to set proton (observe) freq
+	pw	90 degree pulse for protons
+	dpwr	pulse power for H1 pulse
+	tn,tof	used to set X nucleus freq
+	tpwr	power level for X nucleus pulse
+	xdec    two states, yn gives  X nucleus decoupling 
+		during D1 for NOE studies
+                ny gives decoupling during acquisition
+                n gives coupled spectrum
+
+Allways set dmm='n' before running the pulse sequence.  If dm is  
+not set to 'n' the pulse sequence aborts.  Altering the pulse sequence so
+that dm is used may result in probe damage if the first state of dm is set
+to 'y'. 

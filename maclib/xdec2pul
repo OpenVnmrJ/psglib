@@ -1,0 +1,12 @@
+"**********************************************************"
+" xdec2pul - sets up parameters for H observe F19 decouple "
+"        pulse sequence.                                   "
+"**********************************************************"
+
+" arg1 - specifies decoupler nuclear isotope for xdec2pul experiment "
+
+if($#>0) then tn=$1 else tn='F19' endif
+psgset('xdec2pul','dg','ap','pw', 'xdec')
+seqfil='xdec2pul'
+tpwr=20		"controls F19  decoupler power in linear amp systems"
+
