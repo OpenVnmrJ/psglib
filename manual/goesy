@@ -1,0 +1,44 @@
+
+ goesy.c            DPFGSENOE with selective excitation 
+             Double pulsed field gradient spinecho transient NOE experiment
+                (Shaka et.al.)
+
+                    tpwr     = normal 90 power
+                    bbpwr    = sufficient for full inversion of 1H spectrum
+                    bbpw     = pw for sech180  (should cover 12 ppm)
+                    bb180    = name of broadband inversion pulse (typ.sech180) 
+                    selpwr   = selective 180 power
+                    selshape  (selective shape)
+
+                  Some typical values:
+                    gzlvl1   = -500
+                    gzlvl2   = -3000
+                    gzlvl3   = +500
+                    gtime1   = 1 ms
+                    gtime2   = 5 ms
+                    gtime3   = 2 ms
+                    mix      = desired mixing time, say 500-1000 ms
+                               for small molecule
+                    gstab1   = 500 us or so
+                    gstab2   = 500 us or so
+
+Set TOF to the center of the spectral window. 
+use Platest version) is used to create thee for multiplet to be excited.
+ 
+setshape macro will create a shape H1_at_x.xxxppm.RF for proton at x.xxx ppm
+that is bracketed by the cursors in "ds" display, using ref_pwr and ref_pw90 (if
+present) as reference values to create an iburp2 selective inversion pulse
+at power setpwr and will install these
+values into a proper parameter set containing these parameters (goesy.par).
+The nature of the inversion pulse is specified in the setshape macro and
+can be changed to any other 180 usable by Pbox. The proton spectrum should be
+referenced properly before using setshape so that the name of the shaped
+pulse reflects the actual chemical shift position of the center of excitation.
+
+The setshape macro can be used repeatedly by just moving the two cursors (any
+spacing between cursors is ok) and re-entering setshape. Arrays will be
+automatically created for all the changed parameters and only the relaxation
+delay and nt need to set for proper sensitvity.
+
+The operation can be menu-driven by using the ds_1 menu with the "SelectH"
+button. This just executes the setshape macro.

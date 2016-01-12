@@ -1,0 +1,55 @@
+exists('selpw','parameter'):$e
+exists('selpwr','parameter'):$ee
+exists('selshape','parameter'):$eee
+exists('ref_pwr','parameter'):$f
+exists('ref_pw90','parameter'):$ff
+if $f=0 then create('ref_pwr','real')
+  ref_pwr=tpwr endif
+if $ff=0 then create('ref_pw90','pulse') 
+  ref_pw90=pw90 endif
+if $e=0 then create('selpw','pulse')
+ if (arraydim>1) then 
+  write('line3','Clear array before using SelectH')
+  return
+ endif
+endif
+if $ee=0 then create('selpwr','real') endif
+if $eee=0 then create('selshape','string') endif
+setlimit('selpw',500000,0,.025)
+$start=cr-delta $center=cr-delta/2
+$center=$center/sfrq
+format($center,0,2):n1
+$name='H_at_'+n1+'ppm.RF'
+opx($name)
+pbox_bw(shape)
+putwave(shape, r1, r3, r2, r4, n2, 'n', n3) 
+            r1=0 r2=0 n2='n' 
+pboxpar('bsim','n')
+pboxpar('reps',0)
+cpx
+pbox_pw:$len
+pbox_pwr:$pwr
+if (seqfil='goesy') or (seqfil='gocsy') or (seqfil='goesytr')
+then
+ if (selpw[1]>0) then
+  selpwr[arraydim+1]=$pwr
+  selpw[arraydim+1]=$len
+  selshape[arraydim+1]=$name
+  array='(selshape,selpwr,selpw)'
+  il='y'
+ else
+  selpwr=$pwr
+  selpw=$len
+  selshape=$name
+  il='n' array=''
+ endif
+endif
+if (seqfil='water')
+then
+ p1shape=$name
+ p1=$len
+ p1pwr=$pwr
+endif
+calcdim
+
+

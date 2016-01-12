@@ -1,0 +1,11 @@
+psgset('goesy','mix','selshape','selpwr','selpwrf','selpw','bb180')
+psgset('goesy','dg','dg2','ap','dgp','bbpwr','bbpw','gzlvl1')
+psgset('goesy','satpwr','satdly','bbpwr','shape')
+psgset('goesy','gtime1','gzlvl2','gtime2','gzlvl3','gtime3')
+psgset('goesy','gstab1','gstab2','dglp')
+exists('ref_pwr','parameter'):$e
+if $e=0 then create('ref_pwr','real')  endif
+exists('ref_pw90','parameter'):$e
+if $e=0 then create('ref_pw90','pulse')  endif
+parfix d1=1.5 array='' ss=4 nt=4 satdly=0 dg
+in='n'
