@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template type="basic" name="Pge2" author="varian" investigator=""
+    time_created="20061128T161220" apptype="diffusionseq1d"
+    application="diffusion" scans="Pge2" seqfil="pge2">
+  <protocol title="Pge2" type="protocol">
+    <action  type="LIB" status="Ready" lock="off" title="Pge2" exp="diffusionseq1d" 
+      time="1 min" macro="cqexp('Pge2','diffusionseq1d')" data="" />
+  </protocol>
+</template>

@@ -1,0 +1,9 @@
+"       Varian Associates   VNMR   @(#)_dac_p1	14.1    12/08/98  "
+"       Modified D. Rice 10/02/00                                 "
+$num = size('dac_hs')
+grad_hs = 0            " clear old array "
+$i = 1
+while ($i <= $num) do
+  grad_hs[$i] = dac_hs[$i] * grad_p_coef
+  $i = $i + 1
+  endwhile

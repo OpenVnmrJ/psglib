@@ -1,0 +1,44 @@
+"       Varian Associates   VNMR   @(#)pge1_setup	13.1    10/10/97  "
+"Modified by D. Rice 6/30/00"
+
+"****************************************************************************"
+"  pge1_setup<('ask')>  -  this macro calls macros to calculate              "
+"  the gradient array and the nt array. If an argument is not passed         "
+"  the macro requests the information necessary to set up these arrays.      "
+"****************************************************************************"
+
+exists('grad_p_coef','parameter','global'):$grad_p_coef
+if ($grad_p_coef<0.5) then 
+   write('error','ERROR: Diffusion Parameters Are Not Present. Type: "pge1"')
+   return
+else
+   grad_cw_coef=grad_p_coef
+endif
+   
+if ($# = 0) then
+  input('ENTER MAXIMUM GRADIENT VALUE (Gauss/cm): '):g_max
+  input('ENTER MINIMUM GRADIENT VALUE (Gauss/cm): '):g_min
+  input('ENTER NUMBER OF GRADIENT STEPS: '):g_steps
+  input('LINEAR or SQUARE DEPENDENCE IN THE GRADIENT STEPS (l or s) '):$a
+  if $a = 'l' then
+    g_array='linear'
+  else
+    g_array='square'
+  endif
+  input('ENTER THE CONTINUOUS GRADIENT OFFSET (Gauss/cm): '):grad_cw
+  input('ENTER NUMBER OF TRANSIENTS FOR FIRST ARRAY ELEMENT: '):nt_first
+  input('SHALL ALL ELEMENTS ACQUIRE THE SAME NUMBER OF TRANSIENTS (y or n) '):$a
+  if ($a = 'y') then
+    nt_array='same'
+  else
+    nt_array='fraction'
+    input('ENTER S/N MULTPLIER FOR LAST ARRAY ELEMENT: '):nt_fract
+  endif
+endif
+
+grad_cw = grad_cw
+setgrad
+setnt
+array='(dac_p1,nt)'
+time
+wexp='pge_process'

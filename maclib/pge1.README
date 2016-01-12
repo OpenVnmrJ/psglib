@@ -1,0 +1,85 @@
+Protocol: Pge1  Sequence: pge1.c  Apptype: diffuisonseq1d
+
+Description: 
+
+   Gradient spin-echo or stimulated-echo for the measurement of diffusion 
+   coefficients using the optional "Diffuison Package". The sequence replaces 
+   pge.c and pgeramp.c of the diffusion package and provides both "tcldg" and 
+   VNMRJ templates. The Protocols work in VNMRJ21B in the walkup interface. 
+ 
+Parameters: 
+
+   stim ='n' sets a Hahn echo sequence, stim='y' sets a 3-pulse stimulated-
+   echo sequence. 
+
+   pw - the 90 degree pulse length, in microseconds, when stim='y'.  It is a 180
+   degree pulse length when stim='n'. 
+
+   p1 - the 90 degree pulse length, in microseconds. 
+
+   p2 - the 90 degree pulse length, in microseconds, used when stim='y'.
+
+   g1 - the first gradient length, in microseconds for the two gradient pulses 
+   (see tramp.
+
+   g2 - the gradient length, in microseconds for the two gradient pulses 
+   (see tramp).
+
+   tramp - the length of the linear ramp during the rise and fall of the 
+   gradient pulse. The total length of the gradient pulse is g1 + tramp.  The
+   integral is independent of tramp. 
+
+   d0 - delay, in seconds, precedes the first gradient pulse (typically 400 us).
+ 
+   d3 - delay, in seconds, precedes the second gradient pulse (typically 400 us). 
+
+   d2 - delay, in seconds, follows the first gradient pulse (typically 20 ms).
+
+   d4 - delay, in seconds, follows the second gradient pulse (typically 20 ms).
+
+   d5 - delay during which the magnetization is aligned with the Z axis when 
+   stim='y' (0.0 to 1.0 s). 
+
+   dac_p1 - the gradient level in dac units for the Performa amplifier for the two
+   gradient pulses.   The range of dac_p1 is -32767 to +32768 for Performa II,
+   III,IV and D. The range is -4095 to + 4096 for Performa I.  _dac_p1 sets 
+   grad_p1 when dac_p1 is changed. 
+
+   dac_p1_coef - the conversion factor between dac_p1 and grad_p1. It has a value 
+   similar to gcal.   The value is adjusted by the macro pge1_calib.  pge1.c does
+   not use gcal. 
+
+   grad_p1 - the gradient level for the two gradient pulses, in G/cm.  _grad_p1 sets 
+   dac_p1 when grad_p1 is changed (set by pge1_setup).
+
+   g_array = 'linear' sets equal steps in the gradient array, g_array = 'square'  sets
+   quadratic steps in the gradient array (set by pge1_setup).
+
+   g_max - defines the maximum gradient of the array (set by pge1_setup).
+
+   g_min - defines the minimum gradient of the array (set by pge1_setup).
+
+   g_steps - defines the number of steps of the array (set by pge1_setup).
+
+   dac_cw - the dac setting for a continuous gradient level during the sequence 
+   (see dac_p1). _dac_cw sets grad_cw when dac_cw is changed
+
+   grad_cw - a continuous gradient level during the sequence, in G/cm.  This
+   level canbe used to correct for a DC offset of the Performa Amplifier or 
+   to provide a strong linear shim (see dac_p1). _grad_cw sets dac_cw when
+   grad_cw is changed.
+
+   nt_array = 'same' sets the same number of scans for each array element.
+   (set by pge1_setup).  nt_array='fraction' increments the number of scans 
+   with each array element where nt(n+1)=nt_fract*nt(n)
+
+   nt_first - the number of scans of the first array element (set by 
+   pge1_setup).
+
+   nt_fract - the fractional increase in the number of scans when 
+   nt_array='fraction' (set by pge1_setup).
+
+
+  
+
+

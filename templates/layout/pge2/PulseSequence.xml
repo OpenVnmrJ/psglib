@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<template name="PulseSequence" element="pages" type="acquisition" >
+  <group size="800 270"
+    style="Heading2"
+    label="Pulse Sequence"
+    vq="panellevel"
+    show="$SHOW=(panellevel&gt;29)"
+    bg="transparent"
+    border="None"
+    side="Top"
+    justify="Left"
+    tab="yes"
+    enable="no"
+    reference="PulseSequence"
+    useref="no"
+    subtype="Basic"
+    expanded="yes"
+    >
+    <group loc="0 0" size="260 260"
+      bg="transparent"
+      border="None"
+      tab="no"
+      enable="no"
+      reference="mqmasX"
+      useref="no"
+      subtype="Convenience"
+      expanded="yes"
+      >
+      <menu loc="200 220" size="60 20"
+        style="Label4"
+        vq="hsg1"
+        vc="parunits('set','hsg1','$VALUE')"
+        set="parunits('get','hsg1'):$VALUE"
+        show="on('hsg1'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 220" size="60 20"
+        style="Label4"
+        vq="hsg1"
+        vc="vnmrunits('set','hsg1',$VALUE)"
+        set="vnmrunits('get','hsg1'):$VALUE"
+        show="on('hsg1'):$VALUE"
+        />
+      <label loc="10 220" size="130 20"
+        style="Label4"
+        label="Gradient Time (hsg1)"
+        />
+      <menu loc="200 240" size="60 20"
+        style="Label4"
+        vq="tramp"
+        vc="parunits('set','tramp','$VALUE')"
+        set="parunits('get','tramp'):$VALUE"
+        show="on('tramp'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 240" size="60 20"
+        style="Label4"
+        vq="tramp"
+        vc="vnmrunits('set','tramp',$VALUE)"
+        set="vnmrunits('get','tramp'):$VALUE"
+        show="on('tramp'):$VALUE"
+        />
+      <label loc="10 200" size="130 20"
+        style="Label4"
+        label="Gradient Time (g2)"
+        />
+      <label loc="10 240" size="130 20"
+        style="Label4"
+        label="Ramp Time (tramp)"
+        />
+      <menu loc="200 200" size="60 20"
+        style="Label4"
+        vq="g2"
+        vc="parunits('set','g2','$VALUE')"
+        set="parunits('get','g2'):$VALUE"
+        show="on('g2'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 200" size="60 20"
+        style="Label4"
+        vq="g2"
+        vc="vnmrunits('set','g2',$VALUE)"
+        set="vnmrunits('get','g2'):$VALUE"
+        show="on('g2'):$VALUE"
+        />
+      <menu loc="200 180" size="60 20"
+        style="Label4"
+        vq="g1"
+        vc="parunits('set','g1','$VALUE')"
+        set="parunits('get','g1'):$VALUE"
+        show="on('g1'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 180" size="60 20"
+        style="Label4"
+        vq="g1"
+        vc="vnmrunits('set','g1',$VALUE)"
+        set="vnmrunits('get','g1'):$VALUE"
+        show="on('g1'):$VALUE"
+        />
+      <menu loc="200 160" size="60 20"
+        style="Label4"
+        vq="d5"
+        vc="parunits('set','d5','$VALUE')"
+        set="parunits('get','d5'):$VALUE"
+        show="on('d5'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <menu loc="200 140" size="60 20"
+        style="Label4"
+        vq="d4"
+        vc="parunits('set','d4','$VALUE')"
+        set="parunits('get','d4'):$VALUE"
+        show="on('d4'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <menu loc="200 120" size="60 20"
+        style="Label4"
+        vq="d3"
+        vc="parunits('set','d3','$VALUE')"
+        set="parunits('get','d3'):$VALUE"
+        show="on('d3'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <menu loc="200 100" size="60 20"
+        style="Label4"
+        vq="d2"
+        vc="parunits('set','d2','$VALUE')"
+        set="parunits('get','d2'):$VALUE"
+        show="on('d2'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <menu loc="200 80" size="60 20"
+        style="Label4"
+        vq="d0"
+        vc="parunits('set','d0','$VALUE')"
+        set="parunits('get','d0'):$VALUE"
+        show="on('d0'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 160" size="60 20"
+        style="Label4"
+        vq="d5"
+        vc="vnmrunits('set','d5',$VALUE)"
+        set="vnmrunits('get','d5'):$VALUE"
+        show="on('d5'):$VALUE"
+        />
+      <entry loc="140 140" size="60 20"
+        style="Label4"
+        vq="d4"
+        vc="vnmrunits('set','d4',$VALUE)"
+        set="vnmrunits('get','d4'):$VALUE"
+        show="on('d4'):$VALUE"
+        />
+      <entry loc="140 120" size="60 20"
+        style="Label4"
+        vq="d3"
+        vc="vnmrunits('set','d3',$VALUE)"
+        set="vnmrunits('get','d3'):$VALUE"
+        show="on('d3'):$VALUE"
+        />
+      <entry loc="140 100" size="60 20"
+        style="Label4"
+        vq="d2"
+        vc="vnmrunits('set','d2',$VALUE)"
+        set="vnmrunits('get','d2'):$VALUE"
+        show="on('d2'):$VALUE"
+        />
+      <menu loc="200 80" size="60 20"
+        style="Label4"
+        vq="d0"
+        vc="parunits('set','pw','$VALUE')"
+        set="parunits('get','d0'):$VALUE"
+        show="on('d0'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 80" size="60 20"
+        style="Label4"
+        vq="d0"
+        vc="vnmrunits('set','d0',$VALUE)"
+        set="vnmrunits('get','d0'):$VALUE"
+        show="on('d0'):$VALUE"
+        />
+      <menu loc="200 60" size="60 20"
+        style="Label4"
+        vq="pw"
+        vc="parunits('set','pw','$VALUE')"
+        set="parunits('get','pw'):$VALUE"
+        show="on('pw'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 60" size="60 20"
+        style="Label4"
+        vq="pw"
+        vc="vnmrunits('set','pw',$VALUE)"
+        set="vnmrunits('get','pw'):$VALUE"
+        show="on('pw'):$VALUE"
+        />
+      <menu loc="200 40" size="60 20"
+        style="Label4"
+        vq="p2"
+        vc="parunits('set','p2','$VALUE')"
+        set="parunits('get','p2'):$VALUE"
+        show="on('p2'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <entry loc="140 40" size="60 20"
+        style="Label4"
+        vq="p2"
+        vc="vnmrunits('set','p2',$VALUE)"
+        set="vnmrunits('get','p2'):$VALUE"
+        show="on('p2'):$VALUE"
+        />
+      <label loc="10 180" size="130 20"
+        style="Label4"
+        label="Gradient Time (g1)"
+        />
+      <label loc="10 160" size="130 20"
+        style="Label4"
+        label="Delay (d5)"
+        />
+      <label loc="10 140" size="130 20"
+        style="Label4"
+        label="Delay (d4)"
+        />
+      <label loc="10 120" size="130 20"
+        style="Label4"
+        label="Delay (d3)"
+        />
+      <label loc="10 100" size="130 20"
+        style="Label4"
+        label="Delay (d2)"
+        />
+      <label loc="10 20" size="130 20"
+        style="Label4"
+        label="Excitation (p1)"
+        />
+      <label loc="10 80" size="130 20"
+        style="Label4"
+        label="Delay (d0)"
+        />
+      <label loc="10 40" size="130 20"
+        style="Label4"
+        label="Stim Echo  (p2)"
+        />
+      <label loc="10 60" size="130 20"
+        style="Label4"
+        label="Refocussing  (pw)"
+        />
+      <entry loc="140 20" size="60 20"
+        style="Label4"
+        vq="p1"
+        vc="vnmrunits('set','p1',$VALUE)"
+        set="vnmrunits('get','p1'):$VALUE"
+        show="on('p1'):$VALUE"
+        />
+      <menu loc="200 20" size="60 20"
+        style="Label4"
+        vq="p1"
+        vc="parunits('set','p1','$VALUE')"
+        set="parunits('get','p1'):$VALUE"
+        show="on('p1'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="sec"
+          chval="sec"
+          />
+        <mlabel 
+          label="ms"
+          chval="ms"
+          />
+        <mlabel 
+          label="us"
+          chval="us"
+          />
+      </menu>
+      <label loc="10 0" size="160 20"
+        style="Heading4"
+        label="Pulses and Delays:"
+        />
+    </group>
+    <group loc="270 0" size="260 240"
+      bg="transparent"
+      border="None"
+      tab="no"
+      enable="no"
+      useref="no"
+      subtype="Convenience"
+      >
+      <entry loc="180 160" size="80 20"
+        style="Label4"
+        vq="dac_hs"
+        vc=" dac_hs= $VALUE"
+        set="$VALUE = dac_hs"
+        show="on('dac_hs'):$VALUE"
+        />
+      <entry loc="90 160" size="80 20"
+        style="Label4"
+        vq="grad_hs"
+        vc=" grad_hs= $VALUE"
+        set="$VALUE = grad_hs"
+        show="on('grad_hs'):$VALUE"
+        />
+      <label loc="10 160" size="80 20"
+        style="Label4"
+        label="Homospoil:"
+        />
+      <label loc="10 180" size="170 20"
+        style="Heading4"
+        label="Gradient Calibration:"
+        />
+      <entry loc="180 200" size="80 20"
+        style="Label4"
+        vq="gcal"
+        vc="gcal = $VALUE"
+        set="$VALUE = gcal"
+        show="on('gcal','global'):$VALUE "
+        />
+      <entry loc="180 220" size="80 20"
+        style="Label4"
+        vq="grad_p_coef"
+        vc="grad_p_coef = $VALUE"
+        set="$VALUE = grad_p_coef"
+        show="on('grad_p_coef','global'):$VALUE"
+        />
+      <label loc="10 200" size="170 20"
+        style="Label4"
+        label="Profile Test (gcal)"
+        />
+      <label loc="10 220" size="170 20"
+        style="Label4"
+        label="pge_CALIB (G/cm-DAC):"
+        />
+      <entry loc="180 140" size="80 20"
+        style="Label4"
+        vq="dac_cw"
+        vc=" dac_cw= $VALUE"
+        set="$VALUE = dac_cw"
+        show="on('dac_cw'):$VALUE"
+        />
+      <entry loc="90 140" size="80 20"
+        style="Label4"
+        vq="grad_cw"
+        vc=" grad_cw= $VALUE"
+        set="$VALUE = grad_cw"
+        show="on('grad_cw'):$VALUE"
+        />
+      <entry loc="180 120" size="80 20"
+        style="Label4"
+        vq="dac_p1"
+        vc=" dac_p1[1]= $VALUE"
+        set="$VALUE = dac_p1[1]"
+        show="on('dac_p1'):$VALUE"
+        />
+      <entry loc="180 80" size="80 20"
+        style="Label4"
+        vq="g_steps"
+        vc="g_steps = $VALUE"
+        set="$VALUE = g_steps"
+        show="on('g_steps'):$VALUE"
+        />
+      <entry loc="180 60" size="80 20"
+        style="Label4"
+        vq="g_min"
+        vc="g_min = $VALUE"
+        set="$VALUE = g_min"
+        show="on('g_min'):$VALUE"
+        />
+      <menu loc="180 20" size="80 20"
+        style="Label4"
+        label="menu"
+        vq="g_array"
+        vc="g_array='$VALUE'"
+        set="$VALUE = g_array"
+        show="on('g_array'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="Linear"
+          chval="linear"
+          />
+        <mlabel 
+          label="Square"
+          chval="square"
+          />
+      </menu>
+      <entry loc="180 40" size="80 20"
+        style="Label4"
+        vq="g_max"
+        vc="g_max = $VALUE"
+        set="$VALUE = g_max"
+        show="on('g_max'):$VALUE"
+        />
+      <label loc="10 80" size="170 20"
+        style="Label4"
+        label="Number of Steps:"
+        />
+      <label loc="10 60" size="170 20"
+        style="Label4"
+        label="Minimum Gradient (G/cm)"
+        />
+      <label loc="10 40" size="170 20"
+        style="Label4"
+        label="Maximum Gradient (G/cm)"
+        />
+      <label loc="10 20" size="170 20"
+        style="Label4"
+        label="Gradient Steps:"
+        />
+      <entry loc="90 120" size="80 20"
+        style="Label4"
+        vq="grad_p1"
+        vc=" grad_p1[1]= $VALUE"
+        set="$VALUE = grad_p1[1]"
+        show="on('grad_p1'):$VALUE"
+        />
+      <label loc="10 140" size="80 20"
+        style="Label4"
+        label="Bkgrnd:"
+        />
+      <label loc="10 120" size="80 20"
+        style="Label4"
+        label="Value #1:"
+        />
+      <label loc="10 100" size="80 20"
+        style="Label4"
+        label="Array:"
+        />
+      <button loc="180 100" size="80 20"
+        style="Label3"
+        label="DAC"
+        vc="pge1_setup('a') $s1=array array = '(dac_p1,nt)' da array=$s1"
+        show="onparams('array','dac_p1','nt'):$VALUE"
+        decor1="No"
+        />
+      <button loc="90 100" size="80 20"
+        style="Label3"
+        label="G/cm"
+        vc="pge1_setup('a') $s1=array array = '(grad_p1,nt)' da array=$s1"
+        show="onparams('array','grad_p1','nt'):$VALUE"
+        decor1="No"
+        />
+      <label loc="10 0" size="140 20"
+        style="Heading4"
+        label="Gradient Array:"
+        />
+    </group>
+    <label loc="550 120" size="140 20"
+      style="Heading4"
+      label="Functions:"
+      />
+    <button loc="680 140" size="120 20"
+      style="Label3"
+      label="PGE CALIB"
+      vc="pge1_calib"
+      decor1="No"
+      />
+    <button loc="680 160" size="120 20"
+      style="Label3"
+      label="PGE OUTPUT"
+      vc="pge_output"
+      decor1="No"
+      />
+    <button loc="550 140" size="120 20"
+      style="Label3"
+      label="PGE SETUP"
+      vc="pge1_setup"
+      decor1="No"
+      />
+    <button loc="550 160" size="120 20"
+      style="Label3"
+      label="PGE PROCESS"
+      vc="pge1_process"
+      decor1="No"
+      />
+    <group loc="540 0" size="260 40"
+      bg="transparent"
+      border="None"
+      tab="no"
+      enable="no"
+      useref="no"
+      subtype="Convenience"
+      >
+      <menu loc="180 20" size="80 20"
+        style="Label4"
+        label="menu"
+        vq="stim"
+        vc="stim='$VALUE' pge2"
+        set="$VALUE = stim"
+        show="on('stim'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="No"
+          chval="n"
+          />
+        <mlabel 
+          label="Yes"
+          chval="y"
+          />
+      </menu>
+      <label loc="10 0" size="140 20"
+        style="Heading4"
+        label="Options:"
+        />
+      <label loc="10 20" size="170 20"
+        style="Label4"
+        label="Stimulated Echo:"
+        />
+    </group>
+    <group loc="540 40" size="260 80"
+      bg="transparent"
+      border="None"
+      tab="no"
+      enable="no"
+      useref="no"
+      subtype="Convenience"
+      >
+      <label loc="10 60" size="170 20"
+        style="Label4"
+        label="S/N Multiplier:"
+        />
+      <entry loc="180 60" size="80 20"
+        style="Label4"
+        vq="nt_fract"
+        vc="nt_fract = $VALUE"
+        set="$VALUE = nt_fract"
+        show="on('nt_fract'):$VALUE"
+        />
+      <entry loc="180 40" size="80 20"
+        style="Label4"
+        vq="nt_first"
+        vc="nt_first = $VALUE"
+        set="$VALUE = nt_first"
+        show="on('nt_first'):$VALUE"
+        />
+      <label loc="10 40" size="170 20"
+        style="Label4"
+        label="Initial Scans:"
+        />
+      <menu loc="180 20" size="80 20"
+        style="Label4"
+        label="menu"
+        vq="nt_array"
+        vc="nt_array='$VALUE'"
+        set="$VALUE = nt_array"
+        show="on('nt_array'):$VALUE if ($VALUE=0) then $VALUE=1 endif"
+        editable="No"
+        >
+        <mlabel 
+          label="Same"
+          chval="same"
+          />
+        <mlabel 
+          label="Fraction"
+          chval="fraction"
+          />
+      </menu>
+      <label loc="10 20" size="170 20"
+        style="Label4"
+        label="Set Constant:"
+        />
+      <label loc="10 0" size="140 20"
+        style="Heading4"
+        label="Set Transients:"
+        />
+    </group>
+  </group>
+</template>

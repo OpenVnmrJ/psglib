@@ -1,0 +1,309 @@
+$seqfil = seqfil
+seqfil = 'pge1'
+
+//------------------------------
+//Add Fine Power (tpwrm)
+//------------------------------ 
+
+exists('tpwrm','parameter'):$tpwrm
+if ($tpwrm < 0.5) then
+   create('tpwrm')
+   setlimit('tpwrm',4095,0,1) 
+   tpwrm = 4095 
+endif
+
+exists('dpwrm','parameter'):$dpwrm
+if ($dpwrm < 0.5) then
+   create('dpwrm')
+   setlimit('dpwrm',4095,0,1) 
+   dpwrm = 4095 
+endif
+
+//------------------------------
+//Global Gradient Calibration Factors 
+//------------------------------
+
+exists('grad_p_coef','parameter','global'):$e
+if ($e < 0.5) then
+   create('grad_p_coef', 'real', 'global')
+   grad_p_coef = 0.029  
+endif
+
+exists('grad_cw_coef','parameter','global'):$e
+if ($e < 0.5) then
+   create('grad_cw_coef', 'real', 'global')   
+endif
+
+grad_cw_coef = grad_p_coef
+
+//------------------------------
+//Arrayed Gradient Levels 
+//------------------------------
+
+exists('grad_cw','parameter'):$grad_cw
+if ($grad_cw<0.5) then
+   create('grad_cw')
+   setprotect('grad_cw','on',264)
+   grad_cw = 0.0
+endif
+
+exists('grad_p1','parameter'):$grad_p1
+if ($grad_p1<0.5) then
+   create('grad_p1')
+   setprotect('grad_p1','on',264)
+   grad_p1 = 0.0
+endif
+
+exists('grad_p2','parameter'):$grad_p2
+if ($grad_p2<0.5) then
+   create('grad_p2')
+   setprotect('grad_p2','on',264)
+   grad_p2 = 0.0
+endif
+
+exists('dac_cw','parameter'):$dac_cw
+if ($dac_cw<0.5) then
+   create('dac_cw')
+   setprotect('dac_cw','on',264)
+   dac_cw = 0.0
+endif
+
+exists('dac_p1','parameter'):$dac_p1
+if ($dac_p1<0.5) then
+   create('dac_p1')
+   setprotect('dac_p1','on',264)
+   dac_p1 = 0.0
+endif
+
+exists('dac_p2','parameter'):$dac_p2
+if ($dac_p2<0.5) then
+   create('dac_p2')
+   setprotect('dac_p2','on',264)
+   dac_p2 = 0.0
+endif
+
+//------------------------------
+//Arrayed Gradient Levels 
+//------------------------------
+
+exists('g_max','parameter'):$g_max
+if ($g_max<0.5) then
+   create('g_max')
+   g_max = 0.0
+endif
+
+exists('g_min','parameter'):$g_min
+if ($g_min<0.5) then
+   create('g_min')
+   g_max = 0.0
+endif
+
+exists('g_steps','parameter'):$g_steps
+if ($g_steps<0.5) then
+   create('g_steps')
+   g_steps = 1.0
+endif
+
+exists('g_array','parameter'):$g_array
+if ($g_array<0.5) then
+   create('g_array','string')
+   g_array = 'linear'
+endif
+
+//------------------------------
+//Arrayed Transient Controls  
+//------------------------------
+
+exists('nt_first','parameter'):$nt_first
+if ($nt_first<0.5) then
+   create('nt_first')
+   nt_first = 1.0
+endif
+
+exists('nt_fract','parameter'):$nt_fract
+if ($nt_fract<0.5) then
+   create('nt_fract')
+   nt_fract = 1.0
+endif
+
+exists('nt_array','parameter'):$nt_array
+if ($nt_array<0.5) then
+   create('nt_array','string')
+   nt_array = 'same'
+endif
+
+//------------------------------
+//Pulses and Delays
+//------------------------------
+
+exists('tramp','parameter'):$tramp
+if ($tramp<0.5) then
+   create('tramp','pulse')
+   tramp = 0.0
+endif
+
+exists('d0','parameter'):$d0
+if ($tramp<0.5) then
+   create('d0','delay')
+   d0 = 400.0e-6
+endif
+
+exists('d2','parameter'):$d2
+if ($d2<0.5) then
+   create('d2','delay')
+   d2 = 20.0e-3
+endif
+
+exists('d3','parameter'):$d3
+if ($d3<0.5) then
+   create('d3','delay')
+   d3 = 400.0e-6
+endif
+
+exists('d4','parameter'):$d4
+if ($d4<0.5) then
+   create('d4','delay')
+   d4 = 20.0e-3
+endif
+
+exists('d5','parameter'):$d5
+if ($d5<0.5) then
+   create('d5','delay')
+   d5 = 20.0e-3
+endif
+
+exists('p2','parameter'):$p2
+if ($p2<0.5) then
+   create('p2','pulse')
+   p2 = 0.0
+endif
+
+exists('g1','parameter'):$g1
+if ($g1<0.5) then
+   create('g1','pulse')
+   g1 = 1000.0
+endif
+
+exists('g2','parameter'):$g2
+if ($g2<0.5) then
+   create('g2','pulse')
+   g2 = 1000.0
+endif
+
+//------------------------------
+//Options
+//------------------------------
+
+exists('stim','parameter'):$stim
+if ($stim<0.5) then
+   create('stim','string')
+   stim = 'n'
+endif
+
+//------------------------------
+//Set Limits For DAC Values
+//------------------------------
+
+exists('gradtype','parameter','systemglobal'):$gradtype
+if ($gradtype>0.5) then 
+   if (gradtype = 'nnl') then 
+      setlimit('dac_cw',2047,-2047,1)
+      setlimit('dac_p1',2047,-2047,1)
+      setlimit('dac_p2',2047,-2047,1)
+      write('line3','Diffusion with Performa I (Mercury INOVA)')
+   else if (gradtype = 'nnp') then 
+      setlimit('dac_cw',32768,-32768,1)
+      setlimit('dac_p1',32768,-32768,1)
+      setlimit('dac_p2',32768,-32768,1)
+      write('line3','Diffusion with Performa II/III (INOVA)')
+   else if (gradtype = 'nnq') then 
+      setlimit('dac_cw',32768,-32768,1)
+      setlimit('dac_p1',32768,-32768,1)
+      setlimit('dac_p2',32768,-32768,1)
+      write('line3','Diffusion with Performa II/III and WFG (INOVA)')
+   else if (gradtype = 'nnc') then 
+      setlimit('dac_cw',32768,-32768,1)
+      setlimit('dac_p1',32768,-32768,1)
+      setlimit('dac_p2',32768,-32768,1)
+      write('line3','Diffusion with Performa IV/D (VNMRS)')
+   else
+      write('error','Gradients not set for Performa Z axis Diffusion: Please check the configuration')
+   endif endif endif endif
+else
+   write('error','Z Gradients do not exist: Please check the parameter gradtype')
+endif 
+
+//-----------------------
+//Set Default Values
+//-----------------------
+
+if (($seqfil = 'pge1') or ($seqfil = 'pge2')) then
+   $pw=p1
+else 
+   $pw = pw
+endif
+
+if (stim='y') then
+   p1 = $pw
+   p2 = $pw 
+   pw = $pw
+else
+   p1 = $pw
+   p2 = 0.0
+   pw = 2.0*$pw
+   stim = 'n'    
+endif   
+dg
+
+//------------------------------------------------
+//  Set Bit 14 for new parameters of the .par file 
+//------------------------------------------------
+
+$params = 'grad_cw grad_p1 grad_p2 dac_cw dac_p1 dac_p2 g_max '
+$params = $params + 'g_min g_steps g_array nt_first nt_fract nt_array tramp '
+$params = $params + 'd0 d2 d3 d4 d5 p2 g1 g2 stim'
+
+setprotect('','clear',16384)
+setprotect($params,'on',16384)
+
+//------------------------------------------------
+//  Set the Parameter Templates for 'dg', 'dg2' and 'ap'
+//------------------------------------------------
+
+setprotect('dg','clear',4)
+$dg = '1:ACQUISITION:sw:1,at:6,np:0,d1:6,nt:0,ct:0,bs:0,'
+$dg = $dg + 'ss:0,rof2:1,alfa:1,ddrtc(ddrtc):1,rof3(rof3):1,gain:0;'
+$dg = $dg + '2:SAMPLE:date,solvent,file;'
+$dg = $dg + '2:GRADIENT:grad_cw:0,grad_p1:0,grad_p2:0,grad_p_coef:0,grad_cw_coef:0;'
+$dg = $dg + '3:DELAYS:d0:6,d2:6,d3:6,d4:6,d5(stim):6;'
+$dg = $dg + '3:PULSES:p1:1,p2:1,pw:1,g1:1,g2:1,tramp:1;'
+$dg = $dg + '4:OPTIONS:stim;'
+$dg = $dg + '4:SPECIAL:temp:1,g_array,g_max:2,g_min:2,g_steps:0,nt_array,nt_first:0,nt_fract:3;'
+dg = $dg
+setprotect('dg','on',4)
+
+setprotect('dg2','clear',4)
+$dg2 = '1:OBSERVE:tn,sfrq:6,tof:1,tpwr:0,tpwrm:0,pw:1,pwx(pwx):1;'
+$dg2 = $dg2 + '2:DECOUPLE:dn,dfrq:6,dof:1,dpwr:0,dpwrm,pp(pp):1,dm,dmm,dmf:0,dseq,dres,homo;'
+dg2 = $dg2
+setprotect('dg2','on',4)
+
+setprotect('ap','clear',4)
+$ap = '1:SAMPLE:date,solvent,file;'
+$ap = $ap + '1:ACQUISITION:sw:1,at:6,np:0,d1:6,nt:0,ct:0,bs:0,'
+$ap = $ap + 'ss:0,rof2:1,alfa:1,ddrtc(ddrtc):1,rof3(rof3):1,gain:0;'
+$ap = $ap + '1:OBSERVE:tn,sfrq:6,tof:1,tpwr:0,tpwrm:0,pw:1,pwx(pwx):1;'
+$ap = $ap + '1:DECOUPLE:dn,dfrq:6,dof:1,dpwr:0,dpwrm,pp(pp):1,dm,dmm,dmf:0,dseq,dres,homo;'
+$ap = $ap + '1:GRADIENT:grad_cw:0,grad_p1:0,grad_p2:0,grad_p_coef:0,grad_cw_coef:0;'
+$ap = $ap + '1:DELAYS:d0:6,d2:6,d3:6,d4:6,d5(stim):6;'
+$ap = $ap + '1:PULSES:p1:1,p2:1,g1:1,g2:1,tramp:1;'
+$ap = $ap + '2:OPTIONS:stim;'
+$ap = $ap + '2:SPECIAL:temp:1,g_array,g_max:2,g_min:2,g_steps:0,nt_array,nt_first:0,nt_fract:3;'
+$ap = $ap + '2:PROCESSING:fn:0,phfid:2,rp:2,lp:2,lsfrq(lsfrq):1,lb(lb):1,sb(sb):3,sbs(sb):3,'
+$ap = $ap + 'gf(gf):3,gfs(gf):3,lsfid(lsfid):0,wtfile(wtfile);'
+ap = $ap
+setvalue('ap',$ap,'processed')
+setprotect('ap','on',4)
+
+dps newdg dg
+

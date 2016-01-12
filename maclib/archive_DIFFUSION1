@@ -1,0 +1,196 @@
+$input_path = userdir
+$sequence_name = 'DIFFUSION1'
+format($sequence_name,'upper'):$name_upper
+format($sequence_name,'lower'):$name_lower
+
+$archive_path =  userdir + '/ARCHIVE'
+$output_path = $archive_path + '/' + $name_upper
+$backup_path = 'none'
+
+exists($archive_path,'directory'):$e
+if ($e < 0.5) then 
+   shell('mkdir ' + $archive_path)
+endif
+   
+exists($output_path,'directory'):$e1
+if ($e1 > 0.5) then 
+   $i = 0
+   $j = 0
+   while (($i< 20) and ($j<20)) do 
+      $j = $j + 1
+      $i = $i + 1
+      $istring=''
+      format($i,1,0):$istring
+      $backup_path = $output_path + '_' + $istring
+      exists( $backup_path,'directory'):$e2
+      if ($e2 > 0.5) then 
+         if ($i = 20) then
+            write('error','Too Many Backups: Abort')
+            abort 
+         endif
+      else 
+         shell('mv ' + $output_path + ' ' + $backup_path)
+         write('error','Backup %s created',$istring)
+         $i = 20
+      endif
+   endwhile
+endif
+
+shell('mkdir ' + $output_path)
+
+"******** Create MACLIB ********"
+
+$get_path = $input_path + '/maclib'
+$put_path = $output_path +'/maclib'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,$0)
+archive_file($get_path,$put_path,'diffusion1.README')
+archive_file($get_path,$put_path,'pge1.README')
+archive_file($get_path,$put_path,'pge2.README')
+archive_file($get_path,$put_path,'pge1')
+archive_file($get_path,$put_path,'pge2')
+
+"Underscore Macros" 
+
+archive_file($get_path,$put_path,'_dac_hs')
+archive_file($get_path,$put_path,'_dac_p1')
+archive_file($get_path,$put_path,'_dac_p2')
+archive_file($get_path,$put_path,'_grad_hs')
+archive_file($get_path,$put_path,'_grad_p1')
+archive_file($get_path,$put_path,'_grad_p2')
+
+"Calibration Macros"
+
+archive_file($get_path,$put_path,'pge1_setup')
+archive_file($get_path,$put_path,'pge1_process')
+archive_file($get_path,$put_path,'pge1_calib')
+
+"Macros That Run Protocols"
+
+archive_file($get_path,$put_path,'Setpge1') "Primary RTP Macro" 
+archive_file($get_path,$put_path,'Pge1')
+archive_file($get_path,$put_path,'Pge2')
+
+"Apptype Macros"
+
+archive_file($get_path,$put_path,'diffusion1d')
+archive_file($get_path,$put_path,'diffusionseq1d')
+
+"******** Create PSGLIB ********"
+
+$get_path = $input_path + '/psglib'
+$put_path = $output_path +'/psglib'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,'pge1.c')
+archive_file($get_path,$put_path,'pge2.c')
+
+"******** Create PARLIB ********"
+
+$get_path = $input_path + '/parlib'
+$put_path = $output_path +'/parlib'
+shell('mkdir ' + $put_path)
+
+"upper case parameter files for protocol"
+
+archive_file($get_path,$put_path,'Pge1.par')
+archive_file($get_path,$put_path,'Pge2.par')
+
+"******** Create EXECPARS ********"
+
+$get_path = $input_path + '/execpars'
+$put_path = $output_path +'/execpars'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,'diffusion1d')
+archive_file($get_path,$put_path,'diffusionseq1d')
+
+"******** Create MANUAL *********************"
+
+$get_path = $input_path + '/manual'
+$put_path = $output_path +'/manual'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,'pge1')
+archive_file($get_path,$put_path,'pge2')
+
+"******** Create TEMPLATES/LAYOUT ***********"
+
+$get_path = $input_path + '/templates/layout'
+$put_path = $output_path +'/templates'
+shell('mkdir ' + $put_path)
+$put_path = $put_path +'/layout'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,'pge1')
+archive_file($get_path,$put_path,'pge2')
+
+"******** Create TEMPLATES/LAYOUT ***********"
+
+$get_path = $input_path + '/templates/dg'
+$put_path = $output_path +'/templates/dg'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,'pge1')
+archive_file($get_path,$put_path,'pge2')
+
+"******** Create TEMPLATES/VNMRJ/PROTOCOLS ***********"
+
+$get_path = $input_path + '/templates/vnmrj/protocols'
+$put_path = $output_path +'/templates/vnmrj'
+shell('mkdir ' + $put_path)
+$put_path = $put_path +'/protocols'
+shell('mkdir ' + $put_path)
+
+archive_file($get_path,$put_path,'Pge1.xml')
+archive_file($get_path,$put_path,'Pge2.xml')
+
+"******** Add Current .DATE file ********"
+
+$get_path = $backup_path
+$put_path = $output_path 
+$date_name = $name_lower + '.DATE'
+$date_file = $backup_path + '/' + $date_name
+
+exists($date_file,'file'):$e4
+if ($e4 > 0.5) then
+   archive_file($backup_path, $output_path, $date_name)
+else
+   $date_file = $output_path + '/' + $date_name
+   write('file',$date_file,'%s:',$name_upper)
+   endif
+$date_file = $output_path + '/' + $date_name
+write('file',$date_file,'LAST ARCHIVE DATE: %s  %s',date, userdir)
+
+   
+"******** Add a TAR file of the directories ********"
+
+$tar_file = $output_path + '/' + $name_lower + '.tar'
+$directories = ''
+$directories = $directories + ' -C ' + $output_path + ' maclib'
+$directories = $directories + ' -C ' + $output_path + ' psglib'
+$directories = $directories + ' -C ' + $output_path + ' parlib'
+$directories = $directories + ' -C ' + $output_path + ' execpars'
+$directories = $directories + ' -C ' + $output_path + ' templates'
+$directories = $directories + ' -C ' + $output_path + ' manual'
+
+shell('tar cf ' + $tar_file + $directories)
+shell('compress ' + $tar_file)
+
+$expoutput_path = $archive_path + '/EXP_OUTPUT'
+exists($expoutput_path,'directory'):$e
+if ($e < 0.5) then 
+   shell('mkdir ' + $expoutput_path)
+endif
+$readme_file = $output_path + '/maclib/' + $name_lower + '.README'
+shell('cp ' + $tar_file + '.Z  ' + $expoutput_path + '/' + $name_lower + '.tar.Z') 
+shell('cp ' + $readme_file + ' ' + $expoutput_path + '/' + $name_lower + '.README')
+ 
+write('alpha','ARCHIVE COMPLETE')
+write('line3','ARCHIVE COMPLETE')
+
+
+
+
+

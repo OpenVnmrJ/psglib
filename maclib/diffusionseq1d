@@ -1,0 +1,145 @@
+// diffusionseq1d apptype
+
+$action = 'setup'
+$do = ''
+if ($# > 0) then
+  $action = $1
+  if ($# > 1) then
+    $do = $2
+  endif
+endif
+
+if ($action = 'setup') then
+  exists('seqfil','parameter'):$e
+  if ($e > 0.5) then 
+     $seqfil = seqfil
+  endif
+  
+  if ($do = '') then
+    $do = macro   
+  endif
+  exists($do,'parlib'):$e,$path
+  if ($e) then
+    rtx($path,'current','keep','noclear') 
+    rtv($path,'seqfil','pslabel','dg','dg2','ap')
+    exists('wrtp','parameter'):$e
+    if ($e>0.5) then
+       setprotect('wrtp','off',16384) 
+    endif  
+  else
+    write('error','parameters for %s do not exist',macro)
+    return
+  endif
+  setref('setup')
+  
+/* run a user customization macro*/
+  
+  on('wrtp'):$e
+  if ($e > 0.5) then
+    exec(wrtp)
+  endif
+  
+  setref('setup') 
+  sf=0 wf=np/sw/2
+  sp=rfp-rfl wp=sw
+  dps newdg dg
+
+//------------------------------
+//Set Limits For DAC Values
+//------------------------------
+
+  write('line3','stim= %s\n',stim)
+  exists('gradtype','parameter','systemglobal'):$gradtype
+  if ($gradtype>0.5) then 
+     if (gradtype = 'nnl') then 
+        setlimit('dac_cw',2047,-2047,1)
+        setlimit('dac_p1',2047,-2047,1)
+        setlimit('dac_p2',2047,-2047,1)
+        write('line3','Diffusion with Performa I (Mercury INOVA)')
+     else if (gradtype = 'nnp') then 
+        setlimit('dac_cw',32768,-32768,1)
+        setlimit('dac_p1',32768,-32768,1)
+        setlimit('dac_p2',32768,-32768,1)
+        write('line3','Diffusion with Performa II/III (INOVA)')
+     else if (gradtype = 'nnq') then 
+        setlimit('dac_cw',32768,-32768,1)
+        setlimit('dac_p1',32768,-32768,1)
+        setlimit('dac_p2',32768,-32768,1)
+        write('line3','Diffusion with Performa II/III and WFG (INOVA)')
+     else if (gradtype = 'nnc') then 
+        setlimit('dac_cw',32768,-32768,1)
+        setlimit('dac_p1',32768,-32768,1)
+        setlimit('dac_p2',32768,-32768,1)
+        write('line3','Diffusion with Performa IV/D (VNMRS)')
+     else
+        write('error','Gradients not set for Performa Z axis Diffusion: Please check the configuration')
+     endif endif endif endif
+  else
+     write('error','Z Gradients do not exist: Please check the parameter gradtype')
+  endif 
+
+//-----------------------
+//Set Default Values
+//------------------------
+
+  if (($seqfil = 'pge1') or ($seqfil = 'pge2')) then
+     $pw=p1
+  else 
+     $pw = pw
+  endif
+
+  if (stim='y') then
+     p1 = $pw
+     p2 = $pw 
+     pw = $pw
+  else
+     p1 = $pw
+     p2 = 0.0
+     pw = 2.0*$pw
+     stim = 'n'    
+  endif 
+  dps newdg dg
+  
+elseif ($action = 'process') then
+
+  setref('setup')
+  if (arraydim > 1) then
+    procarray
+  else
+    format(tn,'lower'):$tn
+    $procmacro=$tn+'p'
+    exists($procmacro,'maclib'):$e
+    if $e then
+      exec($procmacro)
+    else
+      wft f ai         
+      aph:$x           
+      if $x<0.5 then
+        aph0:$x
+        if $x<0.5 then
+          write('line3','Cannot phase spectrum')
+        endif
+      endif
+      integrate        
+      vsadj noislm     
+      thadj            
+    endif
+  endif
+
+  execseq('proc') // Execute any sequence specific processing
+
+elseif ($action = 'plot') then
+
+  if arraydim=1 then		
+    plot1d			
+  else
+    plotarray						
+  endif
+
+  execseq('plot') // Custom  sequence-based plots if desired
+
+endif
+
+
+
+

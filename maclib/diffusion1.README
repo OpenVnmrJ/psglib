@@ -1,0 +1,61 @@
+************************ VARIAN NMR USER GROUP LIBRARY *************************
+				SUBMISSION FORM
+
+Your name:		Dave Rice
+Company/University:	Varian
+Address:		Varian NMR Systems
+			3120 Hansen Way
+			Palo Alto, CA 94304-1030
+Phone:			(650) 424-4590 DR
+FAX:			(650) 852-9688
+e-mail:			dave.rice@varianinc.com
+			
+Date submitted:	2006-12-1 (VnmrJ 2.1B)		
+
+File name:	   diffusion1.tar.Z
+Directory:	   psglib
+
+Description:       A package contining two pulse sequences for spin-echo diffusion 
+                   measurements, pge1.c and pge2.c.  These sequence should be used 
+                   with the Optional Diffusion Package and they superseed the standard
+                   sequences pge.c and pgeramp.c.  Both pge1.c and pge2.c measure 
+                   diffusion with either a spin echo or a stimulated echo and allow 
+                   for trapezoidal ramped gradients. pge2.c also provides a homospoil 
+                   gradient during the stimulated-echo delay. Templates are provided 
+                   for VNMR6.1C and VNMRJ. Both sequences compile with Linux. 
+ 
+                   This package also superseeds the package diffusion1.tar.Z which is 
+                   only used with up to vnmr6.1C. 
+
+                   Full use of these sequences requires the presence of the Optional 
+                   Diffusion Package. 
+                     
+Existing VNMR files which are superseded
+or otherwise affected  by this submission: None - superseeds pge.c and pgeramp.c of the 
+                                           optional diffusion package and updates 
+                                           DIFFUSION.tar.Z for VNMRJ. 
+	
+Known VNMR / VnmrJ version compatibility:   (All versions up to VNMRJ2.1B) 
+Known SunOS version compatibility:               Linux - Solaris
+Special instructions for installation:
+
+    If you are downloading from the Internet, place the files "DIFFUSION1.tar.Z" and 
+    "diffusion1.README" in "/vnmr/userlib/psglib" (you must be the primary VnmrJ 
+    user to do this). 
+    Log into the new user and type
+        cd /vnmr/userlib
+        extract psglib diffusion1
+    All files will load into the user's "~/vnmrsys" directory.
+
+Reporting bugs:
+---------------
+Bug Reports are encouraged and should be reported to the standard entry form 
+in the userpages. 
+
+===============================================================================
+REVISION HISTORY:
+===============================================================================
+
+
+===============================================================================
+

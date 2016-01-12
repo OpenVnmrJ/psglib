@@ -1,0 +1,40 @@
+"       Varian Associates   VNMR   @(#)pge_process	14.1    12/08/98  "
+" pge_process - process a pulse gradient experiment "
+" Typically, the wexp parameter will be set to pge_process. "
+" This macro will Fourier transform the data,  collect the "
+" integral information for each spectrum in the arrayed experiment "
+" and put this information into info_1 to info_n text files in the "
+" current experiment directory.  For a defined integral region, "
+" the pge_results macro then calls the pge_calc macro which constructs "
+" an analyze.inp text file from the info_n text files.  This text "
+" file contains an integral's amplitude as a function of the "
+" array element.  This data is submitted for non-linear least-squares "
+" fitting.  Results of this fitting procedure for region x are placed "
+" in a regionx_results text file. "
+
+wft('all')
+select(1)
+$i = 1
+while ($i <= arraydim) do
+  pge_data($i)
+" If additional processing is desired on each array element, "
+" the commands may be passed as an argument to pge_data. "
+" For example,  pge_data($i,'aph0 dc') will perform zero "
+" order phase correction and drift correction on each spectrum. "
+  $i= $i + 1
+  endwhile
+$i = 1
+if (intmod = 'full') then
+  $num = 1
+else
+  numreg:$num
+  if ($num = 0) then
+    write('line3','no regions are defined.  intmod set to \'full\'')
+    intmod = 'full'
+    $num = 1
+    endif
+  endif
+while ($i <= $num) do
+  pge_results($i,$num,'proc')
+  $i = $i + 1
+  endwhile

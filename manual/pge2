@@ -1,0 +1,167 @@
+Protocol: Pge2  Sequence: pge2.c  Apptype: diffuisonseq1d
+
+Description: 
+
+   Gradient spin-echo or stimulated-echo for the measurement of diffusion 
+   coefficients using the optional "Diffuison Package". The sequence replaces 
+   pge.c and pgeramp.c of the diffusion package and provides both "tcldg" and 
+   VNMRJ templates. The Protocols work in VNMRJ21B in the walkup interface. 
+
+Additional Software: 
+
+   Requires installation of the Optional Diffusion Package. This sequence 
+   superseeds pge.c and pgeramp.c
+
+   pge1_setup - A macro set an array of gradient dac levels based on the 
+      calibration coefficient, grad_p_coef and input in G/cm. Values are obtained
+      from the command line. A single argument 'a' cause pge1_setup to use the 
+      current values of parameters. 
+
+   pge1_calib - recalibrates grad_p_coef based on a known diffusion coefficient. 
+
+   pge1_process - processes integrals of a peak in a diffusion run to produce a 
+      diffusion coeeficient and a graph. 
+
+   Note "pge1_" (not "pge2_) is correct above. 
+
+   (uses) pge_output (of the diffusion package) to provide hard copy of diffusion 
+      data. 
+
+   _dac_p1,_grad_p1 automatically cause the associated parameters to reset 
+   themselves.
+
+   _dac_hs,_grad_hs automatically cause the associated parameters to reset 
+   themselves.
+
+   pge2 and the apptype macro diffusionseq1d automatically calibrate the spin
+   echo based on the current 90-degree pulse. 
+
+Setup Instructions: 
+
+   Load a calibrated data set and select the protocol Pge1.  For
+   a new calibration, set the observe nucleus and calibrate the 90-degree
+   pulse with s2pul as "pw". Select Pge1 to setup the sequence. Water
+   in D2O is a good calibration standard. Use glycerol to observe a smaller
+   diffusion coefficient. 
+
+   Calibrate the gradients using the sequence profile.c. Use "setgcal" to 
+   determine gcal.  For the high-gradient-strength probe a typcial DAC 
+   setting will be about 100 units. Set grad_p_coef = gcal in pge1. 
+
+   Use pge1_setup (note the button) to set the gradient array for pge1. Enter
+   the maximum, minimum gradients and the step as requested. The minimum 
+   gradient should not be zero when measuring a diffusion coefficient. Also 
+   set the cw gradient to zero, and set the array of nt. Use an increasing 
+   number of scans to preserve signal; to noise in latter steps - if desired. 
+
+   Note that the inputs of pge1_setup can be entered from the Sequence screen. 
+   In this case press the buttons "G/cm" or "DAC" to reset the gradient array 
+   with current values. The command-line entry will be bypassed. 
+
+   Set the gradients to zero to calibrate the Spin Echo.  Set stim = 'y' with 
+   the Option menu to use a stimulated echo. Note that pw is a 90-degree pulse 
+   for the stimulated echo and a pulse p2 and delay d5 are present. Changing 
+   "stim" will automatically change the pulses. 
+
+   With a calibrated Spin Echo or simulated Echo, set the gradient array with 
+   pge1_setup as described above. Start the acqusition.
+
+   Place an integral over the desired peak and press pge1_process to generate a 
+   diffusion coefficient.  The value will appear in the text window and a graph 
+   will appear in the display area. 
+
+   If the sample has a known diffusion coefficient one can recalibrate grad_p_coef.
+   Use pge_calib and enter the diffuison coefficient on the command line as 
+   requested.  Note that gcal remains unchanged.  
+
+   A variety of artifacts can cause gcal (from the profile) to differ from 
+   grad_p_coef. Be sure you understand the experiment before selecting a 
+   calibration method.  Note that a curved log plot is often caused by gradient
+   nonlinearity (not a distribution of diffusion coefficients). The sample 
+   should not be longer than the region of linear gradients. Also sample 
+   circulation or vibration can affect the apparent diffusion coefficient. Be 
+   sure circulation and vibration are absent. It is best to secure the sample 
+   directly in the Diffusion Probe and avoid top loading or spinning. 
+ 
+Parameters: 
+
+   stim ='n' sets a Hahn echo sequence, stim='y' sets a 3-pulse stimulated-
+   echo sequence. 
+
+   pw - the 90 degree pulse length, in microseconds, when stim='y'.  It is a 180
+   degree pulse length when stim='n'. 
+
+   p1 - the 90 degree pulse length, in microseconds. 
+
+   p2 - the 90 degree pulse length, in microseconds, used when stim='y'.
+
+   g1 - the first gradient length, in microseconds (see tramp).
+
+   g2 - the second gradient length, in microseconds (see tramp).
+
+   hsg1 - a homospoil gradient lengthduring d5, in microseconds (see tramp).
+
+   tramp - the length of the linear ramp during the rise and fall of the 
+   gradient pulse. The total length of the gradient pulse is g1 + tramp.  The
+   integral is independent of tramp. 
+
+   d0 - delay, in seconds, precedes the first gradient pulse (typically 400 us).
+ 
+   d3 - delay, in seconds, precedes the second gradient pulse (typically 400 us). 
+
+   d2 - delay, in seconds, follows the first gradient pulse (typically 20 ms).
+
+   d4 - delay, in seconds, follows the second gradient pulse (typically 20 ms).
+
+   d5 - delay during which the magnetization is aligned with the Z axis when 
+   stim='y' (0.0 to 1.0 s). 
+
+   dac_p1 - the gradient level in dac units for the Performa amplifier for the two
+   gradient pulses.  The range of dac_p1 is -32767 to +32768 for Performa II,
+   III,IV and D. The range is -4095 to + 4096 for Performa I.  _dac_p1 sets 
+   grad_p1 when dac_p1 is changed. 
+
+   dac_hs - the gradient level in dac units for the Performa amplifier for the 
+   homospoil gradient pulse. _dac_hs sets grad_hs when dac_hs is changed. 
+
+   grad_p1_coef - the conversion factor between dac_p1 and grad_p1. It has a value 
+   similar to gcal.   The value is adjusted by the macro pge1_calib.  pge1.c does
+   not use gcal. 
+
+   grad_p1 - the gradient level for the two gradient pulses, in G/cm.  _grad_p1 
+   sets dac_p1 when grad_p1 is changed (set by pge1_setup).
+
+   grad_hs - the gradient level for the homospoil gradient pulse, in G/cm.  
+   _grad_hs sets dac_hs when grad_hs is changed (set by pge1_setup).
+
+   g_array = 'linear' sets equal steps in the gradient array, g_array = 'square'  sets
+   quadratic steps in the gradient array (set by pge1_setup).
+
+   g_max - defines the maximum gradient of the array (set by pge1_setup).
+
+   g_min - defines the minimum gradient of the array (set by pge1_setup).
+
+   g_steps - defines the number of steps of the array (set by pge1_setup).
+
+   dac_cw - the dac setting for a continuous gradient level during the sequence 
+   (see dac_p1). _dac_cw sets grad_cw when dac_cw is changed
+
+   grad_cw - a continuous gradient level during the sequence, in G/cm.  This
+   level canbe used to correct for a DC offset of the Performa Amplifier or 
+   to provide a strong linear shim (see dac_p1). _grad_cw sets dac_cw when
+   grad_cw is changed.
+
+   nt_array = 'same' sets the same number of scans for each array element.
+   (set by pge1_setup).  nt_array='fraction' increments the number of scans 
+   with each array element where nt(n+1)=nt_fract*nt(n)
+
+   nt_first - the number of scans of the first array element (set by 
+   pge1_setup).
+
+   nt_fract - the fractional increase in the number of scans when 
+   nt_array='fraction' (set by pge1_setup).
+
+
+  
+
+
