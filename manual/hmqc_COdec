@@ -1,0 +1,58 @@
+
+ hmqc_COdec- hmqc with options for decoupling of N15 and 13CO in multiply-
+             labelled molecules. Needs third channel.
+
+         uses status-controlled n15 decoupling during t1 and an SLP-180
+         degree band-selective pulse on the carbonyls in t1 for decoupling.
+         Must have a shapelib entry for "shape" which is frequency-shifted 
+         enough from dof to be centered in the carbonyl carbon region.
+
+         set dn2 parameters for normal decoupling conditions, using
+         dm2='nyn', or 'nyy'. the pwco pulse should be long enough to be
+         selective for the carbonyl region without affecting protonated
+         carbons. the shapelib file should be created as an SLP pulse, for
+         example convolute('gauss','softCO180',500,18000) to make a new
+         shapelib file "softCO180" from an existing file "gauss" to be used
+         for the pwco pulse having a length of 500us with an effective 
+         excitation 18000 Hz downfield from the dof position.
+
+   Parameters:
+      sspul = 'y' does trim(x)-trim(y) before d1(recommended for hmbc)
+     satmode = 'yn':  presaturation during relaxation period (satdly) with xmtr
+              'yy':  presaturation during both relaxation period (satdly)
+                     and null period (null) with xmtr
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+     shape  = shapelib file for SLP-carbonyl decoupling pulse
+    pwcolvl = power level for carbonyl 180
+      pwco  = pulse length for carbonyl 180
+        dof = frequency for decoupling during acquisition
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+              'yy':  homospoil pulse during both d1 and nulling period (null)
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwxlvl = power level for decoupler pulses
+        pwx = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+      mbond = 'n':  HMQC experiment
+              'y':  HMBC experiment
+      taumb = delay to allow long-range heteronuclear antiphase magnetization
+              to evolve for multiple-bond correlation
+         dm = 'nnn':  no broadband decoupling of heteronucleus during
+                      acquisition; this is mandatory if mbond='y'
+              'nny':  broadband heteronuclear decoupling during acquisition
+                      (recommended for mbond='n')
+
+               Note:  The 1/(2j) refocusing period prior to acquisition is
+                      always present, regardless of dm, unless mbond='y'
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+                3:  TPPI experiment with F1 quadrature (complex F1-FT)
+              1,4:  TPPI experiment with F1 quadrature (real F1-FT)
+       null = nulling time for protons not attached to observed heteronucleus
+         nt = multiple of  4 (minimum)
+	      multiple of 32 (maximum for mbond='n')
+              multiple of 64 (maximum for mbond='y')
+	      multiple of 16 (minimum recommended for mbond='n')
+              multiple of 32 (minimum recommended for mbond='y')
+
