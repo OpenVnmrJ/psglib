@@ -1,0 +1,22 @@
+"*********************************************************"
+" bashdtoxy - sets up parameters in accordance with the tocsy "
+"         pulse sequence (bashdtoxy).                         "
+"*********************************************************"
+
+if (seqfil <> 'selexcit') then
+	selexcit
+endif
+
+set2d('bashdtoxy')
+psgset('bashdtoxy','slmix','trim','phase','dg','ap','dgs','ss','dm','dmm')
+psgset('bashdtoxy','hs','hst','sspul','array','slpwr','slpw','wdwfctr','hsgpwr')
+psgset('bashdtoxy','dipsiflg','fadflg','homodec')
+ph  ss=64  rp1=0  lp1=0
+pw=pw90 slpwr=51 slpw=25 slmix=.08
+nt=nt/8  nt=nt*8
+phase=1,2,3,4
+if (nt=0) then nt=8 endif
+axis='pp'
+wp1=wp sp1=sp
+dm='nnn' homo='n'
+dps dg

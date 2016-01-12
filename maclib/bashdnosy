@@ -1,0 +1,20 @@
+"*********************************************************"
+" bashdnosy - sets up parameters in accordance with the tocsy "
+"         pulse sequence (bashdnosy).                         "
+"*********************************************************"
+
+if (seqfil <> 'selexcit') then
+	selexcit
+endif
+
+set2d('bashdnosy')
+psgset('bashdnosy','mix','phase','dg','ap','dgs','ss','dm','dmm','homodec')
+psgset('bashdnosy','hs','hst','sspul','array','hsgpwr','alfa1','gzlvl3','gt3','gstab3')
+ph  ss=64  rp1=0  lp1=0
+pw=pw90 mix=.2
+nt=nt/8  nt=nt*8
+if (nt=0) then nt=8 endif
+axis='pp'
+wp1=wp sp1=sp
+dm='nnn' homo='n'
+dps dg

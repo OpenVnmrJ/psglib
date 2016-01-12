@@ -1,0 +1,38 @@
+bashdtoxy -  BAnd-Selected Homonuclear Decoupled TOCSY 
+            Rance type Sensitivity enhanced
+
+	Band selection is based on double PFG spin echo
+
+
+     homodec = 'y'
+	wft2d(1,0,0,-1,-1,0,0,-1,0,-1,-1,0,0,-1,1,0)
+		small non-zero rp1 and lp1 is expected
+
+     homodec = 'n'
+        wft2d(1,0,0,1,-1,0,0,1,0,1,-1,0,0,1,1,0)
+		rp1=180 lp1=0
+
+        hsgpwr : homospoil gradient
+        gzlvl1,gt1,gzlvl2,gt2 : echo gradients during DPFGSE
+                Typical : 8000, 0.00025, 5000, .0005
+
+        selpwr, selpw, pwshape : selective proton 180 power, pulse width, and shape - Typical : to be created by Pbox
+
+        presaturation option is included (using satflg,satdly,satfrq and satpwr)
+
+	By default mlev17c spin lock;  Dipsi2 spinlock is turned on with dipsiflg flag
+	slmix,slpwr,slpw - spinlock mixing time, power, and pw90
+	homodec = flag turn on or off the F1 homonuclear decoupling
+	fadflg = turn on FAD in F1.   
+
+	Ideally, to keep the axials in the middle or the edge, sw1 should be set to integral multiple of tof-cbs (where cbs is the center of the band selection).  If sw1 is odd multiple of tof-cbs, set lsfrq1=sw1/2 and set fadflg='n'.  If sw1 is even multiple of tof-cbs set lsfrq1=0 and set fadflg='y'.
+
+	Use selexcit experiment to set DPFGSE parameters and check band-selection.
+
+	selexcit is a separate userlib submission
+
+	Krish Krishnamurthy	Aug, 1995
+
+[REF: V.V. Krishnamurthy, Magn.Reson.Chem., (in press, as of Aug.96)]	*/
+
+
