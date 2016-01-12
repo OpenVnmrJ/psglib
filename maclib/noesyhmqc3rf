@@ -1,0 +1,23 @@
+
+"noesyhmqc3rf-convert presat into noesyhmqc3rf "
+"parameter set"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d
+psgset('noesyhmqc3rf','satdly','satfrq','satpwr','satmode','array')
+psgset('noesyhmqc3rf','dmf2','dn2','j','pwx2lvl','pwx2','dpwr2','dof2','sw1','ni')
+psgset('noesyhmqc3rf','phase','tpwr','pw','ss','dm2','dmm2','d1','at','dgs','hs')
+psgset('noesyhmqc3rf','p1','dg','ap','null','dres','dseq2','mix')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='noesyhmqc3rf'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='p3' fn=2048 ni=1
+sb=at sbs=-at
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''

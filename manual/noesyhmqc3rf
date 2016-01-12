@@ -1,0 +1,18 @@
+
+/* noesyhmqc3rf- noesy followed by hmqc using 3rd channel for X 
+
+   Parameters:
+
+     satflg = 'ynnnn': presaturation during relaxation period (satdly)
+              'ynyyn': presaturation during both relaxation period (satdly),
+                       d3,and mix periods 
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the  relaxation delay
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwx2lvl = power level for decoupler pulses
+        pwx2 = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+    contact - G.Gray (palo alto)
+   revision - modified from hmqc.c
