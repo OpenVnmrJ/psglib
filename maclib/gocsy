@@ -1,0 +1,18 @@
+$lp=lp $rp=rp dn=''
+$ref_pw90=pw90 $ref_pwr=tpwr
+psgset('gocsy','mix1','selshape','selpwr','selpwrf','selpw','trim')
+psgset('gocsy','dg','dg2','ap','dgp','selflg','hsgpwr','sspul','gzlvl1')
+psgset('gocsy','shape','satmode','satfrq','satpwr','satdly')
+psgset('gocsy','gt1','gzlvl2','gt2','gzlvl3','gt3')
+psgset('gocsy','mix2','homodec','fadflg','phase','phase2','sw1','sw2')
+psgset('gocsy','gstab','slpwr','slpw')
+slpwr=$ref_pwr-12 slpw=4*$ref_pw90
+pw90=$ref_pw90 tpwr=$ref_pwr pw(90)
+exists('ref_pwr','parameter'):$e
+if $e=0 then create('ref_pwr','real')  endif
+exists('ref_pw90','parameter'):$e
+if $e=0 then create('ref_pw90','pulse')  endif
+parfix
+satmode='nnn'
+d1=1.5 array='' ss=4 nt=4 satdly=0 dg
+in='n'
