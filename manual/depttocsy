@@ -1,0 +1,15 @@
+#########DEPT-HMQC TOCSY Inverse heteronuc. correlation with DEPT-editting#####
+
+	Adapted from depthmqc Kessler et al JMR 85,400 (1989)
+TOCSY step preceeds data acquisition
+
+The parameter mult controls the editting e.g. mult=1 give a 90 degree
+editting pulse.  With mult=1 you will get methylenes only with opposite phase
+from a mult=0 spectrum. The sequence works well with mult=1 to give a
+1D proton spectrum with CH2's only.
+	The authors suggest editting flip angles of 60,120,and 180 degrees
+to separate CH, CH2, and CH3 resonances. See paper for details.
+	The parameter multc serves to edit the direct responses
+		multc=1 and dm='nnnnn' with multh=2 should result in
+		a 2D spectrum with only tocsy peaks with phase controlled
+		by the dept portion

@@ -1,0 +1,9 @@
+set2d('deptocsy')
+psgset('depttocsy','dm','dmm','dmf','pwx','pwxlvl','ss','hs','dg')
+psgset('depttocsy','dpwr','dn','multc','multh','j','homo','phase','array')
+psgset('depttocsy','p1','p1lvl','window','trim','mix','null','sstrim')
+axis='pd'
+at=.2 fn=np
+pw(90) dg dps
+man('depttocsy')
+
