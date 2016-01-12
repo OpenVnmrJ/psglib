@@ -1,0 +1,51 @@
+"************************************************************************"
+" adequate_DA -  convert parameter set to heteronuclear ADEQUATE experiment "
+"************************************************************************"
+" optional first argument = exp# for 1h spectrum "
+ set2d('adequate_AD',8) 
+psgset('adequate_AD','dg','ap','array','dgs','phase','dg2','seqfil')
+psgset('adequate_AD','satmode','satpwr','satdly','satfrq','pwx','pwxlvl')
+psgset('adequate_AD','j','jcc','f1180','kappa','dofdec')
+psgset('adequate_AD','gzlvl1','gt1','gzlvl2','gt2','gzlvl3','gt3','recovery')
+psgset('adequate_AD','dm','dmm','dm2','sspul','gzlvl0','gt0','f1coef')
+
+ph
+nt=nt/32
+if (nt < 1) then
+   nt = 32
+else
+   nt = 4*nt
+endif
+ss=16 dn='C13' homo='n'
+d1=1
+dm='nny'
+axis='pd'
+pw=pw90
+$enumber=0
+jexp:$experiment	
+if ($#<1) then
+ input('experiment number containing the C13 spectrum (0=none)? '):$enumber
+else $enumber=$1 endif
+if ($enumber<0) or ($enumber>9999) then
+ write('error','adequate - illegal experiment number')
+ return(1)
+endif
+if ($enumber=$experiment) then
+   write('error','adequate - 13C spectrum cannot be in same experiment')
+   return(1)
+endif
+if ($enumber>0) then 
+ "get carbon parameters"
+ jexp($enumber) $savesw=sw $savetof=tof
+ $saverfl=rfl $saverfp=rfp $savewp=wp $savesp=sp
+ "bring them back to adequate experiment"
+ jexp($experiment) sw1=$savesw dof=$savetof
+ rfl1=$saverfl rfp1=$saverfp wp1=$savewp sp1=$savesp
+else
+ setsw1('C13',220,0):dof
+endif
+gf='n' gf1='n' sb=-at sbs=sb sb1=-ni/sw1 sbs1=sb1
+f1coef='1 0 -1 0 0 1 0 1'
+rp1=90
+fn1=sw1/5 ni=fn1/4 dps
+man(seqfil)
