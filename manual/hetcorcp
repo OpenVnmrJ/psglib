@@ -1,0 +1,10 @@
+*********************** VARIAN NMR USER GROUP LIBRARY ***********************
+                              NEW MANUAL ENTRY
+
+hetcorcp	Heteronuclear correlation in the solid-state
+
+Syntax:		None; this is a pulse sequence (no macro provided)
+
+Description:	This pulse sequence implements heteronuclear correlation in
+		the solid-state. See Magnetic Moments, Vol. V, p. 4 for
+		more information.

@@ -1,0 +1,8 @@
+/* hetcorcp phase table */
+t1 = 0 2 3 1 2 0 1 3 /* Receiver */
+t2 = 1 3 /* Initial pulse */
+t3 = [0 3 2 1]2 /* WIM-24 x */
+t4 = [3 2 1 0]2 /* WIM-24 -y */
+t5 = [2 1 0 3]2 /* WIM-24 -x */
+t6 = [1 0 3 2]2 /* WIM-24 y */
+t7 = [0 1 2 3]2 /* Mixing pulse */
