@@ -1,0 +1,33 @@
+"*****  macro superw  *****"
+if $#>0.5 then
+  if $1='calc' then
+    superwcalc
+    return
+  endif
+endif
+exists(userdir+'/parlib/superw.par','file'):$e
+if $e<0.5 then
+  exists(systemdir+'/parlib/superw.par','file'):$e2
+  if $e2<0.5 then
+    exists('iseq','parameter'):$p
+    if $p<0.5 then create('iseq','integer') iseq = 311 endif
+    exists('pws','parameter'):$p
+    if $p<0.5 then create('pws','pulse') pws = 25 endif
+    exists('fmax','parameter'):$p
+    if $p<0.5 then create('fmax','frequency') fmax = -100 endif
+    addpar('ss')
+    rof1 = 2
+    setprotect('dg','off',4)
+    dg = dg + '4:SUPERB_W:iseq,fmax,pws:1,rof1:1,ssfilter,ssntaps,ssorder,sslsfrq;'
+    setprotect('dg','on',4)
+    exists('alfa','parameter'):$ea
+    if $ea<0.5 then create('alfa','pulse') endif alfa = 0
+    seqfil='superw'
+    svp(userdir+'/parlib/superw.par')
+  else
+    psgset('superw','iseq','pws','fmax','rof1','dg')
+  endif
+else
+  psgset('superw','iseq','pws','fmax','rof1','dg')
+endif
+dg

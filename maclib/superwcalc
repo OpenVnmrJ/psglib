@@ -1,0 +1,167 @@
+"*****  macro superw_calc  *****"
+
+exists('alfa','parameter'):$e
+if ($e = 1) then
+  $alfa = alfa
+else
+  $alfa = 0
+endif
+
+"HINT: Choose $beta for system type you are using"
+"  Used to calculate accurate value for lp phase correction"
+"  Put quotes around line to comment out, current choice is $beta=3.00"
+
+"$beta = 1.29"
+  "8 pole quasi-elliptical, VXR 500,600, UNITY, UNITYplus"
+"$beta = 2.00"
+  "4 pole Butterworth, broadband Gemini, VXR 200,300,400"
+$beta = 3.00
+  "3 pole Butterworth, 1H/13C Gemini"
+"$beta = 2.33"
+  "6 pole Bessel, sw > 100 kHz"
+
+$iseqval =  121,    205,    308,    311,    416,    423,    432
+$plastn =     1,      4,      2,      3,      3,      3,      5
+$plast =  .2500, 1.0000,  .9619,  .9206,  .9069,  .9814,  .9761
+$pminw =  .2500,  .1910,  .0303,  .0290,  .0147,  .0105,  .0106
+$pmin=.01  "min for $iseqpminw"
+$iseqvalsz = size('$iseqval')
+$iseqsz = size('iseq')
+$fmaxsz = size('fmax')  
+$pwssz = size('pws') 
+$fmaxinit = fmax[1]
+$fmax1 = $fmaxinit
+$pws1 = pws[1]
+$lpest = 0 $pt1 = 1
+
+$indok = 0
+if ($# > 0) then
+  $cindex = $1
+  if ($cindex <= $iseqsz) then
+    $indok = 1
+    $iseq1 = iseq[$cindex]
+    $iseqsz = 1
+    endif
+  endif
+$ssok = 0
+if ($# > 1) then
+  $ssfil = $2
+  $ssok = 1
+  endif
+
+if ($ssok = 0) then
+  write('alpha','\n      null               fmin, fmax     pmin     total')
+  write('alpha','iseq  order  bandwidth      (hz)        (us)   length (ms)     lp')
+  write('alpha','----  -----  ---------  ------------  -------  -----------  --------')
+else
+  write('alpha','\n      null               fmin, fmax     pmin     total                ssfilter')
+  write('alpha','iseq  order  bandwidth      (hz)        (us)   length (ms)     lp       (hz)')
+  write('alpha','----  -----  ---------  ------------  -------  -----------  --------  --------')
+endif
+
+$ict = 0
+repeat  "until $ict >= $iseqsz"
+$ict = $ict + 1
+if ($indok = 0) then
+  $iseq1 = iseq[$ict]
+  endif
+$iseqokay = 0
+$ct = 0
+repeat
+  $ct = $ct + 1
+  if ($iseq1 = $iseqval[$ct]) then 
+    $iseqokay = 1 
+    $pmin = $pminw[$ct]  
+    $plastv = $plast[$ct]
+    $plastnv = $plastn[$ct]
+    endif
+  until ($ct >= $iseqvalsz)
+
+if ($iseqokay = 0) then
+  write('alpha','>>  iseq = %d not valid',$iseq1)
+ 
+else "$iseqokay = 0"
+
+if ($iseq1 = 121) then
+  $null = 3
+  $pslen = 3
+else
+  $null = $iseq1/100
+  $pslen = $iseq1 mod 100
+"  $null = $null - $pslen/100 "
+endif
+
+if ($fmaxinit <= 0.1) then
+  if ($iseq1 = 121) then
+    $tau1 = 2/sw
+    $fmax1 = 1/(2*$tau1)
+    $fmin1 = 1/(2*$tau1)
+  else
+    $tau1 = 2/sw
+    $fmax1 = (2 * $pslen - $null)/(2 * $pslen * $tau1)
+    $fmin1 = $null/(2 * $pslen * $tau1)
+  endif
+else
+    $tau1 = (2 * $pslen - $null)/(2 * $pslen * $fmax1)
+"   $fmax1 = $fmax1"
+    $fmin1 = $null/(2 * $pslen * $tau1)
+endif
+$per = 1 + 100*($fmax1 - $fmin1)/($fmax1 + $fmin1)
+if ($iseq1 = 121) then $per = 0 endif
+$perstr = ''
+format($per,4,1):$perstr
+
+if ($fmin1 < 4*sw/np) then
+  $junkstr = ''
+  format(sw/np,9,3):$junkstr
+  $junkstr = 'WARNING: fmin approaching ' + $junkstr + ' (hz/pt)'
+  write('error',$junkstr)
+  endif
+
+$totstr = ''  "create $tot output, subtract initial blank spaces"
+format(($pslen-1)*$tau1*1e3,7,2):$totstr
+$spaceflag = 1
+repeat
+  length($totstr):$lentot
+  substr($totstr,1,1):$begtot
+  if ($begtot = ' ') then
+    substr($totstr,2,$lentot):$totstr
+    $spaceflag = 1
+  else
+    $spaceflag = 0
+  endif
+  until ($spaceflag = 0)
+$tots = ''
+format(($pslen-1)*$tau1*1e3,6,2):$tots
+$pminstr = ''
+format($pmin*$pws1,5,2):$pminstr
+
+$tbeta = 0.5 * 1e6/($beta*fb)  "beta delay"
+"write('alpha','beta %1.1f',$tbeta)"
+$pt1 = 1e6/sw  "=1e6*at/(0.5*np)"  "dwell time"
+$lpest = (0.5*$plastv*$pws1 + $plastnv*rof1 + $alfa)/$pt1
+$lpest = $lpest + $tbeta/$pt1
+
+if ($iseq1 = 121) then 
+  $lpest = $lpest + 1e6*$tau1/$pt1   "add one tau"
+  endif
+$lpest = -$lpest * 360  "estimate of lp, linear phase"
+
+$pers = $perstr  $nul = $null-1
+$lpestr = ''
+format($lpest,7,1):$lpestr
+$outstr = $pminstr + '    ' + $tots + '      ' + $lpestr
+
+if ($fmax1 > sw/2) then  "put into helplib"
+  write ('error','WARNING: fmax is greater than sw/2')
+  endif
+
+if ($ssok = 0) then
+write('alpha',' %3d    %d      %4s%%    %5d,%5d    %s',$iseq1,$nul,$pers,$fmin1,$fmax1,$outstr)
+else
+write('alpha',' %3d    %d      %4s%%    %5d,%5d    %s   %5d',$iseq1,$nul,$pers,$fmin1,$fmax1,$outstr,$ssfil)
+endif
+
+endif  "$iseqokay = 0"
+
+until ($ict >= $iseqsz)

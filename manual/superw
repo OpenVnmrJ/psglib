@@ -1,0 +1,77 @@
+*******************************************************************************
+*              Small flip angle pulse sequence with Uniform Phase Excitation  *
+* superw   -   Region and Binomial-type Null, with Wide-band uniform phase    *
+*              (SUPERB-W)                                                     *
+*******************************************************************************
+
+
+                       -0.25*pws        -0.50*pws       0.50*pws 0.25*pws
+                         ****             ******          ****** ****
+                         *  *             *    *          *    * *  *
+           d1            *  *     tau     *    *   tau    *    * *  *
+                         *  *             *    *          *    * *  *
+**************************  ***************    ************    ***  *********
+
+The SUPERB-W pulse sequences are a family of self-refocusing pulse sequences 
+for solvent suppression.  Uniform phase is obtained within a given bandwidth.
+[See J. Mag. Res. Series B, 101, 17, 1993; Biophys. J., 68, 681, 1995.]
+Usage is similar to the binomial pulse sequences.  
+
+
+Usage:
+   superw - set up the pulse sequence and set the parameters below
+   superw('calc') or superwcalc - calculate pulse sequence characteristics
+
+Parameters:
+   tpwr - power level
+   pws  - 90 degree pulse length (or desired flip angle)
+   iseq - selects the pulse sequence to be used
+   fmax - edge of uniform phase bandwidth (sets frequency range)
+   tof  - offset frequency, set on resonance with solvent
+   rof1 - switching delay for each pulse
+   solvent subtraction parameters are also created, see addpar('ss')
+
+A minimum value of 25 us for pws is recommended, since the shortest pulse in 
+the pulse sequence is 0.01*pws.  Choose tpwr such that pws pulse length is 
+60 to 90 degrees.  Short values for rof1 and alfa are also recommended (2 to
+5 us), to give a small value of lp.
+
+fmax < 0: center excitation window on middle of spectrum (sw/4)
+fmax > 0: set excitation window edge at fmax (recommended value - set to
+  absolute value from solvent of the furthest peak of interest)
+
+iseq is used to select different pulse sequences:
+
+                                      null     
+    iseq      pulse sequence          order    uniform phase bandwidth
+   -------   ----------------------   -----    ----------------------- 
+     121      (1,-2,1)           #      2          0.0% of spectrum
+     205      SUPERB-W(0,2pi/5)         1         60.0%     "
+     308      SUPERB-W(1,3pi/8)         2         62.5%     "
+     311      SUPERB-W(1,3pi/11) *      2         72.7%     "
+     416      SUPERB-W(2,4pi/16)        3         75.0%     "
+     423      SUPERB-W(2,4pi/23)        3         82.6%     "
+     432      SUPERB-W(2,4pi/32) *      3         87.5%     "
+
+# pulseshape-compensated binomial pulse sequence [J. Mag. Res. 61, 567, 1985]
+* recommended pulse sequences
+
+   For SUPERB-W(M,(M+2)pi/N):
+     M is null order minus one 
+     N is total number of groups of pulses
+     iseq is 100*(M+2) + N
+     fmin = (M+2)pi/N is inside edge of uniform phase bandwidth (pi is center).
+     fmax = (2N-M-2)pi/N is outside edge of uniform phase bandwidth.
+
+Uniform phase is obtained from -fmax to -fmin, and from fmin to fmax, centered 
+around tof.  The macro superw('calc') or superwcalc calculates the bandwidth
+and other characteristics for a particular set of parameters.  See HINT in 
+superwcalc to set the calculated $beta delay.
+
+Phasing is generally possible only within the uniform phase regions.  Set lp
+and rp to phase these regions, and ignore the phase in the solvent region.  
+Baseline roll may occur from nonlinear phasing near the solvent.  Use short 
+values of rof1 and alfa to decrease lp.  Solvent may be further decreased 
+using solvent subtraction parameters.
+
+Array iseq to see the effects of different pulse sequences.
