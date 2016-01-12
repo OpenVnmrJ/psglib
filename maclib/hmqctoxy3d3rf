@@ -1,0 +1,27 @@
+"       Varian Associates   VNMR   @(#)noesy	1.5    2/29/88  "
+"*********************************************************"
+" hmqctoxy3d3rf - sets up parameters for hmqctoxy3d3rf           "
+"*********************************************************"
+
+set2d('tocsy')
+par2d
+par3d par3rf
+exists('satfrq','parameter'):$exist
+  if ($exist = 0) then create('satfrq','frequency') satfrq=0 endif
+exists('satdly','parameter'):$exist
+  if ($exist = 0) then create('satdly','delay') satdly=0 endif
+exists('satpwr','parameter'):$exist
+  if ($exist = 0) then create('satpwr','real') satpwr=0 endif
+exists('satmode','parameter'):$exist
+  if ($exist = 0) then create('satmode','flag') satmode='n' endif
+if (satmode = 'y') then satmode='yn' else satmode='n' endif
+if (satdly<>0) then d1=.05 endif
+psgset('hmqctoxy3d3rf','sw1','ni','sw2','ni2','phase2','phase','dg','ap')
+psgset('hmqctoxy3d3rf','dn2','dof2','dm2','dmm2','dmf2','dpwr2','pwx2lvl','pwx2')
+psgset('hmqctoxy3d3rf','mix','jxh','null','p1lvl','trim','wdwfctr','toxyflg','hmqcflg')
+psgset('hmqctoxy3d3rf','ss','hs','hst','sspul','array')
+sw2=sw
+ph ss=8
+homo='n'
+sspul='y'
+dg

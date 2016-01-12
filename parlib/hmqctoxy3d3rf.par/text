@@ -1,0 +1,11 @@
+Hmqcnoesy using 3rd channel
+use the following "coef" file
+in curexp
+and ft3d('nocoef','f1f3','f2f3')
+****************
+1 0 0 0 0 0 0 0
+0 0 0 0 -1 0 0 0
+0 0 -1 0 0 0 0 0
+0 0 0 0 0 0 1 0
+1 0 0 0 0 0 -1 0
+***************
