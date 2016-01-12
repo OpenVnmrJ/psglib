@@ -1,0 +1,34 @@
+"*********************************************************"
+" nosyhmqc3d3rf - sets up parameters for nosyhmqc3d3rf          "
+"*********************************************************"
+
+set2d('noesy')
+par2d
+par3d
+exists('satfrq','parameter'):$exist
+  if ($exist = 0) then create('satfrq','frequency') satfrq=0 endif
+exists('satdly','parameter'):$exist
+  if ($exist = 0) then create('satdly','delay') satdly=0 endif
+exists('satpwr','parameter'):$exist
+  if ($exist = 0) then create('satpwr','real') satpwr=0 endif
+exists('satmode','parameter'):$exist
+  if ($exist = 0) then create('satmode','flag') satmode='nnnn' endif
+if (satmode = 'y') then satmode='ynyn' else satmode='n' endif
+if (satdly<>0) then d1=.05 endif
+
+if ($# = 1) then
+  if ($1 = 15) then $name='nosyhmqc3d3rf'+'15'
+  else $name = 'nosyhmqc3d3rf'+'13' endif
+endif
+if ($# = 0) then $name='nosyhmqc3d3rf'+'13' endif
+psgset($name,'sw2','ni2','phase2','phase','dg','dg1','dg2','ap')
+psgset($name,'dn2','dof2','dm2','dmm2','dmf2','dpwr2','pwx2lvl','pwx2')
+psgset($name,'mix','jxh','nosyflg','hmqcflg')
+psgset($name,'ss','hs','hst','sspul','array')
+ph ss=8
+pw=pw90
+homo='n'
+sspul='y'
+seqfil='nosyhmqc3d3rf'
+dg
+dps
