@@ -1,0 +1,22 @@
+wlexch - 2D pulsesequence to obtain exchange spectra by the 
+method of Bluemich & Spiess.  This version is for
+quadrupolar nuclei.
+
+special parameters -
+ magic - pulsewidth (usec) for "magic angle" pulse
+ mix   - mix time (sec)
+ sw1   - sw in F1 dimension. Set to the same as sw to give symmetric 2D
+ phase - phase=1,2 to give both cosine and sine data, as normal
+ tau1  - echo tau (usec) as for ssecho
+ tau2  - echo tau (usec) as for ssecho
+Use dps to view sequence.
+
+Setup by running ssecho and optimizing everything. Then use this 
+pw, tau1 tau2 and sw for wlexch.
+
+Processing is not entirely straightforward. Use wft2d(1,0,0,0,0,0,0,xxx)
+where xxx is less than 1. You will have to experiment, start with 0.75 .
+The macros provided are for processing this data. They give a flavor
+of the requirements. NOTE that 
+they require preset vales, including a dconi display saved with s2.
+The macros are simply the normal commands prefixed with sp
