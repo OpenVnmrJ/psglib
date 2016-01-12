@@ -1,0 +1,59 @@
+"       Varian Associates   VNMR   @(#)hetcor	1.8    5/22/89  "
+"************************************************************************"
+" hetcorps - convert parameter set to heteronuclear correlation experiment "
+"************************************************************************"
+" optional first argument = exp# for 1h spectrum "
+psgset('hetcorps','j1xh','phase','hmult','dg','ap','array')
+psgset('hetcorps','pp','pplvl','dgs','chonly','oddeven')
+ph
+set2d('hetcorps',16)
+if (ct > 0) then
+nt=ct/8 else nt=nt/8
+endif
+if (nt < 1) then
+   nt = 1
+endif
+nt=nt*2
+ss=2
+d1=1
+dp='y'
+dm='nny'
+dmm='ccp'
+axis='pd'
+pw=pw90
+$enumber=0
+jexp:$experiment	
+if ($#<1) then
+ input('experiment number containing the 1H spectrum (0=none)? '):$enumber
+else $enumber=$1 endif
+if ($enumber<0) or ($enumber>9) then
+ write('error','hetcor - illegal experiment number')
+ return(1)
+endif
+if ($enumber=$experiment) then
+   write('error','hetcor - 1H spectrum cannot be in same experiment')
+   return(1)
+endif
+if ($enumber>0) then 
+ "get proton parameters"
+ jexp($enumber) $savesw=sw $savetof=tof
+ $saverfl=rfl $saverfp=rfp $savewp=wp $savesp=sp
+ "bring them back to hetcor experiment"
+ jexp($experiment) sw1=$savesw dof=$savetof
+ rfl1=$saverfl rfp1=$saverfp wp1=$savewp sp1=$savesp
+else
+ sw1=10*dfrq
+ dof=0
+ write('line3','a full 10 ppm 1h window will be used')
+endif
+fn1=sw1/5 ni=fn1/4
+if (fn1 < 1024) then fn1=1024 endif
+spin=0 
+gain=gain-10
+if (gain < 0) then gain=0 endif
+da
+spin=0
+oddeven = 'y'
+pmode='full'
+dps
+dg
