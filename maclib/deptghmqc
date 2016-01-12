@@ -1,0 +1,28 @@
+"*******************************************************"
+" deptghmqc - sets up parameters in accordance with       "
+"           deptghmqc pulse sequence.                     "
+"*******************************************************"
+
+$name = 'deptghmqc'
+
+par2d
+psgset($name,'ss','dm','dmm','d1','dg','ap','sspul','phase','array')
+psgset($name,'dmf','dn','j1xh','pwxlvl','pwx','dpwr','dof','sw1','ni')
+psgset($name,'gzlvl1','gt1','gzlvl3','gt3','gstab','hsgpwr','nullflg','hsgt')
+psgset($name,'mult','f1coef','alfa1')
+
+np=2*at*sw
+if ((sw/np) > 4) then
+   at=(sw*at/4)/np
+   np=2*at*sw
+endif
+set2d($name)  seqfil='deptghmqc'
+ph bs='n'  homo='n'  wshim='n'
+dmm='ccg' dm='nny'
+pw=pw90  axis='pd'  spin=0
+ni=256 fn1=2k hs='nn'
+pfgon='nny' pmode='full'
+rfl1=sw1/2 rfp1=95d+dof
+gaussian
+dps
+dg
