@@ -1,0 +1,25 @@
+"*******************************************************"
+" hmqcjr_3rf - sets up parameters in accordance with the hmqcjr_3rf "
+"        pulse sequence.                                "
+"*******************************************************"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d par3rf
+psgset('hmqcjr_3rf','satdly','satfrq','satpwr','satmode','array','null','taumb')
+psgset('hmqcjr_3rf','dmf2','dn2','j','pwx2lvl','pwx2','dpwr2','dof2','sw1','ni','mbond')
+psgset('hmqcjr_3rf','phase','tpwr','pw','ss','dm','dmm','d1','at','dgs','hs')
+psgset('hmqcjr_3rf','p1','dg','ap','sspul','tau')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='hmqcjr_3rf'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='p3' sw1=40*dfrq2 fn=2048 ni=1
+mbond='n'  taumb=0
+sb=at sbs=-at sb1=ni/sw1 sbs1=-sb1
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''
