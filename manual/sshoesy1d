@@ -1,0 +1,19 @@
+
+1D steady-state X{1H} or 1H{X} NOE experiment
+
+Parameters:
+
+                pw:   observe pw90
+                d1:   relaxation delay
+                d2:   saturation pulse
+                d3:   delay between saturation and observe pulse (both pulses
+                      must go through high band amp in the case of F19{H1} or
+		      H1{F19} )
+                dpwr: heteronuclear saturation power level
+                dof:  saturation irradiation
+
+Works on UNITY INOVA with VNMR 6.1C or VNMR 6.1B (earlier versions may be
+fine, but have not been tested). 
+Only 1 high band amplifier is necessary. Special filters may be required for 
+broadband decoupling in the case of F19{H1} or H1{F19}.
+Ref:  Hofstetter,C., Pochapsky, T.C., Magn. Reson. Chem. 38, 90-94 (2000)

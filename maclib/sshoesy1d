@@ -1,0 +1,26 @@
+"setup for heteronuclear steady-state NOE experiment " 
+
+Autopsgset('sshoesy1d','dg','ap','ss')
+Autopsgset('sshoesy1d','d2','dpwr','dof','d3')
+alock='n' wshim='n' spin=0
+if d1<2 then d1=2 endif
+d2=5
+d3=0.001
+ss=4
+if nt<16 then nt=16 endif
+dof=0
+pw=pw90
+lb=2
+dmf=200
+
+if tn<>'H1' then
+  dn='H1'
+else
+  if dn='H1' then
+    write('error','Must set "tn" or "dn" to a nucleus other than \'H1\'!')
+  endif
+endif
+
+dg
+dps
+
