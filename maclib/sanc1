@@ -1,0 +1,16 @@
+  "VNMR @(#)sanc1 1.1 26/06/89"
+
+"Fernando Commodari, 26/06/89"
+
+"************************************
+
+"sanc1: set-up parameters for sanc1 sequence"
+
+
+psgset('sanc1','to','n','ap','dg')
+
+
+dg
+
+man('sanc1')
+
