@@ -1,0 +1,9 @@
+"macro to set up watergate sequence for 5mm IDTGprobe"
+"RC 31 Oct 94"
+
+psgset('waterg','psel','psellvl','gt1','glvl1','grise','dof','dof2','dg')
+psgset('waterg','phaseinc','dpwr','dn','dmf','dmm','dpwr2','dn2','dmm2','dmf2')
+dm='nnn' dm2='nnn'  "if you melt the probe its YOUR fault"
+satmode='nnn'  "avoid confusion"
+pw(90) dg man('waterg')
+dps

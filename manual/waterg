@@ -1,0 +1,20 @@
+###### WATERGATE 1D 1H with H2O suppression via gradient echo ######
+
+psel	selective 1H 90 time 	(6090 us)  or (5350 us)
+psellvl	power level for psel 	(-2)       or (-1)
+phaseinc 0.5 degree phaseshift for softpulse  (1)
+gt1	gradient time		(0.002 sec)
+glvl1	gradient level		(11000 14 G/CM)
+
+After you have set tpwr and pw(90), calibrate psel and psellvl.
+10 microsec accuracy necessary for ~5 - 6 ms softpulses.
+
+Refine suppression by arraying phaseinc. (Not needed with our
+system but provided)
+
+Remember wft('lfs') for best results!
+
+Parameter is is compatible with presat; e.g., seqfil='presat'
+satmode='ynn' and you are using presaturation
+
+####################################################################	
