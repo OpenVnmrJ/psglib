@@ -1,0 +1,21 @@
+/*   dipshft - cross polarization dipshift
+
+ sequence uses no refocussing on the decoupler
+ dipolar evolution is via mrev-8
+
+  evan williams, palo alto, october 1989.
+
+Parameter definitions
+	dm = 'nny'
+	dmm = 'c'
+	level1 = decoupler power for cross-polarization (in dhp units)
+        level1f = decoupler power for cross-polarization
+	level2= decoupler power for dipolar decoupling (in dhp units)
+        level2f = decoupler power for dipolar decoupling
+	p2 = contact time
+	srate= spinning speed
+	xpol = 'y' cp expt, = 'n' simple s2pul
+	pp = 1H 90 at dipolr power
+	pw = 1H 90 at crossp power
+
+ */
