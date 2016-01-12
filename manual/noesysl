@@ -1,0 +1,16 @@
+
+    noesysl -  2D cross relaxation experiment using 
+               trim pulses for water suppression and phase tables 
+
+               G.Otting et.al., J.Biomolecular NMR,1,209(1991)
+
+               typical values d3=60us  slock1=500us slock2=2000us
+
+               slpower=full to 6-12 db lower(test water     
+               suppression at different slpower and use minimum
+               value to minimize sample heating.
+
+               (use of full power for trim pulses will usually
+                increase sample temperature. allow enough dummy
+                pulses to achieve equilibrium. this could be
+                several minutes.)

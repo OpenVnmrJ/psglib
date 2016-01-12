@@ -1,0 +1,7 @@
+"noesysl-to convert standard parameter table to noesysl"
+set2d('noesy')
+psgset('noesysl','mix','phase','array','dg','ap')
+psgset('noesysl','d3','slpower','slock1','slock2')
+rp=rp+180 ni=1 phase=1 f full
+dg
+
