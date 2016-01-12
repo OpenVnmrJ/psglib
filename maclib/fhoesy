@@ -1,0 +1,28 @@
+if tn='H1' then
+  write('error','X-detected FHOESY - must start with tn<>\'H1\'')
+  return(0)
+endif
+par2D
+Autopsgset('fhoesy','mix','phase','dg','ap','ss','f1coef')
+Autopsgset('fhoesy','hs','hst','sspul','array','hsglvl','hsgt')
+Autopsgset('fhoesy','pwx','pwxlvl','gzlvl1','gt1','gstab')
+pw=pw90 p1=2*pw90
+nt=16
+ph rp1=0 lp1=0
+lookup('file','/vnmr/nuctables/nuctabref','seek','commentend'):$found
+lookup('seek','H1','read'):$hr
+lookup('file','/vnmr/nuctables/nuctabref','seek','commentend'):$found
+lookup('seek',tn,'read'):$fr
+refsource1='dfrq'
+reffrq1=reffrq/$fr*$hr
+setfrq(dn):dfrq
+sw1=10*dfrq
+rfp1=0 rfl1=sw1/2-1e6*(dfrq-reffrq1)
+ni=32 set2D(6,6) ni=fn1/4
+rp=rp+180
+alock='n' wshim='n' spin=0
+proc='ft' fpmult='n' sspul='n'
+f axis='pd' mix=.4   
+setLP1(2*ni)
+gaussian hs='n' gain='y' dps
+dg

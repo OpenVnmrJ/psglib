@@ -1,0 +1,17 @@
+Two dimensional, F19-detected proton fluorine NOE experiment
+
+                pw:  19F pw90
+                p1:  19F pw180
+                d1:  relaxation delay
+                d2:  evolution delay
+                pwx: 1H pw90
+                pwxlvl: H1 (channel 2) power level
+                mix:  NOESY mixing time
+
+Works with VNMR 6.1C and 6.1B (ealier versions untested but probably okay)
+
+Gradient at the start of mixing time to destroy any transverse 
+magnetization.  The experiment will work fine without gradient.
+
+UNITY INOVA with 1 high band amp will work
+Need special filters for broadband decoupling
