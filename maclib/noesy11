@@ -1,0 +1,5 @@
+set2d('noesy11')
+psgset('noesy11','tau','tau2','dg','ap','p1','p2')
+psgset('noesy11','phase','mix','hs','hst','ni','phase')
+dg
+

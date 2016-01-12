@@ -1,0 +1,16 @@
+/* noesy11 -  2D cross relaxation experiment using 11echo "read" pulse
+ 
+       mix = mixing time.
+     phase = 1,2: gives HYPERCOMPLEX phase-sensitive experiment;
+        p1 = correction of second pulse width for radiation damping
+        p2 = correction of second pulse width for radiation damping
+       tau = 1-1 pulse separation(typ 50-100us: try 80us)
+      tau2 = times flanking 1-1 echo part  (<<1ms) (try 100us)
+       hst = 40-60ms or half the mix time.Necessary to eliminate x-y H2O
+             component prior to 11echo read pulse. 
+        hs = nnyn or ynyn
+    
+     use "calfa" to set alfa for lp=0 to obtain flat baseline
+
+                                Sklenar and Bax, JMR, 74,469(1987)  */
+}
