@@ -1,0 +1,17 @@
+"*****************************************************************"
+" noesyskbx - sets up parameters in accordance with the noesyskbx "
+"         pulse sequence.                                         "
+"*****************************************************************"
+
+set2d('noesyskbx')
+psgset('noesyskbx','mix','phase','dg','ap','dgs','ss','dm','dmm')
+psgset('noesyskbx','hs','hst','sspul','array','softpwr','phaseinc','trim')
+ph  ss=8  rp1=0  lp1=0
+nt=nt/32  nt=nt*16
+if (nt=0) then nt=16 endif
+pw=pw90  axis='pp'
+wp1=wp sp1=sp
+d2=0  np=4096
+sspul='y'
+dg
+

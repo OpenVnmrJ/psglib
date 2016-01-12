@@ -1,0 +1,23 @@
+/* noesyskbx -  2D cross relaxation experiment using sklbax "read" pulse
+ 
+   (includes : 1. FAD-hypercomplex
+               2. correction for d2 > 0          )
+
+       mix = mixing time.
+     phase = 1,2: gives HYPERCOMPLEX phase-sensitive experiment;
+             3 :  gives TPPI phase-sensitive experiment;
+    p1ms   = soft pulse width entered as delay in ms - calibrate with
+              the first increment
+             (*** p1ms calibrated using the first increment with this
+              sequence is generally less than that calibrated using
+              sklbax sequence ***)
+    softpwr = power for soft pulse
+    trim   = trim pulse follows the read pulse
+  phaseinc = phase increment (in degree) to compensate phase difference
+             between the soft pulse (p1ms) and the hard pulse (pw)
+
+
+          -------    minimum 16 scans recommended    ------
+
+                                Sklenar and Bax, JMR, 74,469(1987)
+
