@@ -1,0 +1,72 @@
+"***************************************************************"
+" CIGAR2j3j - seup macro for CIGAR2j3j pulse sequence                   "
+"               If the argument GLIDE is supplied, PROTON       "
+"               parameter set is retrived                       "
+"       if tn=dn then dn defaults to 13C                        "
+"***************************************************************"
+
+"*********************************************************"
+" wexp and wnt params are preserved ONLY if the macro     "
+"               is driven by GLIDE                        "
+"*********************************************************"
+$wexp=wexp $wnt=wnt wexp='' wnt=''
+if ($# > 0) then 
+ if ($1 = 'GLIDE') then
+  AutoStrtpar('PROTON') wexp=$wexp wnt=$wnt
+ endif
+endif
+"*********************************************************"
+if (tn = dn) then dn='C13' endif
+
+par2D
+exists('PFGflg','parameter'):$pfgex
+if ($pfgex = 0) then create('PFGflg','flag') endif
+PFGflg='y'
+
+Autopsgset('CIGAR2j3j','dg','ap','axis','array','sspul','hs','hst')
+Autopsgset('CIGAR2j3j','jnxh','j1xh','pwxlvl','pwx','dpwr','dmf')
+Autopsgset('CIGAR2j3j','gzlvl0','gt0')
+Autopsgset('CIGAR2j3j','j1min','j1max','jnmin','jnmax','accord','jscaleU','jscaleD')
+Autopsgset('CIGAR2j3j','gzlvl1','gt1','gzlvl3','gt3','gstab','hsglvl','hsgt')
+set2D
+
+dm='nnn' dmm='ccc'
+setdecpars
+refsource1='dfrq'
+setsw1(dn,100,-100):dof 
+j1xh=150 jnxh=8
+j1min=130 j1max=165 jnmin=5 jnmax=10
+accord='y' jscaleU=0 jscaleD=0
+
+if (dn = 'C13') then
+  setsw1(dn,225,-15):dof
+   j1xh=140 j1min=130 j1max=165
+elseif (dn = 'N15') then
+   setsw1(dn,140,90):dof 
+   j1xh=90 j1min=85 j1max=95
+endif
+
+d1=1 proc='ft' fpmult='n'
+ni=400
+nt=8
+pw=pw90
+phase=0
+av  sinebell
+fn1=2k  
+
+$ratio=sfrq/dfrq
+getparam('gHratio',dn):$ratio
+fixgrd(10):gzlvl1
+gzlvl3=trunc(2*gzlvl1/$ratio)
+fixgrd(10):hsglvl
+fixgrd(8):gzlvl0
+gt0=.0016
+
+if (Console='g2000') then ss=1 else ss=32 endif
+spin=0 alock='n' wshim='n'
+ai axis='pd' dm='nnn'
+seqfil='CIGAR2j3j' f1coef='1 0 0 1'
+exists('satmode','parameter'):$satmodeex
+if ($satmodeex) then satmode='n' endif
+sspul='n' hs='n' gain='y' gain=gain+20 dps full
+dg

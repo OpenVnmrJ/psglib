@@ -1,0 +1,36 @@
+	CIGAR - Improved IMPEACH
+		Introduces a Varaible J Scale for JHH skewing
+
+        Features included:
+                F1 Axial Displacement
+                Randomization of Magnetization prior to relaxation delay
+                        with G-90-G
+                        [selected by sspul flag]
+                Includes a 2-stage J filter and BIRD based one-bond correlation
+                 	suppression
+
+        Paramters:
+                sspul :         y - selects magnetization randomization option
+                hsglvl:         Homospoil gradient level (DAC units)
+                hsgt    :       Homospoil gradient time
+                gzlvl1  :       encoding Gradient level
+                gt1     :       encoding gradient time
+                gzlvl3  :       decoding Gradient level
+                gt3     :       decoding gradient time
+                gzlvl0  :	gradinets used for echos
+                gt0	:	time for echo gradients
+                gstab   :       recovery delay
+        j1max & j1min   :       One-bond XH coupling constants
+                jnxh    :       multiple bond XH coupling constant for gHMBC
+        jnmax & jnmin	:	multiple bond XH coupling constants for accordion
+        	jscaleU :	scaling factor for JHH skewing [typically 0]
+                pwxlvl  :       X-nucleus pulse power
+                pwx     :       X-nucleus 90 deg pulse width
+                d1      :       relaxation delay
+                d2      :       Evolution delay
+
+KrishK	-	CIGAR-HMBC		: February '99
+KrishK	-	can now be used for "static" gHMBC as well.  : Feb. 00
+				
+[Ref:  Gary Martin, Krish Krishnamurthy, Chad Hadden, MRC, 2000 - inpress]
+

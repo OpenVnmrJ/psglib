@@ -1,0 +1,26 @@
+# This is a demo 
+
+{
+   label: Plot 1D on top:
+   choice:  "hires" "proj" "none"
+   choice_value:  "'top'" "'proj'" "'notop'" 
+   rtoutput: "Autowrmac('CIGAR2j3j','plt','$a4=\''+$choice_value+'\'')"
+   remark:  Select choice of 1D plot on top
+}
+
+{
+   label: Plot 1D on side:
+   choice:  "hires" "proj" "none" 
+   choice_value:  "'side'" "'proj'" "'noside'" 
+   rtoutput: "Autowrmac('CIGAR2j3j','plt','$a5=\''+$choice_value+'\'')"
+   remark:  Select choice of 1D plot on top
+}
+
+{
+ label: Plot Parameters
+ menu: "Plot All Parameters Upper Left" "Plot All Parameters Upper Right" "Plot Boxed Parameters" "Plot Basic Parameters upper Left" "Plot Basic Parameters Upper Right" "Text ONLY" "None"
+ menu_value: "parstyle='pap'" "parstyle='pap(wc-50)'" "parstyle='bpa'" "parstyle='ppa'" "parstyle='ppa(wc-50)'" "parstyle='pltext'" "parstyle=''"
+ output: "$menu_value"
+ remark: Select Parameter Style and Position
+}
+
