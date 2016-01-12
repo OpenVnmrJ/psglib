@@ -1,0 +1,30 @@
+"       Varian Associates   VNMR   @(#)hmqc 1.3 3/20/89 "
+"*******************************************************"
+" hmqc3rf_C13dec - sets up parameters in accordance with the hmqc "
+"        pulse sequence. Uses third channel for X          "
+"         permits C13 decoupling in t1 for di-labelled samples    "
+"*******************************************************"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d par3rf
+psgset('hmqc3rf_C13dec','satdly','satfrq','satpwr','satmode','array','null','taumb')
+psgset('hmqc3rf_C13dec','dmf2','dn2','j','pwx2lvl','pwx2','dpwr2','dof2','sw1','ni','mbond')
+psgset('hmqc3rf_C13dec','phase','tpwr','pw','ss','dm2','dmm2','d1','at','dgs','hs')
+psgset('hmqc3rf_C13dec','p1','dg','ap','dg2','dseq2','dseq','pwx','pwxlvl') 
+psgset('hmqc3rf_C13dec','pwca','pwcalvl','shape') 
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='hmqc3rf_C13dec'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='p3' ni=1 phase=1
+mbond='n'  taumb=0
+sb=at sbs=-at 
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''
+echo('a proper shapelib file must exist for the parameter "shape"')
+

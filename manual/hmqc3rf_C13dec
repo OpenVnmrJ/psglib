@@ -1,0 +1,63 @@
+
+ hmqc3rf_C13dec- heteronuclear multiple-quantum coherence with hypercomplex and
+         TPPI implementations, steady-state transients for either all or
+         just the first t1 increment, pulse+receiver phasecycling during
+         steady-state transients, and presaturation using the transmitter.
+
+      permits C13 decoupling during t1 by status control on carbonyls and
+      slp-180 degree pulse on alpha carbons. A file must exist in shapelib
+      to do the alpha 180. Use "convolute" to make this file, for example:
+
+        convolute('120hard','c13dec',24,-18000), where 120 hard is a shapelib
+        file that is 120 lines of 0.0  1023.0 (5 steps per microsec x 24 us =
+        120 steps). 'c13dec' is the name of the shifted frequency pulse used
+        by the simshaped_pulse statement, and -18000 is the effective frequency
+        shift of the pulse. 
+
+   ****************************************************************************
+         USES DECOUPLER FOR 13C DECOUPLING AND PULSING
+         USES SECOND DECOUPLER FOR X NUCLEI HMQC
+   ****************************************************************************
+
+
+   Parameters:
+
+     satmode = 'yn':  presaturation during relaxation period (satdly) with xmtr
+              'yy':  presaturation during both relaxation period (satdly)
+                     and null period (null) with xmtr
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+     pwca   = Calpha decoupling 180 degree pulse
+     pwcalvl= Calpha decoupling power level
+     shape  = shapelib entry for SLP-Ca pulse shape
+        dof2 = frequency for decoupling during acquisition
+        dof  = set in the CO region of spectrum
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+              'yy':  homospoil pulse during both d1 and nulling period (null)
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwx2lvl = power level for decoupler pulses
+        pwx2 = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+      mbond = 'n':  HMQC experiment
+              'y':  HMBC experiment
+      taumb = delay to allow long-range heteronuclear antiphase magnetization
+              to evolve for multiple-bond correlation
+         dm = 'nnn':  no broadband decoupling of heteronucleus during
+                      acquisition; this is mandatory if mbond='y'
+              'nny':  broadband heteronuclear decoupling during acquisition
+                      (recommended for mbond='n')
+
+               Note:  The 1/(2j) refocusing period prior to acquisition is
+                      always present, regardless of dm, unless mbond='y'
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+                3:  TPPI experiment with F1 quadrature (complex F1-FT)
+              1,4:  TPPI experiment with F1 quadrature (real F1-FT)
+       null = nulling time for protons not attached to observed heteronucleus
+         nt = multiple of  4 (minimum)
+	      multiple of 32 (maximum for mbond='n')
+              multiple of 64 (maximum for mbond='y')
+	      multiple of 16 (minimum recommended for mbond='n')
+              multiple of 32 (minimum recommended for mbond='y')
+   revised  from hmqc3rf.c   g.gray palo alto 17 sept 1992  */ 

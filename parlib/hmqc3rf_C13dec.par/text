@@ -1,0 +1,5 @@
+HMQC for 15N with 13C decoupling
+during t1. C13 xmtr centered on carbonyls.
+carbonyl decoupling using status control 
+using 4khz B2 rf field and waltz-16 modulation
+alpha carbon decoupling via 180 degree slp-pulse
