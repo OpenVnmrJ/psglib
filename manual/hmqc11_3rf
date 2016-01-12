@@ -1,0 +1,25 @@
+ hmqc11_3rf- heteronuclear multiple-quantum coherence with hypercomplex
+         implementation, steady-state transients for either all or
+         just the first t1 increment, pulse+receiver phasecycling during
+         steady-state transients, proton pulses are 11echo pulses
+
+          USES THE THIRD CHANNEL FOR X PULSES AND DECOUPLING
+
+   ref: Summers et al., j. amer. chem. soc. 108:4285-4294 (1986)
+
+
+   Parameters:
+
+        dof2 = frequency for decoupling during acquisition
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwx2lvl = power level for decoupler pulses
+        pwx2 = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+      tau =  1-1 echo delay
+      sspul = 'y' for destroying all 1H magnetization before d1
+         dm = 'nnn':  no broadband decoupling of heteronucleus during
+                      acquisition; 
+              'nny':  broadband heteronuclear decoupling during acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
