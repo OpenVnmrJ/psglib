@@ -1,0 +1,47 @@
+ hncoca_simple      -  HN(CO)CA 3D experiment by Kay et al.; uses a
+	   	    frequency-shifted pulse on the Ca spins; has
+		    RF duality
+
+                  THIS SEQUENCE IS DESIGNED FOR USE BY "DPS", NOT TO BE
+                  USED TO DO NMR. USE THE SEQUENCE HNCOCA FOR ACTUAL 
+                  EXPERIMENTS. IT IS MORE ACCURATE.
+
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+      f1180 = 'n':  standard t1 timing
+              'y':  modified t1 timing for t1(1) = half the dwell time
+      f2180 = 'n':  standard t2 timing
+              'y':  modified t2 timing for t2(1) = half the dwell time
+              'n':  normal experiment
+       fad1 = 'y':  TPPI axial-peak displacement along t1
+              'n':  standard phasecycle
+       fad2 = 'y':  TPPI axial-peak displacement along t2 (3D experiment)
+              'n':  standard phasecycle
+     satmode = 'y':  H1 presaturation during relaxtion delay
+     satfrq = frequency of 1H presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+       dof2 = should be set to C0 frequency
+       pwc13 = 90 degree decoupler pulse length for C13 at `pwc13lvl`
+    cashape = frequency-shifted pulse for Ca excitation
+    pwc13lvl = power level for C0 decoupler pulses
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+       dpwr = power level for N15 broadband decoupling
+       tau1 = first delay in sequence (NH scalar coupling)
+       tau2 = second delay in sequence
+       tau3 = third delay in sequence
+       tau4 = fourth delay in sequence
+         dm = 'nnnnn':  no broadband decoupling of N15 during acquisition
+              'nnnny':  broadband heteronuclear decoupling of N15
+        dm2 = 'n':  no broadband decoupling of C13 during acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+
+
