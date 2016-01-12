@@ -1,0 +1,51 @@
+slphncoca.c      -  HN(CO)CA 3D experiment by Kay et al.; uses a
+	   	    frequency-shifted pulse on the Ca spins;
+                  Krish - Nov. 27 1991
+                          NOTE : decoupler = N15
+                                 decoupler2= C13
+                  uses only FAD in F1 and F2
+           (SLP presaturation included )
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+     satflg = 'y':  H1 presaturation during relaxtion delay
+     satfrq = frequency of 1H presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+     slpflg = 'y' : off-resonance presaturation with slp
+     satshape = slpsatd (tof is downfield to water)
+                slpsatu (tof is upfield to water)
+     h2off = water off-resonance frequency (tof - satfrq)
+     mult = multiplication factor shape_pw calculation (should be 10 for the two
+             shapes noted above)
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+       dof2 = should be set to C0 frequency
+    pwcalvl = power level for Ca decoupler pulses
+       pwca = 90 degree decoupler pulse length for Ca at `pwcalvl`
+    cashape = frequency-shifted pulse for Ca excitation
+    pwcolvl = power level for C0 decoupler pulses
+       pwco = 90 degree decoupler pulse length for C0 at `pwcolvl`
+   pwco2lvl = power level for shorter CO pulse
+      pwco2 = 90 degree decoupler pulse length for C0 at `pwco2lvl`
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+       dpwr = power level for N15 broadband decoupling
+       tau1 = first delay in sequence (NH scalar coupling)
+       tau2 = second delay in sequence
+       tau3 = third delay in sequence
+       tau4 = fourth delay in sequence
+         dm = 'nnnnn':  no broadband decoupling of N15 during acquisition
+              'nnnny':  broadband heteronuclear decoupling of N15
+		        during acquisition
+        dm2 = 'n':  no broadband decoupling of C13 during acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+
+   NOTE:  This sequence is same as HNCOCA except for the slp presaturation
+          option.   Delays and shapes for pulses are the same as in HNCOCA
+
+   SEE SLPSAT MANUAL FOR MORE DETAILS ON SLP PRESATURATION

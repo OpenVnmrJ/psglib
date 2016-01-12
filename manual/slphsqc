@@ -1,0 +1,21 @@
+  slphsqc - heteronuclear single-quantum experiment using REVINEPT
+           in HYPERCOMPLEX mode only 
+           slp presaturation option 
+           BIRD nulling option  
+
+   pwxlvl - power level for X pulses
+   pwx    - X 90 degree pulse
+   jxh    - XH coupling constant
+   satpwr - power for presaturation
+   satdly - presaturation delay
+   satfrq - presaturation frequency
+   satflg - flag to turn on presaturation
+   slpflg - flag to turn on slp presaturation
+   satshape - slpsatd (tof downfield to water)
+              slpsatu (tof upfield to water)
+   h2off - water off-resonance frequency (tof - satfrq)
+   null - Bird nulling delay
+   sspul - 'y' turns on trim(x)-trim(y) before d1
+   phase = 1,2 for hypercomplex
+
+  SEE SLPSAT MANUAL FOR MORE INFORMATION ON SLP PRESATURATION

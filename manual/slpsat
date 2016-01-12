@@ -1,0 +1,31 @@
+ slpsat - standard two pulse sequence with optional composite
+            observe pulse and SLP presaturation with xmtr
+
+         d1 - satdly - p1 - d2 - pw - at
+
+   satflg = 'y' : obs xmtr saturation at satfrq with power satpwr
+          = 'n' : dec saturation at dof with power dpwr
+   composit = 'y' : uses composite 90 for pw
+            = 'n' : uses normal 90 for pw   
+   slpflg = 'y' : slp presaturation 
+   shape_pw = length of the individual shaped_pulse element
+                (calculated from h2off)
+   h2off  = water off-resonance frequency (typically tof - satfrq)
+   satshape = shape of the shaped_pulse element (use slpsatd or slpsatu)
+
+---------------------------------------------------------------------------
+                satshape = slpsatd (positive h2off)
+                           slpsatu (negative h2off)
+           slpsatd is a 72 step hard pulse shape with the phase of
+           one element differs from the previous one by -50 degrees
+           slpsatu is a 72 step hard pulse shape with the phase of
+           one element differs from the previous one by +50 degrees
+
+           slpsatu.RF and slpsatd.RF must exist in the shapelib
+
+
+   HINT :  After setting the h2off and satshape array tof (typically
+           +/- 10 Hz from satfrq+h2off) to find the best suppression.
+           This is to compensate for the "round-off" errors in the 
+           shape_pw calculation.
+----------------------------------------------------------------------------

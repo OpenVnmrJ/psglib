@@ -1,0 +1,11 @@
+"       Varian Associates   VNMR   @(#)binom	1.3    10/10/88  "
+"************************************************************************"
+" slpsat - convert parameter set to presat water suppression experiment "
+"************************************************************************"
+psgset('slpsat','satpwr','satfrq','satdly','satflg','composit','dg','ap')
+psgset('slpsat','satshape','slpflg','h2off')
+satfrq=tof
+if d1 > 1 then satdly=d1 else satdly=1.5 endif
+d1 = 0.02 pw=pw90 nt=8 dm='n' ss=2 
+slpflg='n' satshape='slpsatd' 
+dg

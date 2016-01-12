@@ -1,0 +1,70 @@
+ slphmqc- HMQC experiment with SLP presaturation option
+         heteronuclear multiple-quantum coherence with hypercomplex and
+         TPPI implementations, steady-state transients for either all or
+         just the first t1 increment, pulse+receiver phasecycling during
+         steady-state transients, and presaturation using the transmitter.
+
+         [includes SLP off-resonance presaturation option]
+
+         includes  :  FAD-Hypercomplex
+                      correction for d2 > 0.0
+
+   ref: Summers et al., j. amer. chem. soc. 108:4285-4294 (1986)
+
+
+   Parameters:
+
+     satflg = 'yn':  presaturation during relaxation period (satdly) with xmtr
+              'yy':  presaturation during both relaxation period (satdly)
+                     and null period (null) with xmtr
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+        dof = frequency for decoupling during acquisition
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+              'yy':  homospoil pulse during both d1 and nulling period (null)
+     slpflg = 'y' : slp presaturation
+     satshape = slpsatd (h2off is positive - tof > satfrq)
+                slpsatu (h2off is negative - tof < satfrq)
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwxlvl = power level for decoupler pulses
+        pwx = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+      mbond = 'n':  HMQC experiment
+              'y':  HMBC experiment
+       jnxh = long-range coupling constant for HMBC
+      taumb = delay to allow long-range heteronuclear antiphase magnetization
+              to evolve for multiple-bond correlation - calculated from jnxh
+              if jnxh <> 0.0 else getval'ed from taumb
+         dm = 'nnn':  no broadband decoupling of heteronucleus during
+                      acquisition; this is mandatory if mbond='y'
+              'nny':  broadband heteronuclear decoupling during acquisition
+                      (recommended for mbond='n')
+
+               Note:  The 1/(2j) refocusing period prior to acquisition is
+                      always present, regardless of dm, unless mbond='y'
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+                3:  TPPI experiment with F1 quadrature (complex F1-FT)
+              1,4:  TPPI experiment with F1 quadrature (real F1-FT)
+       null = nulling time for protons not attached to observed heteronucleus
+         nt = multiple of  4 (minimum)
+	      multiple of 32 (maximum for mbond='n')
+              multiple of 64 (maximum for mbond='y')
+	      multiple of 16 (minimum recommended for mbond='n')
+              multiple of 32 (minimum recommended for mbond='y')
+
+
+   Note:  The single-bond correlation experiment can be presented
+          in a phase-sensitive manner simply due to the fact that
+          the total time for proton-proton scalar coupling evolution
+          (2*bird + d2) is quite short.  The multiple-bond correla-
+          tion experiment requires an absolute value display in F2
+          but not in F1.
+
+
+   Note : The sequence checks for length of pw and pwx and will do d2 correction
+          only when it is appropriate.
+          The sequence also checks for the presence of PPM in channel 1
+
+   SEE SLPSAT MANUAL FOR MORE DETAILS ON SLP PRESATURATION
