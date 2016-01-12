@@ -1,0 +1,7 @@
+"tnmqcosy-to convert standard parameter table to tnmqcosy"
+set2d('tnmqcosy')
+psgset('tnmqcosy','sspul','phase','array','satmode','satdly','dg','ap')
+psgset('tnmqcosy','satpwr','qlvl')
+ss=8 rp=rp+90 ni=1 phase=1 f full
+dg
+
