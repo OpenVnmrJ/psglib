@@ -1,0 +1,31 @@
+"*******************************************************"
+" ghmqcps - sets up parameters in accordance with       "
+"           ghmqcps pulse sequence.                     "
+"*******************************************************"
+
+if ($# < 1) then $name = 'ghmqcps13'
+else
+ if ($1 = 15) then $name = 'ghmqcps15'
+  else $name='ghmqcps13' endif
+endif
+
+par2d
+psgset($name,'ss','dm','dmm','d1','dg','ap','sspul','phase','array')
+psgset($name,'dmf','dn','j1xh','pwxlvl','pwx','dpwr','dof','sw1','ni')
+psgset($name,'gzlvl1','gt1','gzlvl3','gt3','gstab','hsgpwr','nullflg','hsgt')
+
+np=2*at*sw
+if ((sw/np) > 4) then
+   at=(sw*at/4)/np
+   np=2*at*sw
+endif
+set2d($name)  seqfil='ghmqcps'
+ph bs='n'  homo='n'  wshim='n'
+dmm='ccg' dm='nny'
+pw=pw90  axis='pd'  spin=0
+ni=100 fn1=2k hs='nn'
+pfgon='nny' pmode='full'
+rfl1=sw1/2 rfp1=95d+dof
+gaussian setlp1(ni,4*ni,4) time
+dps
+dg
