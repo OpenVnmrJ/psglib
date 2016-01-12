@@ -1,0 +1,17 @@
+######## COCONOESYT  simultaneous cosy and noesy  ################
+C.A.G. Haasnoot, F.J.M. Van De Ven, and C.W. Hilbers
+J. Magn. Reson.  56, 343-349 (1984).
+Also see Evan Williams'  Magnetic Moments article (Vol II, No.3 page 1)
+Current phase cycling is taken from the J. Magn. Reson. paper.
+
+Absolute value cosy and noesy run concurrently. 
+Set nf = 2 for both to be run. If nf = 1, only the noesy will be run.
+To process, set cf = 1 for cosy or cf = 2 for noesy.
+
+Parameter "mixvar" only serves as a control for choosing a random delay
+(mixvar != 0) or a fixed delay (mixvar == 0). DPS does not function
+properly with this version.
+
+See Magnetic Moments Vol. V, No. 2 page 6 for an accounting
+of the tablib-based method of random mixtime control employed
+in this version.

@@ -1,0 +1,4 @@
+psgset('coconoesy','mix','nf','mixvar','sstrim','dg','ap')
+set2d('coconoesy') phase=0 sinebell
+av dps man('coconoesy')
+
