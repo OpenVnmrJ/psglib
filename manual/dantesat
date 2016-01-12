@@ -1,0 +1,6 @@
+/*  dantesat-
+              {trim(x)trim(y)} ......d1...satdly..pw....at......
+        sspul = 'y' does trim(x)trim(y) to destroy all magnetization
+          offset is the position of the first sideband, relative to
+          the carrier. The rf carrier may be set away from the resonance
+          to be saturated by a distance "offset"

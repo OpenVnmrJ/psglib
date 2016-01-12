@@ -1,0 +1,2 @@
+psgset('dantesat','offset','satdly','satpwr','sspul','dg','ap')
+dg
