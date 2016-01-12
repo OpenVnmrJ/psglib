@@ -1,0 +1,7 @@
+set2d('depthmqc')
+psgset('depthmqc','dm','dmm','dmf','pwx','pwxlvl','ss','sstrim','hs','dg')
+psgset('depthmqc','dpwr','dn','mult','null','j','homo','phase','array')
+axis='pd'
+pw(90) dg dps
+man('depthmqc')
+

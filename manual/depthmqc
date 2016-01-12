@@ -1,0 +1,12 @@
+#########DEPT-HMQC Inverse heteronuc. correlation with DEPT-editing#####
+
+from J.Magn.Reson. Vol 85,400-405 (1989).
+	H. Kessler, P. Schmieder, and M. Kurz
+
+The parameter mult controls the editing e.g. mult=1 give a 90 degree
+editing pulse.  With mult=1 you will get methylenes only with opposite phase
+from a mult=0 spectrum. The sequence works well with mult=1 to give a
+1D proton spectrum with CH2's only.
+	The authors suggest editing flip angles of 60,120,and 180 degrees
+to separate CH, CH2, and CH3 resonances. See paper for details.
+
