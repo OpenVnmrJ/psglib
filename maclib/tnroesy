@@ -1,0 +1,14 @@
+"*********************************************************"
+"tnroesy - sets up parameters for the tntroesy pulse seq.  "
+"*********************************************************"
+
+set2d('roesy')
+psgset('tnroesy','mix','phase','p1lvl','satdly','array','rocomp')
+psgset('tnroesy','hs','hst','sspul','dg','ap','dgs','ss','dm','dmm')
+psgset('tnroesy','ratio','satmode','satpwr','d2corr')
+p1=pw p1lvl=tpwr tpwr=tpwr-20 pw=10*pw ratio=0
+ph  rp1=0  lp1=0 satpwr=10 satdly=1.5 dm='nnn' sspul='y' homo='n'
+ss=8  axis='pp' 
+nt=nt/8  nt=nt*8 phase=1 ni=1 f full
+if (nt=0) then nt=8 endif
+dg
