@@ -1,0 +1,20 @@
+"hcacon_ct-macro to convert a presat parameter set to hcacon_ct"
+set2d('hcacon_ct') par3d par3rf
+psgset('hcacon_ct','sspul','ss','satmode','satdly','satpwr','satfrq')
+psgset('hcacon_ct','sw1','ni','phase')
+psgset('hcacon_ct','pwn15','pwn15lvl','pwc13','pwc13lvl')
+psgset('hcacon_ct','coshape','cshape1','cshape2','cshape3')
+psgset('hcacon_ct','f1180','f2180','fad1','fad2','Del1','Del2','ConstT','jch')
+psgset('hcacon_ct','ni2','sw2','phase2','hs')
+psgset('hcacon_ct','dg','dg2','ap','dm','dm2','dpwr2','dgp','dpwr')
+psgset('hcacon_ct','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hcacon_ct','dof','dof2','array','dmm','dmm2')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+dg
+echo('shapelib files listed in "dg" must exist (created as SLP pulses)')
+echo('"coshape" is calibrated to do a 90-degree pulse on carbonyl carbons')
+echo('ca. 125ppm downfield, using the pwc13 pulse length')
+echo('use "dg2" to display RF parameters')
+echo('use "dg(`dgp`)" to display processing parameters')
+atext('HCACON-Constant Time Version')
+

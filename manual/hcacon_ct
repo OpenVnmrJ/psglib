@@ -1,0 +1,82 @@
+ hcacon_ct       -  HCA(CO)N 3D experiment by Fairbrother et al.; uses a
+	   	    frequency-shifted pulse on the CO spins
+                    with modifications to allow 1H 180 to cross CO 90 
+                    at long t1 times
+                    Constant time version of hcacon
+                    sw1, ni and phase for Ca (t1)
+                    sw2, ni2 and phase2 for 15N (t2)
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+      f1180 = 'n':  standard t1 timing
+              'y':  modified t1 timing for t1(1) = half the dwell time
+      f2180 = 'n':  standard t2 timing
+              'y':  modified t2 timing for t2(1) = half the dwell time
+              'n':  normal experiment
+       fad1 = 'y':  TPPI axial-peak displacement along t1
+              'n':  standard phasecycle
+       fad2 = 'y':  TPPI axial-peak displacement along t2 (3D experiment)
+              'n':  standard phasecycle
+     satmode = 'y':  H1 presaturation during relaxtion delay
+     satfrq = frequency of 1H presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+   pwc13lvl = power level for decoupler pulses
+      pwc13 = 90 degree decoupler pulse length  `pwc13lvl`
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+       dpwr = power level for C13 broadband decoupling
+        dof = decoupler frequency ( should be centered on alpha carbon region)
+        jch = CH scalar coupling- used to calculate tau delay
+       Del1 = second delay in sequence
+       Del2 = third delay in sequence
+        del = little delta delay
+          ConstT =  constant time delay
+    coshape = SLP pulse of 0 phase for off resonance CO
+   cshape1 = SLP pulse of Ca phase 1 CO phase 0
+   cshape2 = SLP pulse of Ca phase 1 CO phase 2
+   cshape3 = SLP pulse Ca phase 0 CO phase 0, but lower power for Ca
+         dm = 'nnn':  no broadband decoupling of C13 during acquisition
+              'nny':  broadband heteronuclear decoupling of C13
+		        during acquisition
+        dm2 = 'nnn':  no broadband decoupling of N15 during acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+
+
+   Shaped pulses:
+
+      coshape:
+
+          this shapelib.RF file should be created by 
+
+           convolute('275hard','co90',pwc13,125*dfrq)
+
+          where 275hard.RF is a shapelib file consisting of 275 lines
+          in the format   0.0  1023.0   . pwc13lvl should be chosen
+          such that pwc13 is close to 55us. 125*dfrq is the approx.
+          offset of the carbonyl region from the alfa region.
+          (275 lines is chosen so that 275*0.2=55us.[0.2 is the
+           waveform generator timebase.])
+
+      cshape1,cshape2:
+
+          these shapelib.RF files should be created by
+
+           convolutep('275hard','caco1',55,0,90,125*dfrq,0)
+           convolutep('275hard','caco2',55,0,90,125*dfrq,180)
+
+      cshape3:
+
+          this shapelib.RF files should be created by
+
+           first, making a '550hard.RF' file(550 lines of 0.0  1023.0)
+           then,
+              convolute('275hard','temp',55*2,125*dfrq)
+              addshapes('temp',1,0,'550hard',0.5,0,'twolvl')
+
