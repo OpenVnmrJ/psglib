@@ -1,0 +1,59 @@
+ hncanodec.c  -  modified HNCA experiment by Kay et al.; uses shifted
+		  laminar pulses to selectively excite the Ca spins
+		  while on resonance with the CO spins; on-resonance
+		  selective decoupling of the CO spins is employed during
+		  tau(cn) and t1; refocusing of the Ca and CO spins is
+		  used during t2; this sequence has RF duality.
+
+                       no proton decoupling is used(as in hnca.c)
+
+
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+      f1180 = 'n':  standard t1 timing
+              'y':  modified t1 timing for t1(1) = half the dwell time
+      f2180 = 'n':  standard t2 timing
+              'y':  modified t2 timing for t2(1) = half the dwell time
+              'n':  normal experiment
+       fad1 = 'y':  TPPI axial-peak displacement along t1
+              'n':  standard phasecycle
+       fad2 = 'y':  TPPI axial-peak displacement along t2 (3D experiment)
+              'n':  standard phasecycle
+     satmode = 'nnnn':  no H1 presaturation
+              'ynnn':  H1 presaturation during relaxation delay
+              'nynn':  H1 presaturation during the first tau(cn) period
+              'nnyn':  H1 presaturation during the t1 period
+              'nnny':  H1 presaturation during the second tau(cn) period
+     satfrq = frequency of H1 presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for H1 transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+    cashape = pattern for shifted laminar pulse on the Ca spins
+    pwcalvl = power level for Ca decoupler pulses
+       pwca = 90 degree decoupler pulse length for Ca at `pwcalvl`
+      cafrq = frequency for Ca spins
+    pwcolvl = power level for selective C0 decoupling
+       pwco = 90 degree pulse length for selective C0 decoupling at `pwcolvl`
+    coshape = decoupling pattern for selective CO decoupling
+      cores = tip-angle resolution for selective CO decoupling
+      cofrq = frequency for CO spins
+     c13dev = RF device for C13
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+     n15dev = RF device for N15
+        jnh = one-bond heteronuclear coupling constant to NH (in Hz)
+        jcn = one-bond heteronuclear coupling constant to CN (in Hz)
+  dpwr(N15) = power level for N15 broadband decoupling
+  dpwr(C13) = power level for C13 broadband decoupling
+    dm(N15) = 'nn':  no broadband decoupling of N15 during acquisition
+              'ny':  broadband heteronuclear decoupling of N15 during
+		     acquisition
+    dm(C13) = 'nn':  no broadband decoupling of C13 during acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+                  modified from hnca1FSP.c(S.Farmer,Varian)  1/27/92

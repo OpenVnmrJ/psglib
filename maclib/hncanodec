@@ -1,0 +1,16 @@
+"hncanodec-macro to convert a presat parameter set to hncanodec"
+set2d('hncanodec') par3d par3rf
+psgset('hncanodec','sspul','satmode','satdly','satpwr','satfrq')
+psgset('hncanodec','sw1','ni','phase','jnh','jcn','taunh','deltanh')
+psgset('hncanodec','pwn15','pwn15lvl','pwcoalvl','pwcoa','cashape','pwca')
+psgset('hncanodec','pwcalvl','cafrq','pwco','pwcolvl','cofrq')
+psgset('hncanodec','f1180','f2180','fad1','fad2','c13dev','n15dev')
+psgset('hncanodec','dg','dg2','ap','dm','dm2','dpwr2','dgseq','dgp','dpwr')
+psgset('hncanodec','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hncanodec','dof','dof2','array','dmm','dmm2','coshape','cores','prtinfo')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+dg
+echo('a shapelib file  must exist for cashape(created as an SLP pulse)')
+echo('which is calibrated to do a 90-degree pulse on alpha carbons')
+echo('upfield from dof, using a power appropriate for the pwca pulse')
+
