@@ -1,0 +1,24 @@
+
+"selhmqc3rf-convert presat into selhmqc3rf "
+"parameter set"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d
+psgset('selhmqc3rf','satdly','satfrq','satpwr','satmode','array')
+psgset('selhmqc3rf','dmf2','dn2','jeff','j','pwx2lvl','pwx2','dpwr2','dof2','sw1','ni')
+psgset('selhmqc3rf','phase','tpwr','pw','ss','dm2','dmm2','d1','at','dgs','hs')
+psgset('selhmqc3rf','p1','dg','ap','null','dres2','dseq2','mix')
+psgset('selhmqc3rf','selpwr','selpw','selshape','satshape','sspul')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='selhmqc3rf'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='p3'  fn=2048 ni=1
+sb=at sbs=-at
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''
