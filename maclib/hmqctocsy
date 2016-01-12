@@ -1,0 +1,14 @@
+"*******************************************************"
+" hmqctocsy - sets up parameters in accordance with the hmqctocsy "
+"        pulse sequence.                                "
+"*******************************************************"
+
+hmqc 
+psgset('hmqctocsy','p1lvl','p1','mix','trim','dg','ap','window')
+p1lvl=tpwr-6
+p1=pw90*2
+mix=.035
+trim=.002
+dm='nnny'
+null=.35
+dg
