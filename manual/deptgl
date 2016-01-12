@@ -1,0 +1,19 @@
+
+/* deptgl - for spectral editing and polarization transfer experiments */ 
+
+/* parameters:
+      pw	observe 90
+      pp	decoupler 90
+      pplvl     power level for decoupler proton pulses (for 500);
+      d2,d3,d4	j evolution delays, operator enterable if jmax and jmin
+ 		are 0, or calculated if jmin<>0 and jmax<>0
+      jmax,jmin	max and min j values, used to calculate d2,d3,d4 to
+		minimize J cross talk
+      degree	editing flip angle
+		for editing set to 38,90,90,142
+      satdly    optional saturation delay (ca. 0.05 sec)
+      nt	set to 64 transients minimum      */
+
+/* reference: 
+      O.W.Sorensen et al., J.Magn.Reson. 55, 347 (1983). */
+
