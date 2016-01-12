@@ -1,0 +1,37 @@
+"*******************************************************"
+" hmqc - sets up parameters in accordance with the hmqc "
+"        pulse sequence.                                "
+"*******************************************************"
+
+" arg1 - specifies nuclear isotope for HMQC experiment "
+
+
+if ($# = 1) then 
+   if ($1 = 15) then $name='hmqc'+'15'
+      else $name='hmqc'+'13' endif
+endif
+if ($# = 0) then $name='hmqc'+'13' endif
+if ($# > 1) then
+   write('line3','Only C13 and N15 are supported by this macro .')
+   return
+endif
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d
+psgset($name,'satdly','satfrq','satpwr','satmode','array','null','taumb')
+psgset($name,'dmf','dn','j','pwxlvl','pwx','dpwr','dof','sw1','ni','mbond')
+psgset($name,'phase','tpwr','pw','ss','dm','dmm','d1','at','dgs','hs')
+psgset($name,'p1','dg','ap','sspul')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='hmqc'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='pd' sw1=140d dof=-30d fn=2048 ni=1
+mbond='n'  taumb=0
+sb=at sbs=-at sb1=ni/sw1 sbs1=-sb1
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''
