@@ -1,0 +1,11 @@
+"*******************************************************"
+" hmqctocsy - sets up parameters in accordance with the hmqctocsy "
+"        pulse sequence.                                "
+"*******************************************************"
+
+psgset('hmqctocsy','p1lvl','p1','dn','mix','trim','window','dg','ap')
+psgset('hmqctocsy','dm','dmm','dmf','dpwr','j','null','mult')
+psgset('hmqctocsy','pwxlvl','pwx','sstrim','homo','satmode','satfrq','ss')
+psgset('hmqctocsy','phase','array','satdly','satpwr','ni','sw1','hs','dof')
+at=.2 fn=np nt=16 bs=8 il='y' d1=1.2 pw(90)
+axis='pd' man('hmqctocsy') dps 
