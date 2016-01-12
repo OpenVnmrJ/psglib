@@ -1,0 +1,32 @@
+exside - Excitation Sculptured Indirect Detection Experiment
+		J-scaling option
+
+	processing : wft2d(1,0,1,0,0,-1,0,1)
+		rp = rp(s2pul) - 90
+		rp1 = 0
+
+
+	hsgpwr, hsgt : homospoil gradients : typical: 10000, .001
+	gzlvl1,gt1,gzlvl2,gt2 : echo gradients during DPFGSE
+		Typical : 8000, 0.00025, 5000, .0005
+	gzlvl3,gt3,gzlvl4,gt4 : coherence selection gradients
+		Typical (for carbon) : 20000,.001,10000,.0005
+	selpwr, selpw, pwshape : selective proton 180 power, pulse width, and shape - Typical : to be created by Pbox and tested using the selexcit sequence.
+	jscale : jscaling factor - Depends on the T2*.  For organics it can be as large as 15, but for large molecules 3-5 is recommended
+	nullflg : Tango nulling of C13-H to suppress one bond correlations. - can be turned off if the "selection" does not cover 13C satellites of any other proton resonances.  Recommended nullflg='y'.
+
+	jnxh = long range coupling constant for optimizing the PT and refoc delays.
+	j1xh = one bond coupling constant for the TANGO
+	
+	IT IS RECOMMENDED THAT YOU FIRST USE THE SELEXCIT SEQUENCE/MACRO TO MAKE SURE YOUR "SELECTIONS" WORK AND USE THOSE PARAMETERS TO SETUP THE EXSIDE EXPERIMENT.   THE EXSIDE MACRO WILL USE THE DPFGSE PARAMETERS FROM THE SELEXCIT EXPERIMENT.
+
+	SELEXCIT IS IN THE USERLIB.
+
+
+[REF: V.V. Krishnamurthy, JMR, A121, 33-41 (1996)]
+
+Sequence written by:
+
+krish krishnamurthy (Aug. 1995)
+
+	
