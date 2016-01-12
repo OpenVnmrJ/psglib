@@ -1,0 +1,17 @@
+"hnco-macro to convert a presat parameter set to hnco"
+set2d('hnco')
+psgset('hnco','sspul','satmode','satdly','satpwr','satfrq')
+psgset('hnco','sw1','ni','phase','jnh','jcn','taunh','deltanh')
+psgset('hnco','pwn15','pwn15lvl','pwcoalvl','pwcoa','cashape','pwca')
+psgset('hnco','pwcalvl','cafrq','pwco','pwcolvl','cofrq')
+psgset('hnco','f1180','f2180','fad1','fad2','c13dev','n15dev')
+psgset('hnco','hdshape','hdres','hd90','hdlvl')
+psgset('hnco','dg','dg2','ap','dm','dm2','dpwr2','dgseq','dgp','dpwr')
+psgset('hnco','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hnco','dof','dof2','array','dmm','dmm2','prtinfo')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+dg
+echo('a shapelib file  must exist for cashape (created as an SLP pulse)')
+echo('which is calibrated to do a 180-degree pulse on alpha carbons')
+echo('ca. 125ppm upfield, using a power appropriate for a 56us pulse')
+

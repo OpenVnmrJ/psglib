@@ -1,0 +1,64 @@
+ hnco.c  -   modified HNCO experiment by Kay et al.; uses shifted
+		   laminar pulses for selective inversion of the Ca
+		   spins during t1; uses a broadband inversion pulse to
+		   refocus the Ca-N15 and CO-N15 scalar interactions
+		   during t2; uses broadband H1 decoupling during t1,
+		   t2, and both tau(cn) periods; the C13 and N15 RF
+		   channels are user-selectable.
+
+
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+      f1180 = 'n':  standard t1 timing
+              'y':  modified t1 timing for t1(1) = half the dwell time
+      f2180 = 'n':  standard t2 timing
+              'y':  modified t2 timing for t2(1) = half the dwell time
+              'n':  normal experiment
+       fad1 = 'y':  TPPI axial-peak displacement along t1
+              'n':  standard phasecycle
+       fad2 = 'y':  TPPI axial-peak displacement along t2 (3D experiment)
+              'n':  standard phasecycle
+     satmode = 'n':  no H1 presaturation
+              'y':  H1 presaturation during relaxation delay
+     satfrq = frequency of H1 presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = power level for presaturation with the transmitter
+      hdlvl = power level for H1 broadband decoupling during t(cn), t1, and t2
+    hdshape = H1 broadband decoupling sequence
+      hdres = tip-angle resolution for H1 broadband decoupling sequence
+       hd90 = 90 degree pulse length for H1 broadband decoupling
+      hdfrq = NOT DEFINED ==> tof is assumed to define the center of the H1
+	      broadband decoupling profile
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for H1 transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+      cafrq = frequency for Ca spins (not explicitly used in pulse sequence)
+      cofrq = frequency for CO spins
+    pwcalvl = power level for Ca decoupler pulses
+       pwca = 90 degree decoupler pulse length for Ca at `pwcalvl`
+    cashape = Ca pattern for shifted laminar pulse
+    pwcolvl = power level for C0 decoupler pulses
+       pwco = 90 degree decoupler pulse length for C0 at `pwcolvl`
+   pwcoalvl = power level for broadband C13 pulse
+      pwcoa = 90 degree decoupler pulse length for C13 at `pwcoalvl`
+     c13dev = RF device for C13
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+     n15dev = RF device for N15
+        jnh = one-bond heteronuclear coupling constant to NH (in Hz)
+    deltanh = if deltanh < 0.2e-6, deltanh = 1/(2*jnh)
+      taunh = should be set to 5.55 ms (or 1/[2*90]); if taunh < 0.2e-6,
+	      taunh = 1/(2*jnh)
+        jcn = one-bond heteronuclear coupling constant to CN (in Hz)
+  dpwr(N15) = power level for N15 broadband decoupling
+  dpwr(C13) = power level for C13 broadband decoupling
+    dm(N15) = 'nn':  no broadband decoupling of N15 during acquisition
+              'ny':  broadband heteronuclear decoupling of N15
+		     during acquisition
+    dm(C13) = 'nn':  no broadband decoupling of C13 during acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+                    modified from hnco3FSP.c (1/27/92) (S.Farmer author)
