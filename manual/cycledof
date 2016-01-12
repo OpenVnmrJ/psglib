@@ -1,0 +1,38 @@
+/* cycledof. Difference NOE experiment
+
+   this experiment uses frequency cycling through a multiplet to permit
+   less power to be used, thus avoiding partial saturation of nearby resonances.
+   The control frequency should be set nearby the irradiated pattern. 
+
+  Parameters:
+
+    pw - 90 degree excitation pulse (at power tpwr)
+    intsub - 'y': internal subtraction of data acquired by on-resonance
+                  and off-resonance selective excitation
+             'n': data acquired by on-resonance and off-resonance selec-
+                  tive excitation are stored separately
+    satfrq  - frequency of selective saturation (on resonance);
+              (make this an array if intsub = 'n', off-res dof if cycle='n')
+    control - off resonance selective saturation frequency
+              (an inactive parameter if intsub = 'n')
+    cycle   - cycle='y' does on-resonance saturation using frequency cycling
+              about the frequency "satfrq" at positions given by "spacing"and"pattern" 
+              cycle='n' does off-resonance saturation at control
+    spacing - spacing(in Hz) of multiplet
+    pattern - pattern type ( 1 for singlet, 2 for doublet, etc.)    
+    tau     - period spent on a single irradiation point during cycling 
+    satpwr - power of decoupler selective pulse
+    sattime - length of decoupler selective pulse at frequency satfrq.
+    mix - mixing time
+    hs - 'ynyn'
+    sspul   - sspul='y' does hs-90-hs before d1
+    nt - intsub = 'n':  multiple of 16
+         intsub = 'y':  multiple of 32
+
+
+    NOTE:  This pulse sequence requires that the decoupler channel be
+           equipped with direct synthesis RF and a linear amplifier.
+
+
+    s. farmer   5  February    1988
+    g. gray  20 june 1988 */
