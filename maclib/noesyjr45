@@ -1,0 +1,5 @@
+set2d('noesyjr45')
+psgset('noesyjr45','jrdelay','sspul','ss','dg','ap')
+psgset('noesyjr45','phase','mix','hs','hst','ni','phase')
+seqfil='noesyjr45' dg
+
