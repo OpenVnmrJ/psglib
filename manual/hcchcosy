@@ -1,0 +1,52 @@
+
+ hcch_cosy.c
+
+
+   See  Bax et al., J.Mag.Reson.87, 620-627 (1990).
+        Bax et al., J.Mag.Reson.88, 425-431 (1990).
+        Clore et al., Biochemistry 29, 8172-8184 (1990).
+
+    Various flags need to be set to indicate which experiment is
+    to be run:
+
+    Use programmed decoupling of carbonyls during t2.  Use
+    herm180 for co refocusing
+
+    Set dm = 'nny', dmm = 'ccp' [13C decoupling during acquisition]
+
+    Must set phase = 1,2 and phase2 = 1,2 for hypercomplex in t1 and t2.
+
+    Typical acquisition times are 28 ms [t1], 10 ms [t2], and 47 ms [t3]
+       with 128 complex [t1], 32 complex [t2], and 512 real [t3]. 
+
+    Written by Mike Wittekind 1/7/91 [hcch_16.c]
+    Rwritten to constant-time experiment on April 20, 1992 by L.M..
+    converted into SLP format June 15, 1992 GG(varian)
+             ca90sh,   /* SLP Ca pulse (dof at CO freq.) */
+             ca180sh,   /* SLP Ca pulse (dof at CO freq.) */
+             ca180sh2   /* SLP Ca softer pulse (dof at CO freq.) */
+             coshape,   /* dec pattern for CO decoupling  */
+             fhfdwt1   /* Flag to indicate half dwell start in t1 */
+             fhfdwt2   /* Flag to indicate half dwell start in t2 */
+
+             tauhc,            /* 1 / 4*J[13C-H]     [~1.5ms]          */
+	     tau1,		/* t1-evolution variable */
+	     tau2,		/* t2-evolutionvariable */
+	     satfrq,		/* presaturation frequency */
+             pwca,             /* PW90 for 13C nucleus                 */
+             pwca180,          /* PW180 for 13C nucleus w. null at CO*/
+             pwmlev,           /* PW90 for 1H during mlev16             */
+             pwco,             /* PW90 for 13C carbonyl decoupling      */
+             satpwr,          /* low level 1H trans.power for presat    */
+             pwcalvl,           /* power level for 13C pulses on dec1   */
+             mlevpwr,         /*  power level for 1H mlev decoupling     */
+             cores,          /* pattern resol. for C=O decoupling  */
+	     h1resol,		/* mlev decoupler pattern resol. = 90o */
+             pwcolvl,          /* power level for C=O pulses on dec1   */
+	     s180lvl,		/* power level for 180 with null at CO */
+             jch,              /* coupling for C-C  (set to 40 Hz   )  */
+             jcc,              /* coupling for C-C  (set to 40 Hz   )  */
+             delta1,delta2,sw1,sw2;
+
+
+
