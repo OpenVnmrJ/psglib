@@ -1,0 +1,9 @@
+/* noesyjr -  2D cross relaxation experiment using jr "read" pulse
+ 
+         Normal noesy parameters are used
+      Only States method used for phase-sensitive in F1 (no tppi) 
+
+      p1 = correction of second pulse width for radiation damping
+      jrdelay = interpulse delay in jr read pulse (try 140us) 
+     (use "calfa" to set alfa for lp=0 to obtain flat baseline)
+

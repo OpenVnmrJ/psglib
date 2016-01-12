@@ -1,0 +1,5 @@
+set2d('noesyjr')
+psgset('noesyjr','jrdelay','sspul','ss','dg','ap')
+psgset('noesyjr','phase','mix','hs','hst','ni','phase')
+dg
+
