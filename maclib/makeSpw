@@ -1,0 +1,9 @@
+"makeSpw(pw) - makes an SS pulse by calling the makeSS c program" 
+"the pw argument specifies pulse width"
+$shapelib = userdir + '/shapelib'
+exists($shapelib,'directory'):$exists
+if $exists = 0 then mkdir($shapelib) endif
+$curdir = '' pwd:$curdir
+cd($shapelib)
+shell('makeSS -gs ',$1)
+cd($curdir)

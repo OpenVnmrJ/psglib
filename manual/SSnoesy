@@ -1,0 +1,18 @@
+************************ VARIAN NMR USER GROUP LIBRARY *************************                               NEW MANUAL ENTRY
+
+   SSnoesy -  2D cross relaxation experiment using SS "read" pulse
+
+     Noesy for observation of exchangeable protons using a
+     Symmetrically-Shifted read pulse, see Magnetic Moments Vol V
+     Number 4 for details.
+     Ref. Stephen Smallcombe, JACS 115 4776 (June 2) 1993.
+
+     Use linear prediction and lsfid to remove lp in multiples of 360 degrees.
+     Use "calfa" to set alfa for lp=0 to obtain flat baseline.
+     With steering pulses for improved water suppression -
+     Array pwa and pwd for best suppression.
+     Positive and negative vaules of pwa and pwd can be used.
+     Homospoil in mix can be either normal homospoil, hs='ynn' or
+     gradient homospoil, hs='nnn', and gt1>0.
+     hsdly hould be set to place homospoil in middle or near end of mix time.
+     Axial peaks are displaced via FAD for single transient spectra

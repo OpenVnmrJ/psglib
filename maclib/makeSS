@@ -1,0 +1,9 @@
+"makeSS(freq) - makes an SS pulse by calling the makeSS c program" 
+"the freq argument specifies the (+ and -) excitation maximum"
+$shapelib = userdir + '/shapelib'
+exists($shapelib,'directory'):$exists
+if $exists = 0 then mkdir($shapelib) endif
+$curdir = '' pwd:$curdir
+cd($shapelib)
+shell('makeSS -gf ',$1)
+cd($curdir)
