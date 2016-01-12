@@ -1,0 +1,7 @@
+"tncosy-to convert standard parameter table to tncosyps"
+set2d('cosyps')
+psgset('tncosyps','sspul','phase','array','satmode','satdly','dg','ap')
+psgset('tncosyps','satpwr')
+ss=8 rp=rp+90 ni=1 phase=1 f full
+rp1=90 dg
+
