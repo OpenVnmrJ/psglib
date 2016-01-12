@@ -1,0 +1,82 @@
+"  ********************************  "
+"  ****  M E N U :   D S _ 1   ****  "
+"  ********************************  "
+
+"  last revised 3-5-93 MER   "
+
+graphis:$gd
+if ($gd <> 'ds') then
+  if (lastmenu<>'') then
+    menu(lastmenu) lastmenu=''
+  else
+    menu('display_1D')
+  endif
+else
+
+mlabel=''
+mstring=''
+
+if (crmode = 'b') then
+  mlabel[1]='Cursor'
+else
+  mlabel[1]='Box'
+endif
+mstring[1]='ds(`toggle`)'
+
+if (intmod = 'full') then
+  mlabel[2]='No Int'
+  mstring[2]='intmod=`off`'
+else
+  if (intmod = 'partial') then
+    mlabel[2]='Full Int'
+    mstring[2]='intmod=`full`'
+  else
+    mlabel[2]='Part Int'
+    mstring[2]='intmod=`partial`'
+  endif
+endif
+
+if (crmode = 'b') then
+  mlabel[3]='Expand'
+else
+  mlabel[3]='Full'
+endif
+mstring[3]='ds(`expand`)'
+
+mlabel[4]='sp wp'
+mstring[4]='ds(`spwp`)'
+
+mlabel[5]='Mark'
+mstring[5]='mark'
+
+mlabel[6]='Phase'
+mstring[6]='ds(`phase`)'
+
+mlabel[7]='Th'
+mstring[7]='ds(`thresh`)'
+
+mlabel[8]='Resets'
+mstring[8]='ds(`z`)'
+
+mlabel[9]='Dscale'
+mstring[9]='ds(`dscale`)'
+
+mlabel[10]='Lvl/Tlt'
+mstring[10]='ds(`lvltlt`)'
+
+mlabel[11]='Pbox'
+mstring[11]='opx newmenu(`Pbox`)'
+
+mlabel[12]='SelectH'
+mstring[12]='setshape'
+
+mlabel[13]='Set Int'
+mstring[13]='ds_setint ds(`restart`)'
+
+mlabel[14]='Return'
+if (lastmenu<>'') then
+  mstring[14]='menu(lastmenu) lastmenu=``'
+else
+  mstring[14]='menu(`display_1D`)'
+endif
+endif

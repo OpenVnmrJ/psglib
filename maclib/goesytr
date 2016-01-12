@@ -1,0 +1,7 @@
+"*****  macro goeytr  *****" 
+
+psgset('goesytr','ni','sw1','phase','array','ap','dg','dg2','homodec','selflg','sspul','shape')
+psgset('goesytr','mix','selpw','selpwr','gzlvl1','gzlvl2','gzlvl3','gtime1','gtime2','gtime3')
+psgset('goesytr','gstab1','gstab2','slpwr','selpwrf','slpw','selshape','selflg','homodec','sspul','satmode')
+dg2
+in='n'
