@@ -1,0 +1,6 @@
+Water Suppression using "WET"
+p1shape can be any selective pulse shape
+calibrate p1 to be 90 degree pulse
+at p1pwr
+p1pwr can be set in tenths of dB 
+for fine control
