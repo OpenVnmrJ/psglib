@@ -1,0 +1,3 @@
+"dante-converts s2pul to dante parameter set"
+psgset('dante','count','offset','ap','dg')
+dg

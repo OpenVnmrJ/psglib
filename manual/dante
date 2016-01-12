@@ -1,0 +1,4 @@
+/* dante -   selective excitation via pulse train  */
+/*           offset is position of first sideband  */
+/*           count is the number of pulses         */
+/*       contact- G. Gray  (palo alto)  revision-  */
