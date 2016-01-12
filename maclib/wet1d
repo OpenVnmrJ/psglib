@@ -1,0 +1,12 @@
+"wet1d - to create WET parameters starting from an s2pul parameter set"
+"PAKeifer 950919 "
+
+psgset('wet1d','wet','pwwet','wetpwr','wetshape','composit','gtw','gzlvlw')
+psgset('wet1d','dz','c13wet','dmfwet','dpwrwet','dofwet','gswet')
+psgset('wet1d','ss','d1','dglc','ssfilter','ssorder','ssntaps','lsfrq')
+psgset('wet1d','ap','dg','dglc')
+seqfil='wet1d' 
+dg
+man('wet1d')
+write('line3','Parameters created for a WET 1D')
+

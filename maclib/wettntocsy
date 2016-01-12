@@ -1,0 +1,25 @@
+"@(#)tntocsy 1.2 9/16/94 Copyright (c) 1991-1994 Varian Assoc.,Inc. All Rights Reserved."
+"*********************************************************"
+"tntocsy - sets up parameters for the tntocsy pulse seq.  "
+"*********************************************************"
+"wettntocsy - modified for LCNMR "
+"PAKeifer 950718 "
+
+
+lcset2d('tocsy')
+lcpsgset('tntocsy','mix','phase','trim','p1lvl','satdly','array','window')
+lcpsgset('tntocsy','hs','hst','sspul','dg','ap','dgs','ss','dm','dmm')
+lcpsgset('tntocsy','satmode','satpwr')
+p1=pw p1lvl=tpwr tpwr=tpwr-12 pw=4*pw
+ph  rp1=0  lp1=0 satpwr=10 satdly=1.5 dm='nnn' sspul='n' homo='n'
+ss=128  axis='pp' rfl1=rfl rfp1=rfp
+nt=nt/8  nt=nt*8 f full
+if (nt=0) then nt=8 endif
+d1=1.3 sw1=sw rfl1=rfl rfp1=rfp phase=1,2
+
+lcpsgset('wettntocsy','tpwr','pw','window','mix')
+lcpsgset('wettntocsy','dg','ap','dg2','dglc')
+satmode='nnn' satdly=0
+write('line3','Parameters created for a WET (tn)-TOCSY')
+dg
+man('wettntocsy')
