@@ -1,0 +1,194 @@
+# AuH2D
+
+{
+   label: PROTON Spectral Width (ppm):
+   choice: "-2->14" "-1->11" "-0.5->9.5" "0.5->8.5"
+   choice_value: "'setsw(14,-2)'" "'setsw(11,-1)'" "'setsw(9.5,-.5)'" "'setsw(8.5,0.5)'"
+   rtoutput: "Autowrmac('PROTON','acq',$choice_value)"
+   output: dg  
+   remark: "Select 1H spectral window"
+}
+
+{
+   label: Minimize SW?:
+   choice: "NO" "Auto" "Manual"
+   choice_value: "'MinSW=`off`'" "'MinSW=`auto`'" "'MinSW=`manual`'"
+   rtoutput: "Autowrmac('PROTON','acq',$choice_value)"
+   remark:
+}
+
+{
+   label: PROTON scans:
+   choice: "8" "16" "32"
+   choice_value:  "'nt=8'" "'nt=16'" "'nt=32'"
+   rtoutput: "Autowrmac('PROTON','acq',$choice_value)"
+   remark: Set number of scans for 1D proton
+}
+
+{
+   label: PROTON Relaxation Delay (sec):
+   choice: "1" "2" "5" "25"
+   choice_value:  "'d1=1'" "'d1=2'" "'d1=5'" "'d1=25'"
+   rtoutput: "Autowrmac('PROTON','acq',$choice_value)"
+   remark: Proton Relaxation Delay - for 1D ONLY
+}
+
+{
+   label: PROTON Pulse Angle:
+   input: 45
+   choice:      "Default" "Set"
+   choice_value:  "'pw(45)'" "'pw($input)'"
+   rtoutput: "Autowrmac('PROTON','acq',$choice_value)"
+   remark: Enter the pulse angle in degrees
+}
+
+
+{
+   label: Select Experiments in addition to PROTON: 
+      
+   check_button(1) 		: "COSY"
+   check_set_value(1) 		: "'COSY'"
+   check_unset_value(1)		: "'COSY'"
+   check_set_rtoutput(1) 	: AutoAddEXP($value(1))
+   check_unset_rtoutput(1) 	: AutoDelEXP($value(1))
+   
+   check_button(2) 		: "gCOSY"
+   check_set_value(2) 		: "'gCOSY'"
+   check_unset_value(2)		: "'gCOSY'"
+   check_set_rtoutput(2) 	: AutoAddEXP($value(2))
+   check_unset_rtoutput(2) 	: AutoDelEXP($value(2))
+   show(2)			: PFGflg='y'
+   
+   check_button(3) 		: "gDQCOSY"
+   check_set_value(3) 		: "'gDQCOSY'"
+   check_unset_value(3)		: "'gDQCOSY'"
+   check_set_rtoutput(3) 	: AutoAddEXP($value(3))
+   check_unset_rtoutput(3) 	: AutoDelEXP($value(3))
+   show(3)			: PFGflg='y'
+
+{
+   label: (more): 
+
+   check_button(1) 		: "TOCSY"
+   check_set_value(1) 		: "'TOCSY'"
+   check_unset_value(1)		: "'TOCSY'"
+   check_set_rtoutput(1) 	: AutoAddEXP($value(1))
+   check_unset_rtoutput(1) 	: AutoDelEXP($value(1))
+
+   check_button(2) 		: "NOESY"
+   check_set_value(2) 		: "'NOESY'"
+   check_unset_value(2)		: "'NOESY'"
+   check_set_rtoutput(2) 	: AutoAddEXP($value(2))
+   check_unset_rtoutput(2) 	: AutoDelEXP($value(2))
+
+   check_button(3) 		: "ROESY"
+   check_set_value(3) 		: "'ROESY'"
+   check_unset_value(3)		: "'ROESY'"
+   check_set_rtoutput(3) 	: AutoAddEXP($value(3))
+   check_unset_rtoutput(3) 	: AutoDelEXP($value(3))
+
+   remark: "Selection order will be Acquisition order!!"
+}
+
+{
+   label: (more): 
+      
+   check_button(1) 		: "HMQC"
+   check_set_value(1) 		: "'HMQC'"
+   check_unset_value(1)		: "'HMQC'"
+   check_set_rtoutput(1) 	: AutoAddEXP($value(1))
+   check_unset_rtoutput(1) 	: AutoDelEXP($value(1))
+   
+   check_button(2) 		: "gHMQC"
+   check_set_value(2) 		: "'gHMQC'"
+   check_unset_value(2)		: "'gHMQC'"
+   check_set_rtoutput(2) 	: AutoAddEXP($value(2))
+   check_unset_rtoutput(2) 	: AutoDelEXP($value(2))
+   show(2)			: PFGflg='y'
+
+   check_button(3) 		: "HSQC"
+   check_set_value(3) 		: "'HSQC'"
+   check_unset_value(3)		: "'HSQC'"
+   check_set_rtoutput(3) 	: AutoAddEXP($value(3))
+   check_unset_rtoutput(3) 	: AutoDelEXP($value(3))
+
+   check_button(4) 		: "gHSQC"
+   check_set_value(4) 		: "'gHSQC'"
+   check_unset_value(4)		: "'gHSQC'"
+   check_set_rtoutput(4) 	: AutoAddEXP($value(4))
+   check_unset_rtoutput(4) 	: AutoDelEXP($value(4))
+   show(4)			: PFGflg='y'
+
+   remark: "Selection order will be Acquisition order!!"
+}
+
+{
+   label: (more):   
+   check_button(1) 		: "BIRDHMBC"
+   check_set_value(1) 		: "'BIRDHMBC'"
+   check_unset_value(1)		: "'BIRDHMBC'"
+   check_set_rtoutput(1) 	: AutoAddEXP($value(1))
+   check_unset_rtoutput(1) 	: AutoDelEXP($value(1))
+   show(1)			: PFGflg='y'
+   
+   check_button(2) 		: "gHMBC"
+   check_set_value(2) 		: "'gHMBC'"
+   check_unset_value(2)		: "'gHMBC'"
+   check_set_rtoutput(2) 	: AutoAddEXP($value(2))
+   check_unset_rtoutput(2) 	: AutoDelEXP($value(2))
+   show(2)			: PFGflg='y'
+
+   check_button(3) 		: "HMSC"
+   check_set_value(3) 		: "'HMSC'"
+   check_unset_value(3)		: "'HMSC'"
+   check_set_rtoutput(3) 	: AutoAddEXP($value(3))
+   check_unset_rtoutput(3) 	: AutoDelEXP($value(3))
+   show(3)			: PFGflg='y'
+
+   check_button(4)              : "HMQCTOXY"
+   check_set_value(4)           : "'HMQCTOXY'"
+   check_unset_value(4)         : "'HMQCTOXY'"
+   check_set_rtoutput(4)        : AutoAddEXP($value(4))
+   check_unset_rtoutput(4)      : AutoDelEXP($value(4))
+
+   check_button(5)              : "HSQCTOXY"
+   check_set_value(5)           : "'HSQCTOXY'"
+   check_unset_value(5)         : "'HSQCTOXY'"
+   check_set_rtoutput(5)        : AutoAddEXP($value(5))
+   check_unset_rtoutput(5)      : AutoDelEXP($value(5))
+
+   remark: "Selection order will be Acquisition order!!"
+}
+
+{
+   label: (more): 
+      
+   check_button(1) 		: "gHMQCTOXY"
+   check_set_value(1) 		: "'gHMQCTOXY'"
+   check_unset_value(1)		: "'gHMQCTOXY'"
+   check_set_rtoutput(1) 	: AutoAddEXP($value(1))
+   check_unset_rtoutput(1) 	: AutoDelEXP($value(1))
+   
+   check_button(2) 		: "gHSQCTOXY"
+   check_set_value(2) 		: "'gHSQCTOXY'"
+   check_unset_value(2)		: "'gHSQCTOXY'"
+   check_set_rtoutput(2) 	: AutoAddEXP($value(2))
+   check_unset_rtoutput(2) 	: AutoDelEXP($value(2))
+
+   show				: PFGflg='y'
+
+   remark: "Selection order will be Acquisition order!!"
+}
+
+{
+   label: (more):   
+   check_button(1) 		: "CARBON"
+   check_set_value(1) 		: "'CARBON'"
+   check_unset_value(1)		: "'CARBON'"
+   check_set_rtoutput(1) 	: AutoAddEXP($value(1))
+   check_unset_rtoutput(1) 	: AutoDelEXP($value(1))
+   
+   remark: "Selection order will be Acquisition order!!"
+}
+
+

@@ -1,0 +1,72 @@
+"@(#)HMSC 14.2 11/04/99 Copyright (c) 1991-1995 Varian Assoc.,Inc. All Rights Reserved."
+"***************************************************************"
+" HMSC - seup macro for HMSC pulse sequence                   "
+"               If the argument GLIDE is supplied, PROTON       "
+"               parameter set is retrived                       "
+"       if tn=dn then dn defaults to 13C                        "
+"***************************************************************"
+
+"*********************************************************"
+" wexp and wnt params are preserved ONLY if the macro     "
+"               is driven by GLIDE                        "
+"*********************************************************"
+$wexp=wexp $wnt=wnt wexp='' wnt=''
+if ($# > 0) then 
+ if ($1 = 'GLIDE') then
+  AutoStrtpar('PROTON') wexp=$wexp wnt=$wnt
+ endif
+endif
+"*********************************************************"
+if (tn = dn) then dn='C13' endif
+
+par2D
+exists('PFGflg','parameter'):$pfgex
+if ($pfgex = 0) then create('PFGflg','flag') endif
+PFGflg='y'
+
+Autopsgset('HMSC','dg','ap','axis','array','sspul','hs','hst')
+Autopsgset('HMSC','jnxh','j1xh','pwxlvl','pwx','dpwr','dmf')
+Autopsgset('HMSC','gzlvl0','gt0')
+Autopsgset('HMSC','gzlvl1','gt1','gzlvl3','gt3','gstab','hsglvl','hsgt')
+set2D
+
+dm='nnn' dmm='ccc'
+setdecpars
+refsource1='dfrq'
+setsw1(dn,100,-100):dof 
+j1xh=150 jnxh=8
+
+if (dn = 'C13') then
+  setsw1(dn,225,-15):dof
+   j1xh=140 
+elseif (dn = 'N15') then
+   setsw1(dn,140,90):dof 
+   j1xh=90
+endif
+
+d1=1 proc='ft' fpmult='n'
+ni=200
+nt=8
+pw=pw90
+phase=1,2
+av  sinebell
+fn1=2k  
+
+$ratio=sfrq/dfrq
+getparam('gHratio',dn):$ratio
+fixgrd(10):gzlvl1
+gzlvl3=trunc(2*gzlvl1/$ratio)
+fixgrd(10):hsglvl
+fixgrd(8):gzlvl0
+gt0=.0016
+
+if (Console='g2000') then ss=1 else ss=32 endif
+spin=0 alock='n' wshim='n'
+ai axis='pd' dm='nnn'
+seqfil='HMSC' f1coef='1 0 -1 0 0 1 0 -1'
+exists('satmode','parameter'):$satmodeex
+if ($satmodeex) then satmode='n' endif
+sspul='n' hs='n' gain='y' gain=gain+20 dps full
+dg
+write('alpha','f1coef set for n-bond correlations')
+write('alpha',`Set f1coef = '1 0 1 0 0 1 0 1' for 1-bond correlations`)
