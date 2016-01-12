@@ -1,0 +1,15 @@
+"*******************************************************"
+" hmqctocsyS - sets up parameters in accordance with the hmqctocsy "
+"        pulse sequence.  Selective 13C pulses                               "
+" are supported for 1D or region selected experiments    "
+" Full 2D experiment with hypercomplex FAD and direct response editing "
+" are also supported  "
+"*******************************************************"
+
+psgset('hmqctocsyS','p1lvl','p1','dn','mix','trim','window','dg','ap')
+psgset('hmqctocsyS','dm','dmm','dmf','dpwr','j','null','mult')
+psgset('hmqctocsyS','pwxlvl','pwx','sstrim','homo','satmode','satfrq','ss')
+psgset('hmqctocsyS','phase','array','satdly','satpwr','ni','sw1','hs','dof')
+psgset('hmqctocsyS','pwxs','shape','dgs','refoc','pwxslvl')
+at=.2 fn=np nt=16 bs=8 il='y' d1=1.2 pw(90)
+axis='pd' dps man('hmqctocsyS') 
