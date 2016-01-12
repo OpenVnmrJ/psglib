@@ -1,0 +1,50 @@
+nosyxfil -  NOESY-X-filtered 2D sequence 
+                X-filter parallel to F1
+               SLP PRESATURATION OPTION
+                - written in hypercomplex phase sensitive mode only
+
+  Sequence:
+
+  NOESY-X-filter:
+
+  status :    A-|-B|------------C- --------------|-D
+     1H  :    90-t1-90-mix-90-1/2J-   180   -1/2J- Acq (t2)
+      X  :       BB                90-   -90       BB
+ phtable :    t1    t5     t6      t2 t6  t3       t4 or t7
+
+  Parameters:
+
+       mix = NOESY mixing time.
+    pwxlvl = power level for X pulses
+    pwx    = 90 degree X pulse
+    jxh    = X-H coupling constant
+    dpwr   = power level for X decoupling 
+    tpwr   = power level for H pulses
+    pw     = 90 degree H pulse
+    satflg  = flag to do xmtr presaturation at satfrq and satpwr
+              during relaxation (satdly) and mixing (mix) periods
+    satfrq  = saturation frequency for xmtr presaturation
+    satpwr  = saturation power for xmtr presaturation
+    satdly  = saturation period follows D1
+    slpflg  = 'y' off-resonance slp presaturation
+    satshape = slpsatd (tof downfield to water)
+               slpsatu (tof upfield to water)
+    h2off = water off-resonance frequency (tof - satfrq)
+    sspul = 'y': selects trim(x)-trim(y) at start of pulse sequence
+    reverse  = 'n': gives XH proton NOESY
+               'y': gives NOESY without XH protons
+
+  phase table:
+
+        t1 = 0 0 2 2
+        t2 = 0 2 2 0 1 3 3 1 2 0 0 2 3 1 1 3 2 0 0 2 3 1 1 3 0 2 2 0 1 3 3 1
+        t3 = 0 0 2 2 1 1 3 3 2 2 0 0 3 3 1 1 2 2 0 0 3 3 1 1 0 0 2 2 1 1 3 3
+        t4 = 0 2 2 0 1 3 3 1 2 0 0 2 3 1 1 3 2 0 0 2 3 1 1 3 0 2 2 0 1 3 3 1
+        t5 = [0 2]16
+        t6 = [0 1 2 3]4
+        t7 = 0 0 2 2 1 1 3 3 2 2 0 0 3 3 1 1 2 2 0 0 3 3 1 1 0 0 2 2 1 1 3 3
+
+  SEE SLPSAT AND SLPNOESY MANUAL FOR MORE DETAILS ON SLP PRESATURATION
+
+  THE SETUP MACRO FOR NOSYXFIL USES ANOTHER MACRO "SLPNOESY".  YOU MUST HAVE THIS
+  IN YOUR MACLIB.

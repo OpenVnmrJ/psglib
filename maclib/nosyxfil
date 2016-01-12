@@ -1,0 +1,22 @@
+"*******************************************************"
+" nosyxfil - sets up parameters in accordance with the  "
+"            nosyxfil pulse sequence.                   "
+"*******************************************************"
+
+if ($# = 1) then
+  if ($1 = 15) then $name='nosyxfil'+'15'
+  else $name = 'nosyxfil'+'13' endif
+endif
+if ($# = 0) then $name='nosyxfil'+'13' endif
+set2d($name) par2d
+psgset($name,'mix','phase','array','sspul','hs')
+psgset($name,'dn','dof','dm','dmm','dpwr','dmf','dseq','dres')
+psgset($name,'jxh','pwxlvl','pwx','reverse','dg','ap')
+exists('satflg','parameter'):$e
+if ($e = 0) then
+psgset($name,'satflg','satdly','satpwr','satfrq') endif
+exists('slpflg','parameter'):$e
+if ($e = 0) then
+psgset($name,'slpflg','satshape','h2off') endif
+seqfil='nosyxfil'
+dg
