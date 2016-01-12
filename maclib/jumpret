@@ -1,0 +1,7 @@
+" jumpret - macro to set up jumpret experiment"
+
+psgset('jumpret','dg','ap')
+
+d2 = 0.5/sw
+
+dps dg
