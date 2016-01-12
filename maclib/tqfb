@@ -1,0 +1,8 @@
+  "VNMR @(#)tqfb"
+
+"tqfb" 
+
+psgset('tqfb','p2','d3','ap','dg')
+dg
+man('tqfb')
+

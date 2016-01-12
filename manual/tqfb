@@ -1,0 +1,24 @@
+/* VARIAN VXR-5000  PULSE SEQUENCE:  tqfb */
+
+/* TO DETECT THE TRIPLE QUANTUM COHERENCE ARISING FROM THE */
+/* BIEXPONENTIAL TRANSVERSE RELAXATION OF SODIUM */
+/* Chun-wa and Stephen Wimperis, J. Magn. Res. 88 440,1990*/
+/* Personal Communication, April 30, 1990*/
+/*Fernando Commodari, May 29 1990; revised April 29, 1992.*/
+
+/*
+- d1 - p1 (t1) - d2 - p2 (t2) - d2 - p1 (t3) - d3 - p1 (t4) - acq (t5)
+
+	d1 = optional relaxation delay
+
+	p1 = pi/2 pulse with phase t1(echo) t3 (TQ creation) and t4 (read pulse)
+
+	d2 = 1/2 the echo (TQ preparation) time (msec); 
+            not < (rof1+rof2+p2/2+p1/2)
+
+	p2 = 180 pulse with phase t2
+
+	d3 = TQ evolution delay (microsec); not < (rof2+rof1+p1)
+
+	t5 = receiver phase */
+
