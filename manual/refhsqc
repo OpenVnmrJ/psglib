@@ -1,0 +1,44 @@
+ refhsq.c         heteronuclear Overbodenhausen experiment using
+                    refocused INEPT and broadband decoupling of H1
+                    during t1; this sequence has RF duality.
+
+
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+              'n':  normal experiment
+        fad = 'y':  TPPI axial-peak displacement
+              'n':  standard phasecycle
+      f1180 = 'y':  the first t1 point is sampled at half the t1 dwell time
+              'n':  the first t1 point is sampled at t1 = 0
+     satmode = 'y':  presaturation during relaxation period (satdly) with xmtr
+              'n':  no presaturation during relaxation period (satdly)
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for H1 transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+    hdshape = H1 programmable decoupling shape
+      hdpwr = power level for H1 programmable decoupling
+       hd90 = 90 degree pulse length for H1 programmable decoupling shape
+              at power level 'hdpwr'
+      hdres = tip-angle resolution for the H1 programmable decoupling
+              shape
+     pwxlvl = power level for X decoupler pulses
+        pwx = 90 degree decoupler pulse length for X
+     xrfdev = RF device for the X heteronucleus
+        jxh = one-bond heteronuclear coupling constant to X (in Hz)
+    deltaxh = 1/(4*jxh) if deltaxh = 0.0; otherwise, the entered value is
+              used; one of the delays used in the refocussed INEPT
+              subsequences
+      tauxh = 0.8/(4*jxh) if tauxh = 0.0; otherwise, the entered value is
+	      used; the other delay used in the refocused INEPT
+              subsequences
+    dm(dm2) = 'nnnnn':  no broadband decoupling of X during acquisition
+              'nnnny':  broadband heteronuclear decoupling of X during
+		        acquisition
+
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
