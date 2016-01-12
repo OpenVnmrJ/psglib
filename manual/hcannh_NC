@@ -1,0 +1,100 @@
+ hcannh_NC  -
+
+	relayed Ha-->Ca-->N-->Hn 4D experiment with CT t2 and t3
+	evolution times; uses SLP pulses to selectively excite the
+	CO resonances; the N15 RF and C13 RF channels are user-
+	selectable.
+
+ 	N = t1 dimension	( ni, sw1)
+	Ca = t2 dimension	(ni2, sw2)
+	Ha = t3 dimension	(ni3, sw3)
+	Hn = t4 dimension	( np, sw )
+
+
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+     sstrim = length of Trim pulse for sspul = 'y'
+      f1180 = 'n':  standard t1 timing
+              'y':  modified t1 timing for t1(1) = half the dwell time
+      f2180 = 'n':  standard t2 timing
+              'y':  modified t2 timing for t2(1) = half the dwell time
+      f3180 = 'n':  standard t3 timing
+              'y':  modified t3 timing for t3(1) = half the dwell time
+       fad1 = 'y':  TPPI axial-peak displacement along t1
+              'n':  standard phasecycle
+       fad2 = 'y':  TPPI axial-peak displacement along t2 (3D experiment)
+              'n':  standard phasecycle
+       fad3 = 'y':  TPPI axial-peak displacement along t3 (4D experiment)
+              'n':  standard phasecycle
+      scuba = length of delay used in SCUBA pre-sequence; if scuba > 200 ns,
+	      the SCUBA pre-sequence is performed
+     satflg = 'y':  H1 presaturation during relaxtion delay
+     satfrq = frequency of 1H presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+      hdlvl = power level for H1 broadband decoupling during tau(cn),
+	      t1, and t2
+    hdshape = H1 broadband decoupling sequence
+      hdres = tip-angle resolution for H1 broadband decoupling sequence
+       hd90 = 90 degree pulse length for H1 broadband decoupling
+      hdfrq = NOT DEFINED ==> tof is assumed to define the center of the H1
+              broadband decoupling profile
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+        jch = one-bond H-Ca heteronuclear coupling constant (in Hz)
+    deltach = if deltach < 0.2e-6, deltach = 1/(2*jch)
+      tauch = should be set to 3.57 ms (??) (or 1/[2*140]); if tauch < 0.2e-6,
+              taunh = 1/(2*jch)
+        jnh = one-bond H-N heteronuclear coupling constant (in Hz)
+    deltanh = if deltanh < 0.2e-6, deltanh = 1/(2*jnh)
+      taunh = should be set to 5.55 ms (or 1/[2*90]); if taunh < 0.2e-6,
+              taunh = 1/(2*jnh)
+        jcn = effective heteronuclear N-Ca coupling constant (in Hz)
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+      cafrq = frequency for Ca spins (not explicitly used in pulse sequence)
+      cofrq = frequency for CO spins
+   pwc13lvl = power level for hard C13 decoupler pulses
+      pwc13 = 90 degree decoupler pulse length for C13 at `pwc13lvl`
+    pwcalvl = power level for Ca decoupler pulses
+       pwca = 90 degree decoupler pulse length for Ca at `pwcalvl`
+    coshape = frequency-shifted pulse for CO excitation
+    pwcolvl = power level for 90-degree C0 decoupler pulses
+       pwco = 90 degree decoupler pulse length for C0 at `pwcolvl`
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+  dpwr(N15) = power level for N15 broadband decoupling
+  dpwr(C13) = power level for C13 broadband decoupling
+    dm(N15) = 'nn':  no broadband decoupling of N15 during acquisition
+              'ny':  broadband heteronuclear decoupling of N15 during
+		     acquisition
+    dm(C13) = 'nn':  no broadband decoupling of C13 during acquisition
+              'ny':  broadband heteronuclear decoupling of C13 during
+                     acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+     phase3 = 1,2:  hypercomplex experiment with F3 quadrature (complex F3-FT)
+
+
+
+   Recommended Values:  (MW = 16 kD)
+
+	  jca = 140 Hz
+	tauch = 3.57 ms
+          jcn = 20-24 Hz
+          jnh = 105 Hz
+        taunh = 5.55 ms
+
+     coshape should be created as an SLP pulse to execute a 90 degree pulse
+     on the carbonyl carbon region while the 13C xmtr is centered in the
+     alpha carbon region (at dof). Use the convolute macro, e.g.
+
+           convolute('275hard','co90',55,18000)
+
+     were 275hard is a shapelib file of 275 identical steps of 0.0 1023
+     and 55 is the pulsewidth (using 275 0.2us steps)
+
+   sequence contributed by Bruce Johnson, Merck(Rahway) and modified
+   by Sandy Farmer (Varian)
