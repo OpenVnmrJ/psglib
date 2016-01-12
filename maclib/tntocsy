@@ -1,0 +1,14 @@
+"*********************************************************"
+"tntocsy - sets up parameters for the tntocsy pulse seq.  "
+"*********************************************************"
+
+set2d('tocsy')
+psgset('tntocsy','mix','phase','trim','p1lvl','satdly','array','window')
+psgset('tntocsy','hs','hst','sspul','dg','ap','dgs','ss','dm','dmm')
+psgset('tntocsy','satmode','satpwr')
+p1=pw p1lvl=tpwr tpwr=tpwr-12 pw=4*pw
+ph  rp1=0  lp1=0 satpwr=10 satdly=1.5 dm='nnn' sspul='n' homo='n'
+ss=8  axis='pp' crl crl1 rfl=sw/2 rfp=4.66p rfl1=rfl rfp1=rfp
+nt=nt/8  nt=nt*8 phase=1 ni=1 f full
+if (nt=0) then nt=8 endif
+dg
