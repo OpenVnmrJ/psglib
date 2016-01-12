@@ -1,0 +1,38 @@
+/* cyclenoe PPM. Difference NOE experiment
+                 noe difference via multiplet phase cycling using the
+                 Programmable Pulse Modulator (PPM).  May be used for obs
+                 xmtr irradiation and/or attenuation of selective excitation
+                 and control pulses.
+                 eg.: if shape = hard102.RF such that have 1/10 amplitude of
+                      shape = hard.RF, then a 20 dB attenuation of a standard
+                      hard pulse can be provided.
+  Parameters:
+
+    pw - 90 degree excitation pulse (at power tpwr)
+    intsub - 'y': internal subtraction of data acquired by on-resonance
+                  and off-resonance selective excitation
+             'n': data acquired by on-resonance and off-resonance selec-
+                  tive excitation are stored separately
+    satfrq  - frequency of selective saturation (on resonance);
+    control - off resonance selective saturation frequency
+              (an inactive parameter if intsub = 'n')
+    cycle   - cycle='y' does on-resonance saturation using frequency cycling
+              around the frequency "satfrq" given by "spacing"and"pattern" 
+    spacing - spacing(in Hz) of multiplet
+    pattern - pattern type ( 1 for singlet, 2 for doublet, etc.)    
+    tau     - period spent on a single irradiation point during cycling 
+    satpwr  - power of selective irradiation
+    sattime - total length of irradiation at frequency satfrq.
+    satshape- name of shapelib file for saturation pulse
+    conshape- name of shapelib file for control pulse
+    mix - mixing time
+    sspul   - sspul='y' does Trim(x)-Trim(y) before d1
+    nt - intsub = 'n':  multiple of 16
+         intsub = 'y':  multiple of 32
+
+
+    NOTE:  This pulse sequence requires that the observe channel be
+           equipped with direct synthesis RF and a linear amplifier.
+           satpwr ranges 0-63 control obs attenuator
+    
+    Contact-  Fernando Commodari (Varian, Florham Park); adapted- from cyclenoeSLP.c*/

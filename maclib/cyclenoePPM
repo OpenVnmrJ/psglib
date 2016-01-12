@@ -1,0 +1,11 @@
+"cyclenoePPM - converts s2pul  into cyclic irradiation 1DNOE experiments"
+	       "allowing for satpwr attenuation using shaped pulses" 
+
+	
+
+psgset('cyclenoePPM','satfrq','control','cycle','spacing','pattern','tau','satpwr')
+psgset('cyclenoePPM','sattime','satshape','conshape','mix','intsub','sspul','dg','ap')
+ss=32
+dg
+
+
