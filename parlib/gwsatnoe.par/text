@@ -1,0 +1,9 @@
+solvent multiline saturation
+using SLP and crusher gradients
+saturation consists of eleven cycles
+of a 4 SLP-Gz pulse sandwich
+use the convolute macro to create p1shape
+Channel 2 is used for noe irradiation at dof
+control should be set nearby dof
+but not on any signal
+nt must be even number
