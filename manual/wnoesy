@@ -1,0 +1,40 @@
+
+ wnoesy -    NOESY wherein each pulse may be individually adjusted
+             for power and shape. Useful for selective NOESY (allowing
+             reduction of sw1 and ni). Use lsfrq1 to move folded peaks
+             in F1( although rf selective p1 pulse is centered away from
+             tof, the precession frequencies during t1 are still with respect
+             to tof. Thus, depending on the choice of the SLP p1 pulse and
+             the value of sw1, the amount of folding or shifting in F1 will
+             vary. Just determine the amount of needed shift and enter an
+             appropriate value for lsfrq1 before doing the 2D transform).
+
+                ....d1....satdly..p1(SLP)..d2...p2..mix..p3..at
+
+                     p1,p2 and p3 use wfg shaped pulses
+                     p1 pulse is SLP(shifted laminar pulse) to provide
+                     a 90 degree pulse in region of interest. A shapelib.RF
+                     file "p1shape" must be created prior to use
+                     via the "convolute" macro. The rf carrier is always
+                     centered on the water at "tof".
+
+  Parameters:
+
+       mix = mixing time.
+     phase =   0: gives non-phase-sensitive experiment (P-type peaks);
+                  nt(min) = multiple of 16
+                  nt(max) = multiple of 64
+
+             1,2: gives HYPERCOMPLEX phase-sensitive experiment;
+               3: gives TPPI phase-sensitive experiment;
+                  nt(min) = multiple of  8
+                  nt(max) = multiple of 32
+
+    satmode= 'y' uses obs xmtr at power satpwr and tof
+              satmode='yyyn', for example to saturate during satdly,d2 and mix
+    satdly = length of presaturation period;
+    p1pwr  = power level for first(tophat) pulse using shape "p1shape"
+    p2pwr  = power level for second pulse using shape "p2shape"
+    p3pwr  = power level for third pulse using shape "p3shape"
+   satpwr  = saturation power level
+             G.Gray  Palo Alto  Sept 1991  version 4.1 vnmr

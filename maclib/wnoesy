@@ -1,0 +1,8 @@
+"wnoesy-to convert standard parameter table to wnoesy"
+set2d('noesy')
+psgset('wnoesy','mix','phase','array','satmode','satdly','dg','ap')
+psgset('wnoesy','satpwr','p1shape','p1pwr','p1','p2shape','p2pwr','p2')
+psgset('wnoesy','p3shape','p3pwr','p3')
+ni=1 phase=1 f full
+dg
+
