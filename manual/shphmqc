@@ -1,0 +1,32 @@
+ shphmqc- heteronuclear multiple-quantum coherence with hypercomplex
+         implementation, steady-state transients for either all or
+         just the first t1 increment, pulse+receiver phasecycling during
+         steady-state transients, proton pulses are shaped pulses
+          REQUIRES WAVEFORM GENERATOR
+          USES THE SECOND CHANNEL FOR X PULSES AND DECOUPLING
+
+   ref: Summers et al., j. amer. chem. soc. 108:4285-4294 (1986)
+
+
+   Parameters:
+
+        dof = frequency for decoupling during acquisition
+     pwxlvl = power level for decoupler pulses
+        pwx = 90 degree decoupler pulse length for the heteronucleus
+          j = one-bond heteronuclear coupling constant (in Hz)
+         dm = 'nnn':  no broadband decoupling of heteronucleus during
+                      acquisition; 
+              'nny':  broadband heteronuclear decoupling during acquisition
+      shape= shapelib file for shaped pulse
+         tpwr= power level for shaped pulses
+           pw= pulse width for both shaped pulses
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+ phases 
+t1 = 0
+t2 = 2
+t3 = 0 2
+t4 = 0
+t5 = 2
+t6 = 0 0 2 2
+t7 = 0 2 2 0
+

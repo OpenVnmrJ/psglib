@@ -1,0 +1,25 @@
+"*******************************************************"
+" shphmqc - sets up parameters in accordance with the shphmqc "
+"        pulse sequence.                                "
+"*******************************************************"
+
+exists('satfrq','parameter'):$e
+if $e then
+   $satdly=satdly $satfrq=satfrq $satpwr=satpwr endif
+par2d
+psgset('shphmqc','satdly','satfrq','satpwr','satmode','array','null','taumb')
+psgset('shphmqc','dmf','dn','j','pwxlvl','pwx','dpwr','dof','sw1','ni','mbond')
+psgset('shphmqc','phase','tpwr','pw','ss','dm','dmm','d1','at','dgs','hs')
+psgset('shphmqc','p1','dg','ap','sspul','shape')
+
+if $e then satdly=$satdly satfrq=$satfrq satpwr=$satpwr satmode='y' endif
+np=1024
+seqfil='shphmqc'
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+axis='pd' sw1=140d dof=-30d fn=2048 ni=1
+mbond='n'  taumb=0
+sb=at sbs=-at sb1=ni/sw1 sbs1=-sb1
+lb='n' lb1='n' gf='n' gf1='n'
+wexp='' wnt='' wbs=''
