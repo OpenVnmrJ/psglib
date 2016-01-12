@@ -1,0 +1,36 @@
+
+lrhetcor - long-range heteronuclear chemical shift correlation with 
+              BIRD pulse during refocusing delay and a 1-step
+              low-pass J filter
+
+  include:  (1) 1-step low-pass J filter
+            (2) coupled or decoupled spectrum (for coupled spectrum
+                the refocusing delay is automatically eliminated)
+            (3) BIRD pulse during refocusing (for decoupled spectrum)
+
+
+ Parameters:
+
+      pw  -  90 degree pulse on the observe nucleus
+    tpwr  -  transmitter power level; only for systems with a linear
+             amplifier on the transmitter channel
+      pp  -  proton 90 degree pulse on the decoupler channel
+   pplvl  -  decoupler power level; only for systems with a linear
+             amplifier on the decoupler channel; otherwise decoupler
+             is turned to to full-power for pulses on systems that
+             have bilevel decoupling capability
+     dhp  -  decoupler power level during acquisition
+    dpwr  -  decoupler power level during acquisition for systems with
+	     linear amplifiers
+    j1xh  -  one-bond heternuclear coupling constant
+    jnxh  -  multiple-bond heteronuclear coupling constant
+      nt  -  multiple of 8 (minimum required)
+             multiple of 32 (minimum recommended)
+
+
+ References:
+
+  Gary Martin, Magn. Reson. Chem. 26, 28 (1988) 
+  V.V. Krishnamurthy, J. Magn. Reson. 80, 280 (1988) 
+
+  revised Oct 1991  (vvk)                                  */

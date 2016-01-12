@@ -1,0 +1,4 @@
+hetcor
+psgset('lrhetcor','dly3','dly4','dly5','dg','ap','jnxh')
+nt=nt*4
+dps dg
