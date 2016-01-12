@@ -1,0 +1,4 @@
+psgset('hetsecho_3rf','j','satpwr','satfrq','satdly','pwx2','ss','pwx2lvl','dg','ap')
+par3rf dm2='nnn' 
+homo='n' 
+

@@ -1,0 +1,7 @@
+ heteronuclear spin echo using second decoupler   
+
+   same as hetsecho.c but uses the third channel (second
+  (decoupler) as X source. Uses pwx and pwxlvl. No decoupling
+  is normally used, but dpwr2 controls power during
+  acquisition, controlled by dm2 and dmm2.
+
