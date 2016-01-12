@@ -1,0 +1,9 @@
+"noesywg_r-to convert standard parameter table to noesywg-r"
+set2d('noesy')
+psgset('noesywg_r','mix','phase','array','dg','ap','dn')
+psgset('noesywg_r','p180','flipback','p1','p1lvl','phincr1','phincr2')
+psgset('noesywg_r','hst','dgp','oversamp','gzlvl0','gt0','gzlvl1','gt1')
+psgset('noesywg_r','hst','gzlvl2','gt2','gzlvl3','grise','tau')
+rp=rp+180 ni=1 phase=1 f full
+dg
+
