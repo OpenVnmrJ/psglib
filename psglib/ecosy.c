@@ -1,0 +1,135 @@
+#ifndef LINT
+static char SCCSid[] = "@(#)ecosy.c 2.1 9/21/91    Copr 1991 Varian Ass.";
+#endif
+#include<standard.h>
+
+/* e.cosy - r. kyburz, 1988-04-22
+	    r. kyburz, 1991-09-21 (updated)
+	    r. kyburz, 2002-12-13 (adjusted for VNMR 6.1C) */
+
+/* references: 
+       R. Brueschweiler, C. Griesinger, O.W. Sorensen & R.R.Ernst,
+             private communication (1987).
+       C. Griesinger, O.W. Sorensen & R.R. Ernst,
+             J.Am.Chem.Soc. 107, 6394 (1985).
+
+   Parameters:	see man('ecosy')
+*/
+
+
+pulsesequence()
+{   
+   char        sspul[MAXSTR];
+
+   getstr("satmode",satmode);
+   getstr("sspul",sspul);
+   satpwr = getval("satpwr");
+   satdly = getval("satdly");
+   satfrq = getval("satfrq");
+
+/* CONSTANTS FOR PHASE CALCULATIONS */
+    initval( 8.0,v13);
+    initval( 32.0,v12);
+    initval( 20.0,v11);
+    initval( 192.0,v10);
+
+/* CALCULATE PHASECYCLE */
+   assign(zero,v14);	/* phase of first pulse */
+   mod2(ct,v1);
+   dbl(v1,v1);		/* 0202 */
+			/* even/odd flag */
+   hlv(ct,v2);
+   hlv(v2,v3);
+   dbl(v3,v3);		/* 0000222244446666 */
+			/* phase for transients 3 + 4*n */
+			/* 1+4*n = 0 */
+   mod2(v2,v2);		/* 0011 */
+			/* switch for pairs */
+   assign(v13,v4);	/* 8 */
+   ifzero(v2);
+      incr(v4);
+   elsenz(v2);
+      decr(v4);
+   endif(v2);
+   modn(v4,v13,v4);	/* 1177 */
+			/* standard phases for even transients */
+			/*      1 for 2+4*n, 7 for 4*n         */
+   hlv(v13,v8);		/* 4 */
+   add(ct,v8,v5);	/* (ct+4) */
+   divn(v5,v12,v5);	/* (ct+4)/32 */
+   divn(ct,v12,v6);	/* ct/32 */
+   sub(v5,v6,v5);	/* ((ct+4)/32-ct/32 */
+			/* 00000000 00000000 00000000 00001111 */
+   add(ct,v11,v6);	/* (ct+20) */
+   divn(v6,v10,v6);	/* (ct+20)/192 */
+   sub(v11,v7,v7);	/* 16 */
+   add(ct,v7,v7);	/* (ct+16) */
+   divn(v7,v10,v7);	/* (ct+16)/192 */
+   add(v5,v6,v5);
+   sub(v5,v7,v5);	/* ((ct+4)/32-ct/32)+((ct+20)/192-(ct+16)/192) */
+                        /* flag for exceptions on even transients */
+   dbl(v2,v6);		/* 0022 */
+   add(v6,three,v6);	/* 3355 */
+   ifzero(v1);		/* for odd transients */
+      ifzero(v2);       /* 1+4n:                             */
+         assign(zero,v3);             /* 0xxx 0xxx 0xxx 0xxx */
+      endif(v2);        /* 3+4n:         xx0x xx2x xx4x xx6x */
+   elsenz(v1);		/* for even transients */
+      ifzero(v5);	/* normal case:        */
+         assign(v4,v3); /*                x1x7 */
+      elsenz(v5);	/* exceptions:         */
+         assign(v6,v3); /*                x3x5 */
+      endif(v5);	/* v3 = phase of first and second pulse */
+			/*      in 45 degrees steps:            */
+                        /* 01070127 01470167 01070127 01470365  */
+                        /* 01070127 01470167 01070127 01470365  */
+                        /* 01070127 01470167 01070127 01470365  */
+                        /* 01070127 01470167 01070127 01470365  */
+                        /* 01070127 01470167 01070127 01470365  */
+                        /* 01070127 01470365 01070127 01470365  */
+   endif(v1);
+   assign(two,v4);	/* v4 = phase of last 90 degrees pulse */
+   assign(v1,oph);	/* oph = 0202 */
+   if (phase1 == 2) incr(v14); /* States - Habercorn */
+
+/* HYPERCOMPLEX MODE USES REDFIELD TRICK TO MOVE AXIAL PEAKS TO EDGE */
+   if ((phase1 == 1) || (phase1 == 2))
+   {
+      dbl(id2,v9);
+      add(v14,v9,v14);
+      add(oph,v9,oph);
+   }
+   if (phase1 == 3)
+      add(v14,id2,v14);
+ 
+/* BEGIN ACTUAL PULSE SEQUENCE CODE */
+   status(A);
+      if (sspul[A] == 'y') 
+      {
+         hsdelay(hst+0.0001);
+         rgpulse(pw,zero,rof1,rof1);
+         hsdelay(hst+0.0001);
+      }
+      if (satmode[A] == 'y')
+      {
+         obspower(satpwr);
+         if (fabs(satfrq-tof) > 0.1) obsoffset(satfrq);
+         if (d1 > satdly) delay(d1-satdly);
+         rgpulse(satdly,zero,rof1,rof2);
+         obspower(tpwr);
+         if (fabs(satfrq-tof) > 0.1) obsoffset(tof);
+      }
+      else delay(d1);
+   status(B);
+      obsstepsize(45.0);
+      xmtrphase(v3);
+      rgpulse(pw, v14, rof1, 0.0);
+      if (d2 > 2.0*rof1 + 4.0*pw/3.1416)
+         delay(d2 - rof1 - 4.0*pw/3.1416);
+      rcvroff();
+      rgpulse(pw, zero, rof1, 0.0);
+      xmtrphase(zero);
+      rgpulse(pw, v4, rof1, rof2);
+      rcvron();
+   status(C);
+} 

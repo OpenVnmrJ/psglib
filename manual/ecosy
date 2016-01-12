@@ -1,0 +1,41 @@
+
+*************************************************************************
+ecosy :		help file for the double quantum filtered COSY experiment
+		"exclusive" version
+*************************************************************************
+References:
+       R. Brueschweiler, C. Griesinger, O.W. Sorensen & R.R.Ernst,
+             private communication (1987).
+       C. Griesinger, O.W. Sorensen & R.R. Ernst,
+             J.Am.Chem.Soc. 107, 6394 (1985).
+
+PW = 90 degree pulse on the observed nucleus
+D1 = relaxation delay  (1-3*T1)
+D2 = evolution time (t1 period)
+AT = acquisition time (t2 period)
+SW = spectral width (usually SW1 = SW, except for PHASE = 3)
+NI = number of t1 increments (set so that SW1/NI = 12)
+NT = multiple of 32 (MINIMUM)
+     multiple of 192 (optimum)
+PHASE = 1,2 hypercomplex (States-Haberkorn)
+	phase-sensitive acquisition with FAD (f1 axial displacement,
+	shifting f1 axial peaks to the edge of the spectrum).
+
+SSPUL = 'y':  activates a homospoil-90-homospoil sequence which
+              precedes D1; used to achieve a less oscillatory
+              steady-state for 2D experiments where the recycle
+              time is shorter than T1.
+
+SS = number of steady-state transients;  if ss < 0, then -ss
+     transients (with phasecycling of pulses and receiver) are
+     performed before EACH experiment in either an arrayed or 2D
+     experiment; if ss > 0, then ss transients are performed before
+     only the first experiment in such cases.
+
+SATMODE= 'y' : transmitter presaturation during SATDLY
+               requires linear amplifiers on observe channel.
+         'n' : no transmitter presaturation during SATDLY
+SATDLY = transmitter presaturation period
+         is NOT part of D1 
+SATPWR = power level for transmitter presaturation
+SATFRQ = frequency for transmitter presaturation

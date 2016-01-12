@@ -1,0 +1,18 @@
+" @(#)ecosy 8.2 3/9/93 Copyright (c) 1991,1992 Varian Assoc.,Inc. All Rights Reserved "
+"***********************************************************"
+" ecosy - sets up parameters in accordance with the ecosy   "
+"          pulse sequence.                                  "
+"***********************************************************"
+
+set2d('ecosy')
+psgset('ecosy','phase','satdly','array','dm','dmm','sspul','satfrq')
+psgset('ecosy','hs','hst','dg','ap','dgs','ss','satpwr','satmode')
+ph  axis='pp'
+rp1=90  lp1=0 rp=rp+90
+nt=32
+if d1<1 then
+  write('error','ecosy: setting d1=1 - should be 3*T1 at least!')
+  d1=1
+endif
+pw=pw90  ss=8
+man('ecosy') dps
