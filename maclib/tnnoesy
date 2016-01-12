@@ -1,0 +1,7 @@
+"tnnoesy-to convert standard parameter table to tnnoesy"
+set2d('noesy')
+psgset('tnnoesy','sspul','mix','phase','array','satmode','satdly','dg','ap')
+psgset('tnnoesy','satpwr')
+rp=rp+180 ni=1 phase=1 f full
+dg
+
