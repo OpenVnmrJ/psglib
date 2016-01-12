@@ -1,0 +1,19 @@
+/* cctocsy - X-nucleus TOCSY with 1H detection				*/
+/* see: Fesik et.al.,JACS 112, 886(1990)                                */ 
+
+/* satdly	- Presaturation pulses occur every 10ms for satdly	*/
+/* satpwr       - Amplitude for presaturation pulses                    */
+/* j            _ X-H coupling constant                                 */
+/* pwx		- Used for X-nucleus 90 degree pulses			*/
+/* slpwx	- X-nucleus 90-degree pulse width during MLEV-17 period	*/
+/* mix		- Total mixing time					*/
+/* trim		- trim pulse length					*/
+/* tau1		- First two "INEPT-like" delays(1/4j if j<>0)           */
+/* tau2		- Refocussing "INEPT-like" delays(1/4j if j<>0)         */
+/* pwxpwr	- X-nucleus power during pulses				*/
+/* slpwr	- X-nucleus power during MLEVL-17 spin-lock		*/
+/* dpwr		- X-nucleus power during acquisition			*/
+/* dm		- nny for X-nucleus decoupling during acquisition	*/
+/* phase	- 1,2 gives Hypercomplex 2D				*/
+/*									*/
+/* Phases for sequence are found in tablib/cctocsy			*/

@@ -1,0 +1,5 @@
+"cctocsy-converts s2pul to cctocsy parameter set"
+par2d
+psgset('cctocsy','j','mix','dm','dmm','dpwr','pwx','pwxpwr','dseq')
+psgset('cctocsy','dres','sspul','satmode','satdly','satpwr','tau1')
+psgset('cctocsy','tau2','mix','trim','slpwr','slpwx','dg','ap','phase')
