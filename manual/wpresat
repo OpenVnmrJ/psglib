@@ -1,0 +1,21 @@
+ 
+  wpresat-
+               d1...satdly...p1...d2(sat. opt.)...pw....at......
+
+	two-pulse sequence with WFG control of satdly(s) and pulses 
+
+   satfrq = frequency for saturation
+    p1frq = frequency for p1 pulse
+      tof = frequency for pw pulse
+    p1pwr = power level for p1 pulse
+    pwpwr = power level for pw pulse
+   satpwr = power level for saturation pulse(s)
+  p1shape = 'name'   (file found in shapelib)
+  pwshape = 'name'   (file found in shapelib)
+ satshape = 'name'   (file found in shapelib) 
+ satmode  = determines when saturation occurs. Use as "dm" in s2pul
+
+     SLP (convoluted waveforms may be used as shapes to do off-resonance
+          excitations for p1 and/or pw without having to set p1frq <> tof)
+
+         G.Gray Palo Alto, Sept 1991    

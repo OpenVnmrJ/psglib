@@ -1,0 +1,8 @@
+" wpresat - convert parameter set to wpresat water suppression experiment "
+"************************************************************************"
+psgset('wpresat','satshape','satpwr','satfrq','satmode','satdly','dg','ap')
+psgset('wpresat','satfrq','p1frq','p1shape','p1','p1pwr','pwshape')
+psgset('wpresat','pw','pwpwr')
+if dof=tof then satfrq=tof else satfrq=dof endif
+if d1>1 then satdly=d1 else satdly=1.5 endif
+ss=2 dg
