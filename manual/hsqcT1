@@ -1,0 +1,36 @@
+ hscT1 -          heteronuclear Overbodenhausen experiment using
+                    refocused INEPT and broadband decoupling of H1
+                    during t1;  uses 3rd channel for X (2nd decoupler)
+                    X magnetization put on Z axis for relaxation period
+                    then put back in XY plane before reverse inept
+                 
+                    can use proton scrambling pulses at end of relax period
+                    and trim pulse for water dephasing during first inept.
+   Parameters:
+
+     satmode = 'y':  presaturation during relaxation period (satdly) with xmtr
+              'n':  no presaturation during relaxation period (satdly)
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       tpwr = power level for H1 transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+    hdshape = H1 programmable decoupling shape
+      hdpwr = power level for H1 programmable decoupling
+       hd90 = 90 degree pulse length for H1 programmable decoupling shape
+              at power level 'hdpwr'
+      hdres = tip-angle resolution for the H1 programmable decoupling
+              shape
+    scramble= time for (trim(x)-trim(y)-delay) loop
+       trim = water spoiling trim pulse (typ. 1ms)
+      relax = relaxation delay following inept transfer 
+     pwx2lvl = power level for X decoupler pulses
+        pwx2 = 90 degree decoupler pulse length for X
+        jxh = one-bond heteronuclear coupling constant to X (in Hz)
+        dm  = 'nnnn':  no broadband decoupling of X during acquisition
+              'nnny':  broadband heteronuclear decoupling of X during
+		        acquisition
+
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)

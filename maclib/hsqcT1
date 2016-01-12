@@ -1,0 +1,22 @@
+"hsqcT1-macro to convert a presat parameter set to hsqcT1"
+set2d('hsqcT1')
+psgset('hsqcT1','mix','trim','scramble','satmode','satdly','satpwr','satfrq')
+psgset('hsqcT1','sw1','ni','phase','jxh','xrfdev','pwx2','pwx2lvl','fad')
+psgset('hsqcT1','dg','dg2','ap','dm','dm2','dpwr2','dpwr','f1180')
+psgset('hsqcT1','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hsqcT1','dof','dof2','array','deltaxh','tauxh','dmm','dmm2')
+psgset('hsqcT1','hdshape','hdres','hd90','hdpwr','dgp')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+if ($#>0) then
+  if ($1='C13') then
+    jxh=140 axis='pd' sw1=140d dof2=-30d
+    pwx2=13 
+    atext('13C HSQCT1 EXPERIMENT')
+  endif
+  if ($1='N15') then
+    jxh=100 axis='pe' sw1=3000     
+    pwx2=32
+    atext('15N HSQCT1 EXPERIMENT')
+  endif
+endif
+dg
