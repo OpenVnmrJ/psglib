@@ -1,0 +1,21 @@
+"hsqc-macro to convert a presat parameter set to hsqc"
+set2d('hsqc')
+psgset('hsqc','sspul','sstrim','satmode','satdly','satpwr','satfrq','fad')
+psgset('hsqc','f1180','sw1','ni','phase','jxh','null','xrfdev','pwx','pwxlvl')
+psgset('hsqc','dg','dg2','ap','dm','dm2','dpwr2','dpwr')
+psgset('hsqc','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hsqc','dof','dof2','array','deltaxh','dmm','dmm2')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+if ($#>0) then
+  if ($1='C13') then
+    dm='nnnny' dm2='nnnnn' jxh=140 xrfdev=2 axis='pd' sw1=140d dof=-30d
+    pwx=14 
+    atext('13C HSQC EXPERIMENT')
+  endif
+  if ($1='N15') then
+    dm='nnnnn' dm='nnnnn' jxh=100 xrfdev=3 axis='pe' sw1=3000     
+    pwx=36
+    atext('15N HSQC EXPERIMENT')
+  endif
+endif
+dg

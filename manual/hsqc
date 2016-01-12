@@ -1,0 +1,34 @@
+ hsqc  -  heteronuclear Overbodenhausen experiment using REVINEPT
+
+
+   Parameters:
+
+      sspul = 'y':  selects for sstrim(x)-sstrim(y) sequence at the start
+		    of the pulse sequence
+              'n':  normal experiment
+        fad = 'y':  TPPI axial-peak displacement
+              'n':  standard phasecycle
+      f1180 = 'y':  the first t1 point is sampled at half the t1 dwell time
+              'n':  the first t1 point is sampled at t1 = 0
+     satmode = 'yn':  presaturation during relaxation period (satdly) with xmtr
+              'nn':  no presaturation during relaxation period (satdly)
+	      'ny':  presaturation during only the null period
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       null = delay associated with the BIRD nulling
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwxlvl = power level for X decoupler pulses
+        pwx = 90 degree decoupler pulse length for X
+     xrfdev = RF device for the X heteronucleus(2 for 1st dec., 3 for 2nd dec.)
+        jxh = one-bond heteronuclear coupling constant to X (in Hz)
+    deltaxh = 1/(4*jxh) if jxh = 0.0; otherwise, the entered value is
+              used; the delay used in the REVINEPT subsequences
+    dm(dm2) = 'nnnnn':  no broadband decoupling of X during acquisition
+              'nnnny':  broadband heteronuclear decoupling of X during
+		        acquisition
+
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
