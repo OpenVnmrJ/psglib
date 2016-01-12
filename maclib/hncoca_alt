@@ -1,0 +1,20 @@
+"hncoca_alt-macro to convert a presat parameter set to hncoca_alt"
+set2d('hncoca_alt') par3d par3rf
+psgset('hncoca_alt','sspul','satmode','satdly','satpwr','satfrq')
+psgset('hncoca_alt','sw1','ni','phase','jnh','deltanh','taunh','jcn','jcc')
+psgset('hncoca_alt','pwn15','pwn15lvl','pwcalvl','pwca','cafrq')
+psgset('hncoca_alt','f1180','f2180','fad1','fad2','pwcoa','pwcoalvl')
+psgset('hncoca_alt','ni2','sw2','phase2','coshape','hdshape','hdres','hd90','hdlvl')
+psgset('hncoca_alt','dg','dg2','ap','dm','dm2','dpwr2','dgp','dpwr')
+psgset('hncoca_alt','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hncoca_alt','dof','dof2','array','dmm','dmm2')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+dg
+echo('a shapelib file must exist for coshape (created as an SLP pulse)')
+echo('which is calibrated to do a 90-degree pulse on carbonyl carbons')
+echo('downfield from dof, using a power appropriate for the pwca pulse')
+
+atext('HNCOCA experiment')
+atext('use "dg2" to display RF parameters')
+atext('use "dg(`dpg`)" to display processing parameters')
+
