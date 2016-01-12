@@ -1,0 +1,52 @@
+ hsqc3rf_C13dec    HSQC experiment with optional C13 decoupling in t1
+
+              Uses decoupler for C13 pulses and decoupling
+              Uses second decoupler for X pulses and decoupling
+   Parameters:
+
+      sspul = 'y':  selects for sstrim(x)-sstrim(y) sequence at the start
+		    of the pulse sequence
+              'n':  normal experiment
+        fad = 'y':  TPPI axial-peak displacement
+              'n':  standard phasecycle
+      f1180 = 'y':  the first t1 point is sampled at half the t1 dwell time
+              'n':  the first t1 point is sampled at t1 = 0
+     satmode = 'yn':  presaturation during relaxation period (satdly) with xmtr
+              'nn':  no presaturation during relaxation period (satdly)
+	      'ny':  presaturation during only the null period
+     satfrq = presaturation frequency
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+       null = delay associated with the BIRD nulling
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+     pwx2lvl = power level for X decoupler pulses
+        pwx2 = 90 degree decoupler pulse length for X
+        jxh = one-bond heteronuclear coupling constant to X (in Hz)
+    deltaxh = 1/(4*jxh) if jxh = 0.0; otherwise, the entered value is
+              used; the delay used in the REVINEPT subsequences
+        dm2 = 'nnn':  no broadband decoupling of X during acquisition
+              'nny':  broadband heteronuclear decoupling of X during
+		        acquisition
+        dm  = 'nyn'   status-controlled carbonyl carbon decoupling used
+
+     pwca   = Calpha decoupling 180 degree pulse
+     pwcalvl= Calpha decoupling power level
+     shape  = shapelib entry for SLP-Ca pulse shape
+
+        dof2 = frequency for X-decoupling during acquisition
+        dof  = set in the CO region of spectrum
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+
+      permits C13 decoupling during t1 by status control on carbonyls and
+      slp-180 degree pulse on alpha carbons. A file must exist in shapelib
+      to do the alpha 180. Use "convolute" to make this file, for example:
+
+        convolute('120hard','c13dec',24,-18000), where 120 hard is a shapelib
+        file that is 120 lines of 0.0  1023.0 (5 steps per microsec x 24 us =
+        120 steps). 'c13dec' is the name of the shifted frequency pulse used
+        by the simshaped_pulse statement, and -18000 is the effective frequency
+        shift of the pulse. 
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
