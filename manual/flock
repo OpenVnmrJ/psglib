@@ -1,0 +1,18 @@
+############################################################
+FLOCK   long range 13C /1H correlation 13C- detected
+###########################################################
+From Reynolds, et.al. Mag. Res. CHem. 27, 162-169 (1989)
+
+Usual parameters... pp, pplvl should be set as
+appropriate for the 1H decoupler 90s. dm nny & dmm ccs as well.
+
+The flag presat should be 'y' and d1 set for 1H relaxation
+for best results.
+The flag flokoff = 'y' eliminates the bird pulse in evolution.
+This is recommended to avoid f1 quad images on singlets when
+nt is low (8 to 16). flokoff = 'n' is probably the best
+general choice because nt will probably be 64 or greater. 
+
+This sequence was adapted from Dave Lankin's (Searle) pascal
+version for flock in a VXR 4000 based machine. The phase
+cycling is improved from the original paper.
