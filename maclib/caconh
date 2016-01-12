@@ -1,0 +1,23 @@
+"hnca-macro to convert a presat parameter set to hnca"
+set2d('caconh')
+$name='caconh'
+par3d par3rf
+psgset($name,'sspul','sstrim')
+psgset($name,'sw1','ni','nni','phase','jnh','jch')
+psgset($name,'pwn15','pwn15lvl','coshape','pwca')
+psgset($name,'pwcalvl','cafrq','pwco','pwcolvl','cofrq','prtinfo')
+psgset($name,'f1180','f2180','fad1','fad2','c13dev','n15dev')
+psgset($name,'hdshape','hdres','hd90','hdlvl','ni2','sw2','phase2')
+psgset($name,'dg','dg2','ap','dm','dm2','dpwr2','dgseq','dgp','dpwr')
+psgset($name,'dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset($name,'dof','dof2','array','dmm','dmm2','epsilon')
+psgset($name,'homo2','zap','amidefrq','tndelay')
+psgset($name,'theta','zeta','pwcolvlh','pwcoh','cabfrq','pwcablvl','pwcab','padj')
+psgset($name,'gzlvl1','gzlvl2','gzlvl3','gzlvl4','gzlvl5')
+psgset($name,'gt1','gt2','gt3','gt4','gt5','grt','eta')
+seqfil='caconh'
+ni=1 phase=1 if (at>.08) then at=.06 endif
+dg
+echo('a shapelib file  must exist for cashape(created as an SLP pulse)')
+echo('which is calibrated to do a 90-degree pulse on alpha carbons')
+echo('upfield from dof, using a power appropriate for the pwca pulse')
