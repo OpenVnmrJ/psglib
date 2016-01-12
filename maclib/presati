@@ -1,0 +1,7 @@
+"************************************************************************"
+" presati - convert parameter set to presat water suppression experiment "
+"************************************************************************"
+psgset('presati','satpwr','satfrq','satmode','satdly','sspul','composit','dg','ap','dgs')
+if dof=tof then satfrq=tof else satfrq=dof endif
+if d1>1 then satdly=d1 else satdly=1.5 endif
+ss=2 dg

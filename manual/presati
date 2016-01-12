@@ -1,0 +1,18 @@
+  presati-
+
+              {trim(x)trim(y)} ......d1...satdly...p1...d2...pw....at......
+
+	standard two-pulse sequence with optional composite observe pulse 
+          permits IPA mode in FID display mode of ACQI (button control of
+          acquisition parameters). 
+
+        Usage: prepare parameter set and then enter "gf". Go to ACQI and
+               click on FID button. Then click on IPA button.
+
+        satmode = 'y' : obs xmtr saturation at satfrq with power satpwr
+                     (use like dm, i.e. satmode='yyn' or 'ynn')
+        sspul   = 'y' does trim(x)trim(y) to destroy all magnetization
+        composit='y': uses composite 90 for pw (discriminates relative to B1)
+
+               G.Gray, Palo Alto  Sept. 1991   version 4.1 vnmr
+
