@@ -1,0 +1,15 @@
+"macro to set up watergate sequence for 5mm IDTGprobe"
+"RC 31 Oct 94"
+
+if (seqfil <> 'waterg') then
+psgset('watergnoe','psel','psellvl','phaseinc',,'gt1','glvl1','grise','dof','dof2')
+psgset('watergnoe','dpwr','dn','dmf','dmm','dpwr2','dn2','dmm2','dmf2')
+endif
+
+psgset('watergnoe','gtm','mix','glvlm','sstrim','dg')
+set2d('watergnoe')
+phase=1,2
+sw1=5400 rfl1=0 rfp1=-481.86  "fix for your system"
+dm='nnnn' dm2='nnnn'
+dg man('watergnoe')
+dps

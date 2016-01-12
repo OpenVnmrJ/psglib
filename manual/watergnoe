@@ -1,0 +1,22 @@
+#### WATERGNOE 2D NOESY with H2O suppression via gradient echo ####
+
+psel	selective 1H 90 time 	(6090 us)  or  (5350 us)
+psellvl	power level for psel 	(-2)       or  (-1)
+phaseinc  0.5 degress phaseshift for softpulse   (1)
+
+gt1	gradient time		(0.002 sec)
+glvl1	gradient level		(11000 14 G/CM)
+mix	mag transfer time	(0.200)
+gtm	mix gradient time	(0.002 sec)
+glvlm	gtm level		(-8000)
+
+Best to setup with waterg 1D.
+Remember wft2da('lfs') for best results (phase=1,2)
+For AV data run with phase=0 and process wft2d('lfs',1,0,0,-1)
+
+set dm='nyny' and dm2='nyny' to decouple 13C and 15N with labeled
+samples.  You must set dpwr,dmf and dpwr2,dmf2 accordingly.
+THIS SEQUENCE MILDLY CHECKS PARAMETERS FOR PROBE MELTDOWN
+IT IS YOUR RESPONSIBILITY TO SET THESE PARAMETERS CORRECTLY
+
+####################################################################	
