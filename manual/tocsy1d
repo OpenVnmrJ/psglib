@@ -1,0 +1,40 @@
+ 1dtocsy   -  1D tocsy for rapid scalar coupling correlations;
+                internal subtraction of on-resonance and off-
+                resonance selective excitation.
+                Uses shaped pulse inversion of desired resonance on 
+                alternate scans, followed by normal tocsy sequence.
+
+           SELECTIVE PULSE IS DONE VIA PROGR.ATTENUATORS
+        (more selective (lower power) pulses may be done by recabling
+         decoupler programmable attenuator in line with the obs. prog.
+         attenuator. The parameter dpwr then can be used to control
+         a base power level (no decoupling would be possible using 
+         standard methods, however). The 1dtocsy.c pulse sequence code
+         would have to be modified to include explicit power statements
+         prior to the relevant pulses in the sequence.)
+
+    ref: a. bax and d.g. davis, j. magn. reson. 65, 355 (1985)
+
+    pw - 90 degree pulse during mlev periods (at power level tpwr)
+    p1 - 90 degree excitation pulse (at power p1lvl)
+    satdly - presaturation delay using obs. xmtr.
+    satfrq - presaturation frequency
+    satpwr - presaturation power level
+    intsub - 'y': internal subtraction of data acquired by on-resonance
+                  and off-resonance selective excitation
+             'n': data acquired by on-resonance and off-resonance selec-
+                  tive excitation are stored separately
+    selfrqon -  frequency of transmitter selective pulse (on resonance);
+                array if intsub = 'n'
+    selfrqof - frequency of transmitter selective pulse (off resonance);
+                an inactive parameter if intsub = 'n'
+    selpwr - maximum power of transmitter selective pulse
+    shape  -  shape of selective inversion pulse
+seltime-length(in us) of transmitter selective (180) pulse at frequency satfrq.
+               (create seltime parameter as a "pulse")
+    trim - trim pulse time
+    mix - mixing time
+    nt - multiple of 32  (intsub = 'n')
+         multiple of 64  (intsub = 'y')
+
+            G.Gray  Palo Alto   Sept 1991   */
