@@ -1,0 +1,60 @@
+ hncocanodec.c  -  modified HN(CO)CA 3D experiment by Ikura and Bax; uses
+		    shifted laminar pulses for off-resonance excitation of
+		    the CO spins; uses a broadband inversion pulse to refocus
+		    the Ca-N15 and CO-N15 scalar interactions during t2; uses
+		    no broadband H1 decoupling during t1, t2, both tau(cn) periods,
+		    and both tau(cc) periods; the C13 and N15 RF channels are
+		    user-selectable.
+
+
+   Parameters:
+
+      sspul = 'y':  selects for Trim(x)-Trim(y) sequence at the start
+		    of the pulse sequence
+      f1180 = 'n':  standard t1 timing
+              'y':  modified t1 timing for t1(1) = half the dwell time
+      f2180 = 'n':  standard t2 timing
+              'y':  modified t2 timing for t2(1) = half the dwell time
+              'n':  normal experiment
+       fad1 = 'y':  TPPI axial-peak displacement along t1
+              'n':  standard phasecycle
+       fad2 = 'y':  TPPI axial-peak displacement along t2 (3D experiment)
+              'n':  standard phasecycle
+     satmode = 'y':  H1 presaturation during relaxtion delay
+     satfrq = frequency of 1H presaturation for all periods
+     satdly = saturation time during the relaxation period
+     satpwr = saturation power for all periods of presaturation with xmtr
+         hs = 'yn':  homospoil pulse (hst) during the d1 relaxation delay
+        jnh = one-bond H-N heteronuclear coupling constant (in Hz)
+    deltanh = if deltanh < 0.2e-6, deltanh = 1/(2*jnh)
+      taunh = should be set to 5.55 ms (or 1/[2*90]); if taunh < 0.2e-6,
+              taunh = 1/(2*jnh)
+        jcn = one-bond heteronuclear N-CO coupling constant (in Hz)
+        jcc = one-bond CO-Ca coupling constant (in Hz)
+       tpwr = power level for 1H transmitter pulses
+         pw = 90 degree xmtr pulse length for protons (the observed nucleus)
+      cafrq = frequency for Ca spins
+      cofrq = frequency for CO spins
+   dof(C13) = (cafrq + cofrq)/2 for maximum sensitivity
+    pwcalvl = power level for Ca decoupler pulses
+       pwca = 90 degree decoupler pulse length for Ca at `pwcalvl`
+    coshape = frequency-shifted pulse for CO excitation
+    n15shape= shape for N15 180
+    pwcolvl = power level for 90-degree C0 decoupler pulses
+       pwco = 90 degree decoupler pulse length for C0 at `pwcolvl`
+   pwcoalvl = power level for hard C13 pulse
+      pwcoa = 90 degree decoupler pulse length for C13 at `pwcoalvl`
+   pwn15lvl = power level for N15 decoupler pulses
+      pwn15 = 90 degree decoupler pulse length for N15
+  dpwr(N15) = power level for N15 broadband decoupling
+  dpwr(C13) = power level for C13 broadband decoupling
+    dm(N15) = 'nn':  no broadband decoupling of N15 during acquisition
+              'ny':  broadband heteronuclear decoupling of N15 during
+		     acquisition
+    dm(C13) = 'nn':  no broadband decoupling of C13 during acquisition
+              'ny':  broadband heteronuclear decoupling of C13 during
+                     acquisition
+
+      phase = 1,2:  hypercomplex experiment with F1 quadrature (complex F1-FT)
+     phase2 = 1,2:  hypercomplex experiment with F2 quadrature (complex F2-FT)
+                    modified from hncoca3FSP(S.Farmer,Varian)  1/27/92
