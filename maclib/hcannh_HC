@@ -1,0 +1,19 @@
+" hcannh_HC-macro to convert a presat parameter set to  hcannh_HC"
+set2d('hcannh_HC') par3d par3rf
+psgset('hcannh_HC','sspul','satflg','satdly','satpwr','satfrq','ni','sw1')
+psgset('hcannh_HC','sw3','ni3','phase3','jch','jnh','jcn','taunh','deltanh')
+psgset('hcannh_HC','deltach','tauch','taunh','sspul','scuba','c13dev','phase')
+psgset('hcannh_HC','pwn15','pwn15lvl','pwcalvl','pwca','coshape','pwc13')
+psgset('hcannh_HC','pwc13lvl','cafrq','pwco','pwcolvl','cofrq','prtinfo')
+psgset('hcannh_HC','f1180','f2180','f3180','fad1','fad2','fad3','n15dev')
+psgset('hcannh_HC','hdshape','hdres','hd90','hdlvl','ni2','sw2','phase2')
+psgset('hcannh_HC','dg','dg2','ap','dm','dm2','dpwr2','dgseq','dgp','dpwr')
+psgset('hcannh_HC','dmf','dmf2','dseq','dseq2','dres','dres2','dn','dn2')
+psgset('hcannh_HC','dof','dof2','array','dmm','dmm2','dglp','sstrim')
+ni=1 phase=1 if (at>.08) then at=.06 endif
+dg
+echo('a shapelib file  must exist for coshape(created as an SLP pulse)')
+echo('which is calibrated to do a 90-degree pulse on carbonyl carbons')
+echo('downfield from dof, using a power appropriate for the pwco pulse')
+echo('F1=alpha protons   F2=alpha carbons')
+
