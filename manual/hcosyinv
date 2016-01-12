@@ -1,0 +1,20 @@
+ hcosyinv - heteronuclear COSY with proton observe 
+
+
+   H1  -      BB  -               - 90 - Acq.
+   X          d1  - 90 -    t1    - 90
+
+   pwxlvl - X pulse power level
+   pwx    - X 90 deg pulse
+   hdpwr  - proton BB decoupling (during d1 using obs channel) power 
+   hdres  - tip-angle resolution for the hdshape
+   hd90   - 90 pulse width at hdpwr for BB decoupling (typical 80-100 us)
+   hdshape - decoupling modulation shape - (use waltz8 or waltz16 or mlev16)
+   hdflg - 'y' for decoupling
+           'n' no decoupling
+   phase - 1,2 (only hypercomplex with FAD is supported)
+   sspul - does trim(x)-trim(y) before d1
+
+   NOTE : Same sequence can be used for X-observe by reversing the nomenclature
+          In this case there is no need to use BB decoupling during d1
+          set hdflg = 'n'

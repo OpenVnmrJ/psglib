@@ -1,0 +1,14 @@
+"*******************************************************"
+" hcosyinv - sets up parameters in accordance with the"
+"              hcosyinv pulse sequence.               "
+"*******************************************************"
+
+
+par2d
+set2d('hcosyinv')
+
+psgset('hcosyinv','pwxlvl','pwx','hdpwr','hd90','hdres')
+psgset('hcosyinv','hdshape','hdflg','sspul','dg','ap','phase')
+pw=pw90  axis='pd'  spin=0
+phase = 1,2
+dg
