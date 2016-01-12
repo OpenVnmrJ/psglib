@@ -1,0 +1,5 @@
+psgset('w1dztocsy','p1pwr','satshape','satfrq','sattime','satpwr')
+psgset('w1dztocsy','selshape','selpwr','seltime','selfrqon','selfrqof')
+psgset('w1dztocsy','intsub','window','mix','zfilter','ap','dg','sspul')
+dg
+
