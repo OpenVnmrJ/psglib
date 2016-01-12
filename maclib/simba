@@ -1,0 +1,29 @@
+"*******************************************************"
+" simba - sets up parameters in accordance with the simba "
+"        pulse sequence.                                "
+"*******************************************************"
+
+
+par2d
+psgset('simba','satdly','satfrq','satpwr','satflg','array','null','taumb')
+psgset('simba','dmf','dn','j','pwxlvl','pwx','dpwr','dof','sw1','ni','mbond')
+psgset('simba','phase','dg','ap','ss','sstrim','dm','dmm','d1','at','dgs','hs')
+psgset('simba','pwxs','pwxslvl','shape','refoc')
+
+np=2*at*sw
+if ((sw/np) > 4) then
+   at=(sw*at/4)/np
+   np=2*at*sw
+endif
+if ((at/(d1+at)) > 0.15) then
+   d1=(0.85*at)/0.15
+endif
+set2d('simba')  seqfil='simba'
+ni=0 phase=1
+ph  bs='n'  homo='n'  wshim='n'
+nt=nt/16  nt=nt*16
+if (nt = 0) then nt=16 endif
+pw=pw90  axis='pd'  spin=0
+mbond='y'  taumb=0.063
+dps
+man('simba')

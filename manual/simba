@@ -1,0 +1,31 @@
+#######    SIMBA ::  HMQC or HMBC - Full 2D, region-selected 2D #########
+####### 	or single frequency F1 experiments supported #################
+##################### WAVEFORM GENERATOR NEEDED for this version################
+
+	If pwxs = 0, a normal hard pulsed hmqc/hmbc functionally
+	identical to hmqc.c will be run.
+
+	pwxs != 0 selects a MQ [13C] reconversion pulse of type 'shape'
+	for duration pwxs (in micro sec) at power pwxslvl followed
+	by the delay refoc (in micro seconds); refoc is not calculated
+	but must be entered manually.
+
+	Unique Parameters:
+		pwxs = 6000 with pwxslvl = 34 (B2=630Hz) are the
+		default for shape = 'eburp'
+		If pwxs != 0 the first 1/2 of evolution is lengthened
+		by 1/2 pwxs. 
+		refoc is the final refocusing delay and is dependent
+		upon the shape.
+		refoc = 1/2j for eburp in hmqc, ~1/2pwxs longer for gaussian.	
+		refoc = 100 for hmBc with eburp.
+
+	Unless a 13C acquired on the same sample in the same instrument
+	is available, avoid the temptation to employ softer pulses than
+	the default (6000 us eburp). Use (your edited) setdof macro to
+	set dof positions. The hmqcf1 macro is superb for defining windows
+	in 2D experiments. You should edit the $dofzero variable in this
+	supplied macro to reflect your current instruments.
+
+##### Remember dps to see what is selected!!!!! ###################
+###### pulsetool is a great help as well !!!! ####################
