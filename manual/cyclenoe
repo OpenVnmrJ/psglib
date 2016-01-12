@@ -1,0 +1,31 @@
+/* cyclenoe. Difference NOE experiment
+      same as cycledof but uses the obs xmtr for irradiation
+  Parameters:
+
+    pw - 90 degree excitation pulse (at power tpwr)
+    intsub - 'y': internal subtraction of data acquired by on-resonance
+                  and off-resonance selective excitation
+             'n': data acquired by on-resonance and off-resonance selec-
+                  tive excitation are stored separately
+    satfrq  - frequency of selective saturation (on resonance);
+              (make this an array if intsub = 'n', off-res dof if cycle='n')
+    control - off resonance selective saturation frequency
+              (an inactive parameter if intsub = 'n')
+    cycle   - cycle='y' does on-resonance saturation using frequency cycling
+              around the frequency "satfrq" given by "spacing"and"pattern" 
+              cycle='n' does off-resonance saturation at control
+    spacing - spacing(in Hz) of multiplet
+    pattern - pattern type ( 1 for singlet, 2 for doublet, etc.)    
+    tau     - period spent on a single irradiation point during cycling 
+    satpwr  - power of selective irradiation
+    sattime - total length of irradiation at frequency satfrq.
+    mix - mixing time
+    sspul   - sspul='y' does Trim(x)-Trim(y) before d1
+    nt - intsub = 'n':  multiple of 16
+         intsub = 'y':  multiple of 32
+
+
+    NOTE:  This pulse sequence requires that the observe channel be
+           equipped with direct synthesis RF and a linear amplifier.
+           satpwr ranges 0-63 control obs attenuator
+       Contact-  G.Gray (palo alto)    revision- from cycledof.c*/

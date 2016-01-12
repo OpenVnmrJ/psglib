@@ -1,0 +1,7 @@
+"cycledof - converts s2pul  into cyclic irradiation 1DNOE experiments"
+
+psgset('cyclenoe','satfrq','control','cycle','spacing','pattern','tau','satpwr')
+psgset('cyclenoe','sattime','mix','intsub','sspul','dg','ap')
+dg
+
+
