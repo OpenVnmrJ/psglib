@@ -1,0 +1,46 @@
+     "makeseduce1                           R. Bendall,  July 1994"
+
+" usage: makeseduce1"
+
+" Makes a SEDUCE1 decoupling pattern with 100 steps per 90 degree pulse. "      
+" The output is a file in your personal shapelib named seduce1.DEC."
+" It takes about 5 minutes to write, but will only be written if it does not"
+" already exist."
+
+" See McCoy & Mueller, JACS 114, 2108-2112 (1992), JMR A101, 122-130 (1993)."
+
+" When used to selectively decouple the Cab region of proteins without"
+" affecting the CO region it was found experimentally that SEDUCE1 was better"
+" than SEDUCE2,3 and 4.  This is opposite to the expected increase in"
+" selectivity and it seems that it results from the fact that much lower peak"
+" power is required for SEDUCE1, and so it is less prone to instrumental error."
+
+
+$file=userdir+'/shapelib/seduce1.DEC'  
+exists($file,'file'):$exists 
+if $exists<1   then
+write('line3','Writing data to %s...',$file)
+write('reset',$file)
+
+$amp=0.0,0.2,0.6,1.2,2.2,3.6,5.7,8.7,12.7,18.1,25.3,34.7,46.8,62.2,81.5,105.5,134.8,169.8,210.9,257.7,309.1,363.5,417.7,468.4,511.5,543.6,575.6,607.3,638.7,669.6,699.8,729.3,757.9,785.6,812.1,837.5,861.6,884.4,905.6,925.3,943.4,959.7,974.3,987.0,998.0,1006.9,1013.9,1019.0,1022.0,1023.0,1022.0,1019.0,1013.9,1006.9,998.0,987.0,974.3,959.7,943.4,925.3,905.6,884.4,861.6,837.5,812.1,785.6,757.9,729.3,699.8,669.6,638.7,607.3,575.6,543.6,511.5,479.4,437.1,388.1,336.0,284.3,235.0,191.6,153.3,120.7,93.7,71.7,54.1,40.2,29.3,21.0,14.8,10.1,6.7,4.2,2.5,1.4,0.7,0.3,0.1,0.0
+
+
+$p=0.0, 0.0, 0.0, 180.0, 180.0, 180.0, 180.0, 0.0, 0.0, 180.0, 180.0, 180.0,       0.0, 180.0, 180.0, 0.0, 0.0, 0.0, 0.0, 180.0, 180.0, 0.0, 0.0, 0.0
+
+$q=0.0, 180.0, 180.0, 0.0
+
+$k=1 repeat
+
+$j=1 repeat
+
+$i=1     $phase=$p[$j]  $phase=$phase+$q[$k] 
+repeat   write('file',$file,'1.0\t%5.1f\t%6.1f',$phase,$amp[$i])
+$i=$i+1  until $i>100
+
+$j=$j+1  until $j>24
+
+$k=$k+1  until $k>4
+ 
+write('line3','seduce1.DEC decoupling pattern now created in your shapelib!')
+
+endif

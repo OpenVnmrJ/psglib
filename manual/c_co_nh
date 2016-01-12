@@ -1,0 +1,89 @@
+  The five pulse sequences, c_co_nh.c, gc_co_nh.c, gc_co_nh2.c, gcbca_co_nh.c,
+  and gcbca_co_nh2.c all utilise the same macro, "c_co_nhcal" (which needs to 
+  be run only once), and the same parameter set.  The gradient parameters are
+  not used in the non-gradient version of course.
+
+  The two gradient versions for each pulse sequence are believed to give 
+  equivalent results.  In one a 180 C13 pulse is replaced by a period of
+  seduce decoupling.
+
+
+
+
+                       INSTRUCTIONS FOR USE
+         
+    1. Calibrate 90 degree pulse lengths for H1 (pw), C13 (pwC) and N15 (pwN)
+       at the chosen power levels, tpwr, pwClvl and pwNlvl respectively.
+
+    2. You should check, at least once, the C13 amplifier compression.  At a 
+       particular pwClvl (eg 60) and dpwrf=4095, measure the C13 90 - this is
+       pwC of course.  Repeat this measurement at dpwrf=2047 (add 6 to dpwr
+       if you are using C13 decoupling during this measurement).  A compression
+       factor, "comp" is then determined by:
+                comp = (C13 90 @ dpwrf=2047) / 2.0 * pwC
+       If comp is less than 0.95 serious loss of S/N may occur because the 
+       amplitudes of the soft C13 pulses will not be accurately calibrated.
+       Either reduce pwClvl until comp > 0.95, or set the value of the comp
+       parameter provided to this compression factor. The default is comp=1.0.
+       As an example, in one test, setting comp=0.85 as determined above
+       reduced the loss in S/N from 30% to 3%. If comp > 0.95, a small
+       advantage may result in setting comp to the measured value.
+
+    3. The SLP pulses (shifted laminar pulses - pulses shifted off-resonance)
+       must then be calculated using the macro "c_co_nhcal".  These pulses
+       are stored in your shapelib and automatically called by the pulse
+       sequence code.  This calculation takes into account whether the
+       spectrometer is a 500, 600, or 750 system and it only needs to be done
+       once for each system.  All other pulse powers and
+       pulse lengths are automatically calculated from these settings within
+       the pulse sequence code for 500, 600, and 750MHz systems.
+
+    4. The two C13 180 degree pulses after the DIPSI-3 decoupling have been
+       replaced by a single 6-pulse composite dubbed "shaka6" which povides
+       near perfect refocusing with no phase roll over the Cab region and
+       near perfect inversion over the CO region 18kHz off-resonance. 
+
+    5. "c_co_nhcal" also sets ni=ni2=0 and phase=phase2=1 ready for a 1D 
+       spectral check.  When ni=0, the calculated lengths of the SLP pulses
+       (pwC4, pwC5, pwC7)  are
+       displayed by dg to provide confidence to the user that everything has
+       been set up properly - do not change these!  Note also that these SLP
+       pulse lengths are determined only by dfrq and do not depend on pwC. 
+
+    6. Centre H1 frequency on H2O (4.7ppm), C13 frequency on 46ppm, and N15 
+       frequency on the amide region.
+
+    7. The H1 frequency is NOT shifted to the amide region during the sequence
+       as suggested in the JMR article as this appears to achieve no purpose.
+       The H1 DIPSI2 decoupling was increased to 7.5 kHz to achieve better H2O
+       suppression.
+
+    8. The parameter phi7cal (listed in dg when ni=0) is provided to adjust 
+       the phase of the last 90 degree C13 pulse, which is phase-shifted by
+       the prior 180 degree pulse on the Ca region and by the use of SLP
+       pulses on the CO region. The experimentally determined value of this
+       phase is also very sensitive to small timing differences (microseconds)
+       between the two theta delays.  A value of 267 degrees (or -93) has been
+       found for 500 Unity Plus,  but this will change significantly
+       with other systems.  Check this phase via 1D spectra - maximise signal,
+       or for greater accuracy obtain the value for a null and then add or 
+       subtract 90 degrees.
+
+    9. For gradient versions,
+       most gradient levels and durations require no adjustment.  The coherence
+       pathway gradients gzlvl1 and gzlvl2 should be adjusted for maximum
+       signal in a 1D spectrum (normally gzlvl2 is slightly less than gzlvl1).
+       typical values are 15000/14850 with the duration gt1=0.0025.
+
+   10. All echo times within the sequence have been adjusted to provide maximum
+       signal for the protein alphalytic protease (mw 2?000).  These are not
+       under parameter adjustment, but can be changed within the sequence code.
+       To do this replace each pair in turn with d4 and maximise 1D signals with
+       an array of d4.
+
+
+REFERENCES:
+  SLP pulses:     J Magn. Reson. 96, 94-102 (1992)
+  shaka6 composite: Chem. Phys. Lett. 120, 201 (1985) 
+  Grzesiek and Bax, JACS 114 6291, 1992.
+  J Magn. Reson.  B  101, 114-119 (1993)

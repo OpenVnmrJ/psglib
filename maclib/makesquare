@@ -1,0 +1,8 @@
+"makesquare"
+
+"square pulse for shapelib for use in sim3shaped_pulse statements"
+
+$file = userdir + '/shapelib/square.RF'        rm($file)
+write('reset',$file)  write('line3','%s created',$file)
+      $phase=0      $amp=1023.0
+write('file',$file,'%5.1f\t%6.1f\t1.0',$phase,$amp)

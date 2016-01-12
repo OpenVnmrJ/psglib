@@ -1,0 +1,28 @@
+"make180CO		Robin Bendall, Varian, March 1995"
+
+"For version 5.1 software"
+
+"Calculates the following shaped SLP pulse and stores it in your shapelib:"
+"Carrier on Cb, 180 degree pulse on CO 131ppm away, null at Cab."
+
+"The carrier should be set to 46ppm."
+
+"The fine attenuator setting must be set in the pulse sequence during the"
+" pulse."
+
+"The pulse length parameter 'pwC7' will be created if it doesn't exist."
+"The name of the shaped pulse created is 'offC7.RF'."
+"In the pulse sequence code, the syntax is ...shaped_pulse(!offC7!,pwC7,...  "
+"where ! means double quotes (as used at the end of this sentence)."
+
+
+exists('pwC7','parameter'):$exists 
+if $exists<1 then create('pwC7','pulse') endif
+pwC7 = 72.5*600.0/sfrq
+$steps7 = pwC7*5.0   $steps7 = 2.0*trunc($steps7/2.0) + 1.0   
+pwC7 = ($steps7 + 1.0)/5.0
+$rf7 = 4095.0
+makesinc($steps7, $rf7)
+$stps7 = ''     format($steps7,0,0):$stps7     $shape7 = 'sincs' + $stps7
+$freq7 = dfrq*131.0      convolute($shape7,'offC7',pwC7,$freq7)
+write('line3','The SLP pulse, offC7.RF, has been created in your shapelib')

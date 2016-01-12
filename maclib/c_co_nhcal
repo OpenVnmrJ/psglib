@@ -1,0 +1,42 @@
+
+" c_co_nhcal "
+
+"For version 5.1 software"
+
+" Calculates the SLP and other C13 pulses for the c_co_nh pulse sequence.  "
+" Requires no prior calibration"
+
+" written by Robin Bendall, Varian, March 95"
+
+
+pwC4=0 pwC5=0 pwC7=0 ni=0  ni2=0 phase=1 phase2=1 dg
+$files = userdir + '/shapelib/square.RF'        rm($files)
+$files = userdir + '/shapelib/hard*'            rm($files)
+$files = userdir + '/shapelib/sincs*'           rm($files)
+
+
+"square pulse for shapelib for use in sim3shaped_pulse statements"
+makesquare
+
+
+"180 degree square pulse on Ca, null at CO, 121ppm away"
+make180Ca
+
+
+"90 degree selective sinc one-lobe pulse on CO, first null at Cab"
+make90CO
+
+
+"180 degree selective sinc one-lobe pulse on CO, first null at Cab"
+make180CO     dg
+
+
+"dipsi2 decoupling pattern will be made only if not already present"
+makedipsi2
+
+
+"seduce1 decoupling pattern will be made only if not already present"
+makeseduce1
+
+
+write('line3','Calibration finished!')
